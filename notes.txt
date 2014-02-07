@@ -54,5 +54,22 @@ that set; instead it expresses what the set would have to be like if
 it were uniform, if every element made the same contribution to the
 sum.
 
+
 Stats intros always explain the notion of the mean, but they virtually
-never point out its fundamental irreality.
+never point out its fundamental irreality.  They also rarely if ever
+point out the historical significance of the invention of "the Average
+Man".  He is so common and ordinary today that it is easy to overlook
+the fact that he is a 19th century invention who does not in fact
+exist, and would have completely flummoxed people of previous
+centuries.
+
+
+To get back to the original question "What is statistics", this
+suggests that stats should be characterized as the use of mathematics
+to explore alternative /possible/ states of affairs, or something
+along those lines.  Two points are critical: 1) "states of affairs",
+because statistical functions on sets of numbers do in some sense tell
+us something about the "state" of those sets; but 2) those
+(mathematical) states should not be mistaken for empirical matters of
+fact; they should be treated as possible ways the world might be, not
+the way the world in fact is.
