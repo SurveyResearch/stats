@@ -1,0 +1,58 @@
+
+Most introductory texts on stats suck, especially those of the "Stats
+for X" variey, where X = Biologists, Economists, Social Scientists,
+etc.
+
+This doc, which will probably never be finished, is intended as an
+intro to stats that doesn't suck.
+
+These days it is common for writers to answer "What is Statistics" by
+saying something along the lines of "data analysis."  This is not so
+much false as vacuous.  Unless you already have a pretty good idea of
+what stats is, it tells you nothing at best and suggests something
+mysterious at worst.
+
+A better answer refers to the etymology of the term and says that
+stats is the use of mathematics to characterize states of affairs.
+But this too is weak, because it is misleading.  It suggests that
+statistics describe facts, ways that the world is.  But that is
+generally not the case.
+
+Consider the example of the arithmetic mean.  To say that the average
+family has 2.3 children, on this view, is to state a fact, to say
+something about the state of the world (or at least the population of
+families).  But a little reflection shows that this cannot be.  No
+family in the world ever had 2.3 children.  So a sentence like "the
+average family has 2.3 children" cannot be referring to a fact about
+any real family; the question then is whether it refers to any fact at
+all.  And the answer is no.  There is nothing in the world, no fact of
+the matter about the population of families, that corresponds to "2.3
+children".  The average, "2.3", is a purely mathematical construction,
+and mathematical facts are not empirical facts.  The the claim that
+the average family has 2.3 children cannot be treated as an empirical
+claim; instead, it is a claim about a mathematical abstraction.
+
+But this is counter-intuitive; surely the idea that we can average
+over family sizes is unobjectionable.  We know what "family of 2.3
+children" means, even it it doesn't refer to a "real" family.  Even if
+"2.3 children" is a mathematical abstraction, surely it corresponds
+(somehow) to a matter of fact about the population of families.  How
+can we explain this?
+
+I think the way to proceed is to treat claims about averages as
+counterfactuals.  The claim that "the average family has 2.3 children"
+looks like an ordinary factual claim, but in fact it is a
+counterfactual claim.  The real claim is that:
+
+    IF every family in the population made the same contribution to
+    the total number of children, THEN each family would have 2.3
+    children.
+
+This is the intuitive meaning of the formula for the arithmetic mean.
+The arithmetic mean of a set of numbers does not express a fact about
+that set; instead it expresses what the set would have to be like if
+it were uniform, if every element made the same contribution to the
+sum.
+
+Stats intros always explain the notion of the mean, but they virtually
+never point out its fundamental irreality.
