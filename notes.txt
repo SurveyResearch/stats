@@ -1,3 +1,6 @@
+Bullshit-Free Statistics: An introduction for the skeptical, the
+pessimistic, and the mildly disturbed.
+
 
 Most introductory texts on stats suck, especially those of the "Stats
 for X" variey, where X = Biologists, Economists, Social Scientists,
