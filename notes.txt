@@ -79,6 +79,15 @@ and mathematical facts are not empirical facts.  The the claim that
 the average family has 2.3 children cannot be treated as an empirical
 claim; instead, it is a claim about a mathematical abstraction.
 
+[Alternative: treat the arithmetic mean as a ratio.  E.g. two baskets
+of apples, one with two, the other with three.  The mean is 2.5; but
+2.5 of what?  Of apples per basket.  But again "2.5 apples per basket"
+does not refer to anything in the real world.  Etc.  So one way is to
+talk about "the average basket", which doesn't exist; the other way is
+to talk about a ratio of apples to baskets, as a kind of
+generalization, which also does not exist.]
+
+
 But this is counter-intuitive; surely the idea that we can average
 over family sizes is unobjectionable.  We know what "family of 2.3
 children" means, even it it doesn't refer to a "real" family.  Even if
