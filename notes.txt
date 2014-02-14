@@ -21,6 +21,50 @@ But this too is weak, because it is misleading.  It suggests that
 statistics describe facts, ways that the world is.  But that is
 generally not the case.
 
+Statistics is the device we use to try to discover or construct order
+from disorder.  Note the contrast with other mathematical disciplines,
+which begin with order.  Geometry studies the properties of various
+kinds of spaces; algebra studies the properties of various kinds of
+mathematical structure; and so on.  In each case, the phenomena are
+already orderly.  That is no the case in statistics.  It studies the
+properties of sets of numbers (more generally, mathematical entities)
+whose order is unknown.  A set of random numbers is disordered by
+definition; nonetheless, we can compute its aritmetic mean, standard
+deviation, etc.
+
+[Compare the calculus.  It's one thing to learn the "rules of the
+(mathematical) game", it's another to see how the equations of
+calculus describe facts in the world.  It requires that we invent some
+new empirical concepts (or intuitions), e.g. "instantaneous rate of
+change" - does it "really" exist?  In this case too, as in every case
+of applied mathematics, we have to ascend and descend the semantic
+ladder.  This becomes critically important when we try to apply
+statistics in the human sciences (psychology, sociology, etc).  In the
+physical sciences, semantic ascent is presumed to be "free" - it costs
+us nothing, doesn't "lose the phenomenon". etc.  That presumption is
+not automatically available when the data involve the human world of
+beliefs, desires, concepts, attitudes, rituals, institutions, etc.
+The difference ultimately lies in the difference between the natural
+"space of laws" and the cultural "space of reasons".  The data of the
+natural sciences live in the former space, those of the human sciences
+in the latter.]
+
+The Semantic Ladder
+
+That's the purely mathematical perspective.  Applied statistics uses
+mathematical statistics to discover or construct order from
+empirically derived \textit{data}.  Note that "data" is not a neutral
+term -- it does not mean merely "numbers".  But statistics
+\textit{treats} empirical data as purely mathematical "data" -
+numbers.  Researchers then interpret the deliverances of statistical
+analysis in empirical terms.  So applied statistics involves moving up
+and down the semantic ladder - we start by moving up, from the
+empirical to the mathematical, compute our statitics, and then move
+back down the ladder from mathematics to the empirical.
+
+
+Example: are averages "real"?
+
 Consider the example of the arithmetic mean.  To say that the average
 family has 2.3 children, on this view, is to state a fact, to say
 something about the state of the world (or at least the population of
@@ -76,3 +120,42 @@ us something about the "state" of those sets; but 2) those
 (mathematical) states should not be mistaken for empirical matters of
 fact; they should be treated as possible ways the world might be, not
 the way the world in fact is.
+
+================
+
+Evolution & Statistics
+
+The theory of evolution seeks to explain how order can arise from disorder.
+
+Statistics seeks to discovery order in disorder.  Alternatively, it
+seeks to construct order from disorder.  These perspectives implicate
+radically different ways of looking at the world and our relation to
+it.  The realist perspective postulates a reality behind appearances,
+and seeks to discover hidden realities.  The regression line
+discovered by statistical analysis is really there.  It may be hidden
+behind appearances, but it is hidden \textit{reality}.  The
+constructivist perspective builds descriptions from appearances but
+(generally speaking) denies the reality-appearance dichotomy.  The
+regression line yielded by statistical computation describes an order
+in the disorderly data from which it is constructed, but the
+constructivist does not take it to be a description of an independent
+reality behind appearances.  It is a reality of the same order as the
+data, but one that we construct and project.
+
+Support for the constructivist view comes from the fact that variant
+interpretations are always possible, and there is no
+perspective-independent standpoint from which we can decide which
+"discovered" order is nature's own order - the One True Order behind
+appearances.  This is true even of the simplest statistics.  Take for
+example the arithmetic mean.  There are at least two distinct
+counterfactual ways to interpret the mean of a set of numbers.  One is
+ask what \textit{would} be the case if each element of the set were to
+have the same value.  In that case, the mean \textit{would} be the the
+value each element of the set \textit{would} take, in that
+counterfactual situation.  The other way is interpret the mean as
+connected to what \textit{would} be the case if the elements of the
+set were to form an arithmetic progression from the minimum to the
+maximum value.  In that counterfactual situation, the mean
+\textit{would be} the midpoint of the straight line connecting the
+minimum to the maximum.  There is no principled way to decide that one
+of these perspectives is "the correct" one.
