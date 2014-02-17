@@ -1,0 +1,163 @@
+%%!TEX TS-program = xelatexmk
+\documentclass{tufte-handout}
+%% % For syntax trees
+%% \usepackage{qtree}
+
+\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Mapping=tex-text]{Times New Roman}
+\setromanfont[Mapping=tex-text]{Times New Roman}
+\setsansfont[Mapping=tex-text]{Arial}
+
+%% \setmainfont[Mapping=tex-text]{TeX Gyre Pagella}
+%% \setromanfont[Mapping=tex-text]{TeX Gyre Pagella}
+%% \setsansfont[Mapping=tex-text]{TeX Gyre Heros}
+
+%% \setmonofont{Courier}
+
+%% Bugfix: see https://code.google.com/p/tufte-latex/issues/detail?id=64
+% Set up the spacing using fontspec features
+\renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+\renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+
+%% \defaultfontfeatures{Mapping=tex-text}
+%% \setromanfont[Mapping=tex-text]{TeX Gyre Schola}
+%% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeX Gyre Heros}
+%% \setmonofont[Scale=MatchLowercase]{TeX Gyre Cursor}
+
+%% \TeXXeTstate=1
+%% \newfontfamily{\sbl}[Script=Arabic]{Scheherazade}
+
+%% \usepackage{amsmath}
+%% \usepackage{booktabs} % for tables
+%% % Style for linguistic terms
+%% \newcommand{\jgn}[1]{\textbf{\textsc{#1}}} 
+%% %\newcommand{\jgn}[1]{\textsc{#1}} 
+%% % Linguistic environments
+%% \usepackage{covington}
+%% % Rename “Figure” to “Tree”
+%% %% \renewcommand{\figurename}{Tree}
+%% %\renewcommand{\tablename}{Tree}
+
+\usepackage[toc,page,header]{appendix}
+\usepackage{pdfpages}
+
+\usepackage[usenames]{xcolor}
+
+\usepackage{csquotes}
+\usepackage{changepage}
+
+\usepackage{float}
+%% \floatstyle{boxed}
+%% \restylefloat{figure}
+
+
+\usepackage{graphicx}
+%% \usepackage{caption}
+%% \usepackage{subcaption}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,patterns,backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+
+%% %%%<
+\usepackage{verbatim}
+%% \usepackage[active,tightpage]{preview}
+%% \setlength\PreviewBorder{0pt}%
+%% %%%>
+
+
+\begin{comment}
+:Title: PGFPlots examples
+
+\end{comment}
+
+\usepackage{xifthen}
+
+%%%% macros %%%%
+
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%
+\title{Test}
+\author{G. A. Reynolds}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\nocite{*}
+
+\tableofcontents
+%% \listoffigures
+
+\section{TESTING 1 2 3}
+
+
+
+%% % Preamble:
+%% \pgfplotsset{width=7cm,compat=1.9}
+
+%% \pgfdeclarelayer{background}
+%% \pgfdeclarelayer{foreground}
+%% \pgfsetlayers{background,main,foreground}
+
+
+
+\newthought{Lorem ipsum dolor sit amet,} consectetur adipiscing elit. Integer in mi pharetra, auctor nisi nec, fermentum metus. Praesent sodales, nisl a imperdiet imperdiet, justo velit dapibus odio, sed dignissim dolor lacus vitae lectus. Phasellus pellentesque pretium dolor sed iaculis. Vivamus dui tellus, hendrerit et massa sed, tristique pellentesque sem. Phasellus varius, mi ut rutrum aliquet, sapien libero bibendum nibh, nec semper lacus massa ac sem. Donec fermentum mi eu bibendum tempor. Suspendisse fringilla ligula a lorem mollis, a vestibulum neque posuere. Integer felis nunc, dignissim eget enim vel, euismod blandit velit. Maecenas eget dui libero. Integer consequat feugiat risus, vitae pharetra dolor. Cras rutrum tempus lectus. Vestibulum bibendum semper turpis, quis tristique sapien.
+
+
+\begin{figure}[h!]
+\end{figure}
+
+Proin ac eros convallis, sollicitudin orci vel, lacinia est. Vivamus commodo lacus dolor, ut congue ligula pellentesque eu. Etiam vel lorem dui. Pellentesque mattis, lacus nec elementum cursus, nibh nisi sollicitudin metus, ut porttitor lorem magna ac lectus. Integer posuere, elit eu tristique adipiscing, mi purus sodales est, vitae fringilla sapien lorem ac nulla. Fusce turpis libero, feugiat sit amet justo quis, auctor posuere augue. Nam condimentum nibh tortor, eget scelerisque lacus scelerisque eu. Nunc ac placerat dolor. Proin vitae feugiat sem. Donec accumsan mauris ultricies fringilla molestie. Vestibulum nec tortor a elit ornare tincidunt. Vivamus et gravida nulla.
+
+\pgfplotsset{width=5cm,compat=1.9}
+\begin{marginfigure}
+\begin{tikzpicture}
+\begin{axis}
+\addplot 
+%% Gauss(x,mu,sigma) = 1./(sigma*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sigma**2) )
+	gnuplot[id=gauss,domain=-5:5]{1./(sigma*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sigma**2) )};
+%% sin(x)};
+\end{axis}
+\end{tikzpicture}
+\caption{Plot B}
+\end{marginfigure}
+
+
+\section{Behold a Section}
+
+\subsection{Behold a Subsection}
+\newthought{Donec turpis neque}, venenatis nec tincidunt vel, tempor a libero. Ut ullamcorper odio quis nisl cursus, non viverra dolor gravida. Pellentesque rutrum vel lectus ac bibendum. Aliquam gravida, libero sed posuere ornare, purus arcu facilisis risus, quis pharetra est massa quis lacus. Ut a laoreet nunc, et dapibus magna. Sed vestibulum velit sit amet magna faucibus pretium. Aliquam at diam metus. Proin nec dolor ac leo facilisis rhoncus in sit amet sapien. Nulla metus mi, luctus in nulla sit amet, aliquet imperdiet ipsum. Nunc in ipsum eu nunc tincidunt rhoncus a sit amet nisi. Phasellus libero nisi, lacinia ac sapien ut, lacinia interdum nunc. Cras in eleifend tellus, sit amet accumsan ante. Nam quam sem, accumsan et sapien eu, interdum sagittis dolor. Sed sed tempus tellus. Suspendisse rhoncus cursus scelerisque. Morbi id dolor blandit, tincidunt ligula et, rutrum ipsum.
+
+
+\pgfplotsset{width=10cm,compat=1.9}
+\begin{figure}
+\begin{tikzpicture}
+\begin{axis}
+%% Gauss(x,mu,sigma) = 1./(sigma*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sigma**2) )
+%% GPFUN_d1 = "d1(x) = Gauss(x, 0.5, 0.5)"
+\addplot[mark=none]
+gnuplot[samples=50,id=gauss,domain=-5.:5.]{1./(1.*sqrt(2*pi)) * exp( -(x-2.0)**2 / (2*1.**2) )};
+%% gnuplot[id=xin]{sin(x)};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Plot C}
+\end{figure}
+
+
+
+\end{document}
