@@ -1,0 +1,155 @@
+%%!TEX TS-program = xelatexmk
+\documentclass{tufte-handout}
+%% % For syntax trees
+%% \usepackage{qtree}
+
+\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+%\setmainfont[Mapping=tex-text]{Times New Roman}
+\setmainfont[Mapping=tex-text]{TeX Gyre Pagella}
+\setromanfont[Mapping=tex-text]{TeX Gyre Pagella}
+\setsansfont[Mapping=tex-text]{TeX Gyre Heros}
+\setmonofont{Courier}
+
+%% Bugfix: see https://code.google.com/p/tufte-latex/issues/detail?id=64
+% Set up the spacing using fontspec features
+\renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+\renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+
+%% \defaultfontfeatures{Mapping=tex-text}
+%% \setromanfont[Mapping=tex-text]{TeX Gyre Schola}
+%% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeX Gyre Heros}
+%% \setmonofont[Scale=MatchLowercase]{TeX Gyre Cursor}
+
+%% \TeXXeTstate=1
+%% \newfontfamily{\sbl}[Script=Arabic]{Scheherazade}
+
+%% \usepackage{amsmath}
+%% \usepackage{booktabs} % for tables
+%% % Style for linguistic terms
+%% \newcommand{\jgn}[1]{\textbf{\textsc{#1}}} 
+%% %\newcommand{\jgn}[1]{\textsc{#1}} 
+%% % Linguistic environments
+%% \usepackage{covington}
+%% % Rename “Figure” to “Tree”
+%% %% \renewcommand{\figurename}{Tree}
+%% %\renewcommand{\tablename}{Tree}
+
+\usepackage[toc,page,header]{appendix}
+\usepackage{pdfpages}
+\usepackage{color}
+\usepackage{csquotes}
+\usepackage{changepage}
+
+\usepackage{float}
+%% \floatstyle{boxed}
+%% \restylefloat{figure}
+
+
+\usepackage{graphicx}
+%% \usepackage{caption}
+%% \usepackage{subcaption}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,patterns,backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+
+%% %%%<
+\usepackage{verbatim}
+%% \usepackage[active,tightpage]{preview}
+%% \setlength\PreviewBorder{0pt}%
+%% %%%>
+
+
+\begin{comment}
+:Title: PGFPlots examples
+
+\end{comment}
+
+\usepackage{xifthen}
+
+%%%% macros %%%%
+
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%
+\title{Moments}
+\author{G. A. Reynolds}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\nocite{*}
+
+\tableofcontents
+%% \listoffigures
+
+\section{Bar Plots}
+
+
+
+%% % Preamble:
+%% \pgfplotsset{width=7cm,compat=1.9}
+
+%% \pgfdeclarelayer{background}
+%% \pgfdeclarelayer{foreground}
+%% \pgfsetlayers{background,main,foreground}
+
+
+
+\newthought{Lorem ipsum dolor sit amet,} consectetur adipiscing elit. Integer in mi pharetra, auctor nisi nec, fermentum metus. Praesent sodales, nisl a imperdiet imperdiet, justo velit dapibus odio, sed dignissim dolor lacus vitae lectus. Phasellus pellentesque pretium dolor sed iaculis. Vivamus dui tellus, hendrerit et massa sed, tristique pellentesque sem. Phasellus varius, mi ut rutrum aliquet, sapien libero bibendum nibh, nec semper lacus massa ac sem. Donec fermentum mi eu bibendum tempor. Suspendisse fringilla ligula a lorem mollis, a vestibulum neque posuere. Integer felis nunc, dignissim eget enim vel, euismod blandit velit. Maecenas eget dui libero. Integer consequat feugiat risus, vitae pharetra dolor. Cras rutrum tempus lectus. Vestibulum bibendum semper turpis, quis tristique sapien.
+
+
+\begin{figure}[h!]
+\begin{tikzpicture} %[show background rectangle]
+\begin{axis}
+\addplot+[xbar] coordinates
+{(4,0) (1,1) (2,2)
+(5,3) (6,4) (1,5)};
+\end{axis}
+\end{tikzpicture}
+\caption{Plot a}
+\end{figure}
+
+Proin ac eros convallis, sollicitudin orci vel, lacinia est. Vivamus commodo lacus dolor, ut congue ligula pellentesque eu. Etiam vel lorem dui. Pellentesque mattis, lacus nec elementum cursus, nibh nisi sollicitudin metus, ut porttitor lorem magna ac lectus. Integer posuere, elit eu tristique adipiscing, mi purus sodales est, vitae fringilla sapien lorem ac nulla. Fusce turpis libero, feugiat sit amet justo quis, auctor posuere augue. Nam condimentum nibh tortor, eget scelerisque lacus scelerisque eu. Nunc ac placerat dolor. Proin vitae feugiat sem. Donec accumsan mauris ultricies fringilla molestie. Vestibulum nec tortor a elit ornare tincidunt. Vivamus et gravida nulla.
+
+\section{Behold a Section}
+
+\subsection{Behold a Subsection}
+\newthought{Donec turpis neque}, venenatis nec tincidunt vel, tempor a libero. Ut ullamcorper odio quis nisl cursus, non viverra dolor gravida. Pellentesque rutrum vel lectus ac bibendum. Aliquam gravida, libero sed posuere ornare, purus arcu facilisis risus, quis pharetra est massa quis lacus. Ut a laoreet nunc, et dapibus magna. Sed vestibulum velit sit amet magna faucibus pretium. Aliquam at diam metus. Proin nec dolor ac leo facilisis rhoncus in sit amet sapien. Nulla metus mi, luctus in nulla sit amet, aliquet imperdiet ipsum. Nunc in ipsum eu nunc tincidunt rhoncus a sit amet nisi. Phasellus libero nisi, lacinia ac sapien ut, lacinia interdum nunc. Cras in eleifend tellus, sit amet accumsan ante. Nam quam sem, accumsan et sapien eu, interdum sagittis dolor. Sed sed tempus tellus. Suspendisse rhoncus cursus scelerisque. Morbi id dolor blandit, tincidunt ligula et, rutrum ipsum.
+
+\pgfplotsset{width=5cm,compat=1.9}
+\begin{marginfigure}
+\begin{tikzpicture} %[show background rectangle]
+\begin{axis}[xbar,enlargelimits=0.15]
+\addplot
+[draw=blue,pattern=horizontal lines light blue]
+coordinates
+{(10,5) (15,10) (5,15) (24,20) (30,25)};
+\addplot
+[draw=black,pattern=horizontal lines dark blue]
+coordinates
+{(3,5) (5,10) (15,15) (20,20) (35,25)};
+\end{axis}
+\end{tikzpicture}
+\caption{Plot B}
+\end{marginfigure}
+
+Suspendisse lorem massa, porta nec nulla imperdiet, tempus faucibus leo. Integer convallis, erat nec vulputate convallis, enim lectus fringilla quam, id fringilla ipsum leo sit amet nisi. Donec nec risus posuere, tempus purus eget, convallis nunc. Etiam feugiat dignissim facilisis. Quisque ultrices, mauris ut ultrices tempor, sem dui luctus neque, a commodo leo mauris non ante. Donec ullamcorper, nisl nec euismod congue, sem velit faucibus lacus, non feugiat lorem orci quis nisi. Donec ultrices nibh ante, vel tempus enim eleifend sed. Sed quis magna nibh.
+
+Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec in suscipit dui. Etiam non sem lectus. Pellentesque dignissim ultricies eros. Donec consequat ornare dapibus. Donec accumsan massa eget felis gravida, bibendum suscipit felis suscipit. Nullam quis tempor purus. Vivamus rhoncus magna sem, nec dapibus lectus tempor sit amet. Phasellus lacinia scelerisque nulla, consectetur tincidunt sapien viverra quis. In viverra nisl metus, eu molestie quam vehicula non. Nam tellus nibh, viverra vel libero in, accumsan vestibulum purus. Integer velit orci, tincidunt sed viverra in, sagittis sed massa. Curabitur dapibus, turpis ac elementum luctus, dui sem fringilla ligula, ac imperdiet magna enim sit amet purus. Curabitur quis felis tristique, semper urna ut, feugiat velit. Integer consequat odio vel accumsan pretium. Sed ipsum mauris, tristique ac erat vitae, tempor pharetra tortor.
+
+
+\end{document}

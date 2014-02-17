@@ -1,0 +1,4 @@
+
+Great page on relations among distribs:  http://www.johndcook.com/distribution_chart.html
+
+see also http://www.math.wm.edu/~leemis/2008amstat.pdf

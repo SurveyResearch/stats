@@ -1,0 +1,19 @@
+
+Generating sample data:
+
+R:  use r<dist>, e.g. rnorm.  help(<dist>) for doc, e.g. help(norm)
+
+Writing sample data to file:
+
+write.table(rnorm(n),file="b.txt")
+
+or
+
+write.csv(rnorm(1000000, 0, 5), file = 'myRandomNumbers.csv', row.names = FALSE, quote = FALSE)
+
+
+Incanter:  https://github.com/liebke/incanter/wiki/probability-distributions
+
+    R's r<dist> becomes <sample>-dist, e.g. rnorm ->  sample-normal
+
+e.g.   (sample-normal 1000 :mean -2 :sd (sqrt 0.5))
