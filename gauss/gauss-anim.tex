@@ -93,12 +93,6 @@
 
 %% \maketitle
 
-\pgfplotsset{width=10cm,compat=1.9}
-
-\pgfmathdeclarefunction{gaussian}{3}{%
-  \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
-}
-
 %% \pgfdeclarelayer{background layer}
 %% \pgfdeclarelayer{foreground layer}
 %% \pgfsetlayers{background layer,main,foreground layer}
@@ -109,10 +103,11 @@
 %% \def\mu{0}
 %% \def\sigma{1}
 
+\pgfplotsset{width=10cm,compat=1.9}
+\pgfmathdeclarefunction{gaussian}{3}{%
+  \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+}
 \pgfmathsetmacro\rMu{0}
-\pgfmathsetmacro\onesig{.3}
-\pgfmathsetmacro\twosig{.6}
-
 \begin{animateinline}[poster=first,controls]{8}%
    \multiframe{65}{rSigma=2+-.03}{%
      \message{\rSigma}
