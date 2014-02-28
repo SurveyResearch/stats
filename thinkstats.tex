@@ -1,0 +1,538 @@
+\documentclass[reqno,12pt]{article}
+\usepackage[toc,page,header]{appendix}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{setspace}
+\numberwithin{equation}{subsection}
+\usepackage{amsfonts}
+\usepackage{zed-csp}
+
+%\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+
+\usepackage{xfrac}
+
+\usepackage[
+bibstyle=numeric,
+citestyle=authoryear,
+natbib=true,
+hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
+
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Think Stats},
+    pdfauthor={G. A. Reynolds},     % author
+    pdfsubject={Statistics},   % subject of the document
+    pdfcreator={G. A. Reynolds},   % creator of the document
+    pdfproducer={G. A. Reynolds}, % producer of the document
+    pdfkeywords={Statistics}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\usepackage{tikz}
+%\usetikzlibrary{trees,snakes}
+
+\title{Think Stats \\
+\vspace{12pt}
+\Large A Conceptual Introduction to Statistics \\
+\vspace{12pt}
+\large for the Skeptical, the Pessimistic, and the Mildly Disturbed}
+\author{G. A. Reynolds}
+%\date{}                                           % Activate to display a given date or no date
+\bibliography{%
+../bib/logic.bib%
+,../bib/math.bib%
+,../bib/stats.bib%
+}
+
+
+\newtheorem{principle}{Principle}
+\newtheorem{axiom}{Axiom}
+\newtheorem{theorem}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{lem}{Lemma}
+%\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+%% \nocite{*}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+What is statistics?
+
+\blockquote{Modern statistics provides a quantitative technology for
+  empirical science; it is a logic and methodology for the measurement
+  of uncertainty and for an examination of the consequences of that
+  uncertainty in the planning and interpretation of experimentation
+  and observation.\parencite[1]{stigler_history_1986}}
+
+\blockquote{If all sciences require measurement--and statistics is the
+  logic of measurement--it follows that the history of statistics can
+  encompass the history of all of
+  science.\parencite[2]{stigler_history_1986}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sets `n Stuff}
+
+We use the Z Specification notation \parencite{z-iso-13568}.
+
+\begin{description}
+\item [Sets] Membership, subset; family of sets
+\item [Relations]
+\item [Functions]
+\item [Sequences]
+\item [Multisets]
+\end{description}
+
+%%%%
+\subsection{Sets}
+
+Notation: extension v. comprehension
+
+
+%%%%
+\subsection{Relations}
+
+%%%%
+\subsection{Functions}
+
+
+\subsubsection{Definition}
+
+\begin{description}
+\item [Function] Informally, a function is a set of ordered pairs.
+  The Z specification says ``A function is a particular form of
+  relation, where each domain element has only one corresponding range
+  element.''\parencite[9]{z-iso-13568}
+\item [Function Extension] Since a function is a kind of set, it can
+  be defined by explicitly listing its extension--all of its elements.
+  For example, the function $f$ that maps each integer between $1$ and
+  $3$ to itself can be expressed by writing out the complete list of
+  its elements: ${f=\{(1,1),(2,2),(3,3)\}}$.
+\item [Function Comprehension] A second way of defining a function is
+  to express the ``rule'' that determines the elements it contains,
+  without listing them explicitly.  For example ``the function that
+  maps every number to itself'' defines the identity function.  Z provides
+  two ways of doing this, one using standard set comprehension
+  notation, the other using ``function construction'' notation.  See
+  below.
+\end{description}
+
+\subsubsection{Notation}
+
+The Z notation supports several ways of representing a function.  A
+function extension expression may use ordered pair notation or maplet
+notation.  The following example illustrates two ways to define the
+function that maps each integer between $1$ and $3$, inclusive, to its
+double.
+
+\begin{alignat}{2}
+  f &= \{(1,2),(2,4),(3,6)\} \\
+  &= \{1\mapsto 2, 2\mapsto 4, 3\mapsto 6\}
+\end{alignat}
+
+\noindent More generally:
+
+\begin{alignat}{2}
+  \langle e_1,\ldots e_n\rangle &= \{(1,e_1),\ldots (3,e_n)\} \\
+  &= \{1\mapsto e_1,\ldots 3\mapsto e_n\}
+\end{alignat}
+
+Z also supports two ways to define a function intensionally -- in
+terms of a property rather than an explicit list of elements.
+
+\begin{remark}
+FIXME: set comprehension expression for functions:
+\begin{alignat}{2}
+  f &= \{x,y | y=2x @ (x,y)\} \\
+  &= \{x,y | y=2x @ x\mapsto y\}
+\end{alignat}
+\end{remark}
+
+\textit{Function construction} notation...
+\begin{alignat}{2}
+  f &= \{\lambda
+\end{alignat}
+
+
+%%%%
+\subsection{Sequences}
+
+\subsubsection{Definition}
+
+\begin{description}
+\item [Sequence] Informally, a sequence is an ordered set.  The Z
+  specification says ``A sequence is a particular form of function,
+  where the domain elements are all the natural numbers from 1 to the
+  length of the sequence.''
+\end{description}
+
+\subsubsection{Notation}
+
+The Z notation uses angle brackets to form a sequence expression:
+
+\begin{alignat}{2}
+  \langle e_1,\ldots e_n\rangle &= \{(1,e_1),\ldots (3,e_n)\} \\
+  &= \{1\mapsto e_1,\ldots 3\mapsto e_n\}
+\end{alignat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multisets}
+
+We follow \parencite{singh_overview_2007}, with some modifications.
+
+\subsubsection{Definitions}
+
+\begin{description}
+\item [Multiset]
+\item [Element]
+\item [Carrier]  The carrier of an mset is the set from which its elements is drawn.
+\item [Generator]  The generators of an mset are the elements of its carrier set.
+\item [Multiplcity]  The multiplicity of an element of an mset is the number of times it ``occurs'' (``appears'', etc.).
+\item [Cardinality] The cardinality (size) of an mset is the sum of
+  the multiplicities of its elements.  The cardinality of the carrier of an mset is the number of elements it contains.
+\end{description}
+
+\subsubsection{Notation}
+
+The mset containing one $a$, two $b$, and three $c$
+
+\begin{equation}
+  M = \{(a,1), (b,2), (c, 3)\}
+\end{equation}
+
+\noindent can be written as follows:
+
+\begin{description}
+\item [Multiplicative notation]  The following are equivalent:
+
+\begin{itemize}
+\item $[[a,b,b,c,c,c]]$
+\item $[a,b,b,c,c,c]$
+\item $[a,b,c]_{1,2,3}$
+\item $[a^1,b^2,c^3]$
+\item $[a1,b2,c3]$
+\end{itemize}
+
+\item [Linear notation]  The following are equivalent:
+
+\begin{itemize}
+\item $[a]+2[b]+3[c]$
+\item $\{[a],2[b],3[c]\}$ Note that this style combines multiplicative
+  notation for mset elements with standard set notation ($\{\ldots\}$)
+  for the mset itself.
+\end{itemize}
+\end{description}
+
+One advantage of the linear notation is that it allows us to have
+non-integral and non-positive multiplicities; for example, in
+$\{[a],-0.5[b],\pi[c]\}$ element $a$ occurs once, $b$ occurs $-0.5$
+times, and $c$ occurs $\pi$ times.
+
+\subsection{Multisequences}
+
+A multiset is a set of ordered pairs, and is therefore unordered.
+Just as we can extend the concept of set to form a sequence, we can
+extend the notion of multiset to form a multisequence.
+
+\begin{description}
+\item [Multisequence]  A multisequence is a sequence of multiset elements.
+\end{description}
+
+We use the same angle bracket notation we use for set sequences:
+
+\begin{alignat}{2}
+  \langle [a],2[b],3[c]\rangle &= \{(1, (a,1)), (2,(b,2)), (3,(3,c))\} \\
+  &= \{1\mapsto (a,1), 2\mapsto (b,2), 3\mapsto (3,c)\}
+\end{alignat}
+
+
+Since multisets are unordered, we have
+
+\begin{equation}
+  \{[a],2[b],3[c]\} = \{2[b],[a],3[c]\} = \{3[c],2[b],[a]\} = \ldots
+\end{equation}
+
+Multisequences are ordered, so for example
+
+\begin{equation}
+  \langle [a],2[b],3[c]\rangle \neq \langle2[b],[a],3[c]\rangle
+\end{equation}
+
+\noindent since
+
+\begin{equation}
+  \{(1,(a,2), (2,(b,2), (3,(c,3)\}\neq \{(1,(b,2)), (2,(a,2)), (3,(c,3))\}
+\end{equation}
+
+\noindent alternatively
+
+\begin{equation}
+  \{(1\mapsto (a,2), 2\mapsto (b,2), 3\mapsto (c,3)\}\\
+  \neq \{(1\mapsto (b,2)), 2\mapsto (a,2)), 3\mapsto (c,3))\}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Series}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Counting and Combining}
+
+\parencite{berge_principles_1971}
+
+What is combinatorics?
+
+\blockquote{Combinatorics can rightly be called the mathematics of counting. More speciﬁcally, it
+is the mathematics of the enumeration, existence, construction, and optimization questions
+concerning ﬁnite sets. (Mazur, guided tour)}
+
+\blockquote{The concept of configuration can be made mathematically precise by defining it as a mapping of a set of objects into a finite abstract set with a given structure; for example, a permutation of n objects is a “bijection of the set of n objects into the ordered set 1, 2, ..., n.” Nevertheless, one is only interested in mappings satisfying certain constraints.
+
+Just as arithmetic deals with integers (with the standard operations), algebra deals with operations in general, analysis deals with functions, geometry deals with rigid shapes, and topology deals with continuity, so does combinatorics deal with configurations. Combinatorics counts, enu- merates,* examines, and investigates the existence of configurations with certain specified properties.
+}
+
+\subsection{Counting Principles}
+
+\begin{remark}
+  Most of these are just restatements of basic arithmetic, expressed
+  in terms of doing things.  Why bother?  I suspect that thinking in
+  terms of sequences of actions makes it easier to do combinatorics.
+  Also, these ideas only seem to be articulated as principles in
+  elementary texts for e.g. high school algebra.
+\end{remark}
+
+\begin{remark}
+  But isn't combinatorics just the science of counting?
+\end{remark}
+
+\begin{principle}[Fundamental Principle of Counting]
+
+\end{principle}
+
+\begin{description}
+\item [Principle of addition]: if there are $a$ ways of doing one thing
+  and $b$ ways of doing another, and we cannot do both, then there are
+  $a+b$ ways to choose one thing to do.  This is just a restatement of
+  a set-theoretic definition of addition in terms of union of sets.
+
+  In combinatoric texts something like this is more typical:
+
+  \textit{Addition Rule}. If $A$ and $B$ are finite, disjoint sets,
+  then $A \cup B$ is finite and $|A \cup B| = |A| + |B|$.
+
+\item [Principle of multiplication]: if there are $a$ ways of doing
+  one thing and $b$ ways of doing another, then there are $a\cdot b$
+  ways of doing both.  This is a restatement of a set-theoretic
+  definition of addition in terms of cartesian products.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Computability and Decideability}
+
+\begin{remark}
+  Why important for intro to stats?  Mainly for historical reasons;
+  both effective procedure and axiom of choice emerged at roughly the
+  same time.  Also, an understanding of effective proc sharpens
+  understanding of choice and randomness.
+\end{remark}
+
+\subsection{Effective Procedure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Choice and Chance}
+
+\subsection{The Axiom of Choice}
+
+The Axiom of Choice is of enormous important in mathematics generally.
+Statistics is no exception; the significance of the axiom will become
+especially apparent when we discuss the concept of random sample.
+
+\blockquote{The principle of set theory known as the Axiom of Choice has been hailed as “probably the most interesting and, in spite of its late appearance, the most discussed axiom of mathematics, second only to Euclid's axiom of parallels which was introduced more than two thousand years ago” (Fraenkel, Bar-Hillel \& Levy 1973, §II.4).  The fulsomeness (\textit{sic}) of this description might lead those unfamiliar with the axiom to expect it to be as startling as, say, the Principle of the Constancy of the Velocity of Light or the Heisenberg Uncertainty Principle. But in fact the Axiom of Choice as it is usually stated appears humdrum, even self-evident. For it amounts to nothing more than the claim that, given any collection of mutually disjoint nonempty sets, it is possible to assemble a new set — a transversal or choice set — containing exactly one element from each member of the given collection. Nevertheless, this seemingly innocuous principle has far-reaching mathematical consequences — many indispensable, some startling — and has come to figure prominently in discussions on the foundations of mathematics. It (or its equivalents) have been employed in countless mathematical papers, and a number of monographs have been exclusively devoted to it.\parencite{bell_axiom_2013}}
+
+Often stated in terms of choice functions.
+
+Variants:
+
+AC1: 
+Any collection of nonempty sets has a choice function.''
+
+AC2: 
+Any indexed collection of sets has a choice function.
+
+Or relations:
+
+\begin{axiom}[Axiom of Choice]
+\label{ax:choice}
+For every family $\mathcal{F}$ of nonempty disjoint sets there exists
+a \textit{selector}, that is, a set $S$ that intersects every $F\in
+\mathcal{F}$ in precisely one point.\parencite{ciesielski_set_1997}
+\end{axiom}
+
+Transversal:  In a 1908 paper Zermelo introduced a modified form of AC. Let us call a transversal (or choice set) for a family of sets H any subset T ⊆ ∪H for which each intersection T ∩ X for X ∈ H has exactly one element.  As a very simple example, let H = {{0}, {1}, {2, 3}}. Then H has the two transversals {0, 1, 2} and {0, 1, 3}. A more substantial example is afforded by letting H be the collection of all lines in the Euclidean plane parallel to the x-axis. Then the set T of points on the y-axis is a transversal for H.
+
+So we have choice functions and choice sets.
+
+
+``Let us call Zermelo's 1908 formulation the combinatorial axiom of choice:
+
+CAC: 
+Any collection of mutually disjoint nonempty sets has a transversal.'' (bell)
+
+
+The problem:
+
+
+\blockquote{It is to be noted that AC1 and CAC for finite collections
+  of sets are both provable (by induction) in the usual set
+  theories. But in the case of an infinite collection, even when each
+  of its members is finite, the question of the existence of a choice
+  function or a transversal is problematic[4]. For example, as already
+  mentioned, it is easy to come up with a choice function for the
+  collection of pairs of real numbers (simply choose the smaller
+  element of each pair). But it is by no means obvious how to produce
+  a choice function for the collection of pairs of arbitrary sets of
+  real numbers.\parencite{bell_axiom_2013}}
+
+Footnote: 
+\blockquote{The difficulty here is amusingly illustrated by an anecdote due to Bertrand Russell. A millionaire possesses an infinite number of pairs of shoes, and an infinite number of pairs of socks. One day, in a fit of eccentricity, the millionaire summons his valet and asks him to select one shoe from each pair. When the valet, accustomed to receiving precise instructions, asks for details as to how to perform the selection, the millionaire suggests that the left shoe be chosen from each pair. Next day the millionaire proposes to the valet that he select one sock from each pair. When asked as to how this operation is to be carried out, the millionaire is at a loss for a reply, since, unlike shoes, there is no intrinsic way of distinguishing one sock of a pair from the other. In other words, the selection of the socks must be truly arbitrary.}
+
+The axiom of choice and probability (randomness) are different
+concepts.  See
+http://math.stackexchange.com/questions/29381/picking-from-an-uncountable-set-axiom-of-choice
+
+\subsection{Chance and Randomness}
+
+See \parencite{eagle_chance_2014}
+
+Indeterminacy, disorder, chaos, stochastic process, etc.
+
+chance of a process, randomness of its product
+
+Chance: physical; randomness: mathematical?
+
+``It is safest, therefore, to conclude that chance and randomness, while they overlap in many cases, are separate concepts.''\parencite{eagle_chance_2014}
+
+Process v. Product concepts
+
+``Of course the terminology in common usage is somewhat slippery; it's not clear, for example, whether to count random sampling as a product notion, because of the connection with randomness, or as a process notion, because sampling is a process.''
+
+\blockquote{The upshot of this discussion is that chance is a process notion, rather than being entirely determined by features of the outcome to which the surface grammar of chance ascriptions assigns the chance. For if there can be a single-case chance of ½ for a coin to land heads on a toss even if there is only one actual toss, and it lands tails, then surely the chance cannot be fixed by properties of the outcome ‘lands heads’, as that outcome does not exist.[2] The chance must rather grounded in features of the process that can produce the outcome: the coin-tossing trial, including the mass distribution of the coin and the details of how it is tossed, in this case, plus the background conditions and laws that govern the trial. Whether or not an event happens by chance is a feature of the process that produced it, not the event itself.\parencite{eagle_chance_2014}}
+
+\blockquote{a process conception of randomness makes nonsense of some obvious uses of ‘random’ to characterise an entire collection of outcomes of a given repeated process. This is the sense in which a random sample is random: it is an unbiased representation of the population from which it is drawn—and that is a property of the entire sample, not each individual member. While many random samples will be drawn using a random process, they need not be....To be sure that our sample is random, we may wish to use random numbers to decide whether to include a given individual in the sample; to that end, large tables of random digits have been produced, displaying no order or pattern (RAND Corporation 1955). This other conception of randomness, as attaching primarily to collections of outcomes, has been termed product randomness.(eagle)}
+
+\blockquote{If the actual process that generate the sequences are perfectly deterministic, it may be that a typical product of that process is not random. But we are rather concerned to characterise which of all the possible sequences produced by any process whatsoever are random, and it seems clear that most of the ways an infinite sequence might be produced, and hence most of the sequences so produced, will be random.(eagle)}
+
+...concentrate on the sequence of outcomes as independently given mathematical entities, rather than as the products of a large number of independent Bernoulli trials...
+
+
+Goal: devise mathematics to ``capture the intuitive notion of randomness.''
+
+Compare logicians' attempts to capture the intuitive notion of logical consequence.
+
+ Howson and Urbach (1993: 324) that ‘it seems highly doubtful that there is anything like a unique notion of randomness there to be explicated’.
+
+Intuitions about randomness:
+
+\begin{itemize}
+\item a property of a sequence
+\item indeterminism
+\item epistemic randomness
+\end{itemize}
+
+
+See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Infinity and the Limit Concept}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Measure and Integration}
+
+\begin{remark}
+  Why this?  Mainly just as a notational convenience.  Even if we target an
+  audience with minimal math, it is useful to have $\int$ (or
+  $\overset{+}{\lambda}$) to indicate the area under a curve.  And
+  that is critical to the concept of probability of a continuous
+  random variable, which is one of the main concepts we want to get
+  across.
+
+  Furthermore the basic concepts are not that difficult:
+  differentiation as the limit of a ratio of differences, integration
+  is the limit of a sum of products.  The details of how one might
+  actually do this may be daunting for many readers, but the basic
+  concepts are quite simple and intuitive.  Especially with lambda
+  notation.
+\end{remark}
+
+\begin{remark}
+  What about differentiation?
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Measurement and Error}
+
+\begin{remark}
+  The previous section discuss the mathematical concept of measure.
+  This section discusses theories of empirical measure\textit{ment}.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Log and Exp}
+
+\begin{remark}
+  The purpose here is not to define log and exp per se, but to show
+  how they are graphed, so that later the graphs of probability
+  distributions like the normal curve are intelligible.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Random Variables}
+
+Random selection devices
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Distributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sampling}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% {\setstretch{2.25}
+%% \begin{alignat}{1}
+%%   \overset{+}{\lambda}x &= \dfrac{x^2}{2} + C \\
+%%   \overset{+}{\lambda}cx &= c\dfrac{x^2}{2} + C \\
+%%   \overset{+}{\lambda}x^n &= \dfrac{x^{n}}{n} + C
+%% \end{alignat}
+
+\clearpage
+\appendix
+\begin{appendices}
+\section{Bibliography}
+%% \addcontentsline{toc}{chapter}{Bibliography}
+%% \bibliographystyle{plainnat}
+\printbibliography[heading=none]
+\end{appendices}
+
+\end{document}
