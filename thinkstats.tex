@@ -1,4 +1,6 @@
-\documentclass[reqno,12pt]{article}
+\documentclass[reqno,12pt]{tufte-book}
+%% \documentclass[reqno,12pt]{article}
+
 \usepackage[toc,page,header]{appendix}
 \usepackage{csquotes}
 \usepackage{amsmath}
@@ -10,13 +12,18 @@
 %\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 %\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
 
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{.8\textwidth}
+
 \usepackage{xfrac}
 
-\usepackage[
-bibstyle=numeric,
-citestyle=authoryear,
-natbib=true,
-hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
+%% \usepackage[
+%% bibstyle=numeric,
+%% citestyle=authoryear,
+%% hyperref,
+%% bibencoding=utf8,
+%% backref=true,
+%% backend=biber]{biblatex}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -50,12 +57,6 @@ hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
 \large for the Skeptical, the Pessimistic, and the Mildly Disturbed}
 \author{G. A. Reynolds}
 %\date{}                                           % Activate to display a given date or no date
-\bibliography{%
-../bib/logic.bib%
-,../bib/math.bib%
-,../bib/stats.bib%
-}
-
 
 \newtheorem{principle}{Principle}
 \newtheorem{axiom}{Axiom}
@@ -65,7 +66,6 @@ hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
 %\theoremstyle{remark}
 \newtheorem{remark}{Remark}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
@@ -74,25 +74,30 @@ hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
+\chapter{Introduction}
 
-What is statistics?
+What is statistics\footnote{test note}?
 
-\blockquote{Modern statistics provides a quantitative technology for
+\epigraph{Modern statistics provides a quantitative technology for
   empirical science; it is a logic and methodology for the measurement
   of uncertainty and for an examination of the consequences of that
   uncertainty in the planning and interpretation of experimentation
-  and observation.\parencite[1]{stigler_history_1986}}
+  and observation.}{\citet{stigler_history_1986}}
 
-\blockquote{If all sciences require measurement--and statistics is the
+\epigraph{If all sciences require measurement--and statistics is the
   logic of measurement--it follows that the history of statistics can
   encompass the history of all of
-  science.\parencite[2]{stigler_history_1986}}
+  science.}{\citet{stigler_history_1986}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Mathematic \& Logic}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sets `n Stuff}
+\chapter{Sets `n Stuff}
 
-We use the Z Specification notation \parencite{z-iso-13568}.
+We use the Z Specification notation \cite{z-iso-13568}.
 
 \begin{description}
 \item [Sets] Membership, subset; family of sets
@@ -103,25 +108,25 @@ We use the Z Specification notation \parencite{z-iso-13568}.
 \end{description}
 
 %%%%
-\subsection{Sets}
+\section{Sets}
 
 Notation: extension v. comprehension
 
 
 %%%%
-\subsection{Relations}
+\section{Relations}
 
 %%%%
-\subsection{Functions}
+\section{Functions}
 
 
-\subsubsection{Definition}
+\subsection{Definition}
 
 \begin{description}
 \item [Function] Informally, a function is a set of ordered pairs.
   The Z specification says ``A function is a particular form of
   relation, where each domain element has only one corresponding range
-  element.''\parencite[9]{z-iso-13568}
+  element.''\cite{z-iso-13568}%p [9]
 \item [Function Extension] Since a function is a kind of set, it can
   be defined by explicitly listing its extension--all of its elements.
   For example, the function $f$ that maps each integer between $1$ and
@@ -136,7 +141,7 @@ Notation: extension v. comprehension
   below.
 \end{description}
 
-\subsubsection{Notation}
+\subsection{Notation}
 
 The Z notation supports several ways of representing a function.  A
 function extension expression may use ordered pair notation or maplet
@@ -174,9 +179,15 @@ FIXME: set comprehension expression for functions:
 
 
 %%%%
-\subsection{Sequences}
+\section{Sequences}
+\label{subs:sequences}
 
-\subsubsection{Definition}
+\begin{remark}
+  Lay down the basic concepts, terminology, and notation, for later
+  use in discussing sampling, etc.
+\end{remark}
+
+\subsection{Definition}
 
 \begin{description}
 \item [Sequence] Informally, a sequence is an ordered set.  The Z
@@ -185,7 +196,7 @@ FIXME: set comprehension expression for functions:
   length of the sequence.''
 \end{description}
 
-\subsubsection{Notation}
+\subsection{Notation}
 
 The Z notation uses angle brackets to form a sequence expression:
 
@@ -195,11 +206,11 @@ The Z notation uses angle brackets to form a sequence expression:
 \end{alignat}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Multisets}
+\section{Multisets}
 
-We follow \parencite{singh_overview_2007}, with some modifications.
+We follow \citet{singh_overview_2007}, with some modifications.
 
-\subsubsection{Definitions}
+\subsection{Definitions}
 
 \begin{description}
 \item [Multiset]
@@ -211,7 +222,7 @@ We follow \parencite{singh_overview_2007}, with some modifications.
   the multiplicities of its elements.  The cardinality of the carrier of an mset is the number of elements it contains.
 \end{description}
 
-\subsubsection{Notation}
+\subsection{Notation}
 
 The mset containing one $a$, two $b$, and three $c$
 
@@ -232,6 +243,8 @@ The mset containing one $a$, two $b$, and three $c$
 \item $[a1,b2,c3]$
 \end{itemize}
 
+Note order is irrelevant.
+
 \item [Linear notation]  The following are equivalent:
 
 \begin{itemize}
@@ -247,7 +260,18 @@ non-integral and non-positive multiplicities; for example, in
 $\{[a],-0.5[b],\pi[c]\}$ element $a$ occurs once, $b$ occurs $-0.5$
 times, and $c$ occurs $\pi$ times.
 
-\subsection{Multisequences}
+In addition, linear notation allows a concise variant somewhat like a
+stem-and-leaf display:
+
+$$\{[a],2[b],2[c],3[d]\} = \{1[a], 2[b,c], 3[c]\}$$
+
+%%%%%%%%
+\subsection{Stem and Leaf}
+
+Multisets can be represented using stem-and-leaf tables:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multisequences}
 
 A multiset is a set of ordered pairs, and is therefore unordered.
 Just as we can extend the concept of set to form a sequence, we can
@@ -261,9 +285,9 @@ We use the same angle bracket notation we use for set sequences:
 
 \begin{alignat}{2}
   \langle [a],2[b],3[c]\rangle &= \{(1, (a,1)), (2,(b,2)), (3,(3,c))\} \\
-  &= \{1\mapsto (a,1), 2\mapsto (b,2), 3\mapsto (3,c)\}
+  &= \{1\mapsto (a,1), 2\mapsto (b,2), 3\mapsto (3,c)\} \\
+  &= \langle a,b,b,c,c,c\rangle
 \end{alignat}
-
 
 Since multisets are unordered, we have
 
@@ -286,18 +310,19 @@ Multisequences are ordered, so for example
 \noindent alternatively
 
 \begin{equation}
-  \{(1\mapsto (a,2), 2\mapsto (b,2), 3\mapsto (c,3)\}\\
+  \{(1\mapsto (a,2), 2\mapsto (b,2), 3\mapsto (c,3)\} 
   \neq \{(1\mapsto (b,2)), 2\mapsto (a,2)), 3\mapsto (c,3))\}
 \end{equation}
 
+Also:  $\langle a,b,b,c,c,c\rangle \neq [a,b,b,c,c,c]$
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Series}
+\chapter{Series}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Counting and Combining}
+\chapter{Counting and Combining}
 
-\parencite{berge_principles_1971}
+\cite{berge_principles_1971}
 
 What is combinatorics?
 
@@ -310,7 +335,7 @@ concerning ﬁnite sets. (Mazur, guided tour)}
 Just as arithmetic deals with integers (with the standard operations), algebra deals with operations in general, analysis deals with functions, geometry deals with rigid shapes, and topology deals with continuity, so does combinatorics deal with configurations. Combinatorics counts, enu- merates,* examines, and investigates the existence of configurations with certain specified properties.
 }
 
-\subsection{Counting Principles}
+\section{Counting Principles}
 
 \begin{remark}
   Most of these are just restatements of basic arithmetic, expressed
@@ -346,7 +371,7 @@ Just as arithmetic deals with integers (with the standard operations), algebra d
 \end{description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Computability and Decideability}
+\chapter{Computability and Decideability}
 
 \begin{remark}
   Why important for intro to stats?  Mainly for historical reasons;
@@ -355,19 +380,19 @@ Just as arithmetic deals with integers (with the standard operations), algebra d
   understanding of choice and randomness.
 \end{remark}
 
-\subsection{Effective Procedure}
+\section{Effective Procedure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Choice and Chance}
+\chapter{Choice and Chance}
 
-\subsection{The Axiom of Choice}
+\section{The Axiom of Choice}
 
 The Axiom of Choice is of enormous important in mathematics generally.
 Statistics is no exception; the significance of the axiom will become
 especially apparent when we discuss the concept of random sample.
 
-\blockquote{The principle of set theory known as the Axiom of Choice has been hailed as “probably the most interesting and, in spite of its late appearance, the most discussed axiom of mathematics, second only to Euclid's axiom of parallels which was introduced more than two thousand years ago” (Fraenkel, Bar-Hillel \& Levy 1973, §II.4).  The fulsomeness (\textit{sic}) of this description might lead those unfamiliar with the axiom to expect it to be as startling as, say, the Principle of the Constancy of the Velocity of Light or the Heisenberg Uncertainty Principle. But in fact the Axiom of Choice as it is usually stated appears humdrum, even self-evident. For it amounts to nothing more than the claim that, given any collection of mutually disjoint nonempty sets, it is possible to assemble a new set — a transversal or choice set — containing exactly one element from each member of the given collection. Nevertheless, this seemingly innocuous principle has far-reaching mathematical consequences — many indispensable, some startling — and has come to figure prominently in discussions on the foundations of mathematics. It (or its equivalents) have been employed in countless mathematical papers, and a number of monographs have been exclusively devoted to it.\parencite{bell_axiom_2013}}
+\blockquote{The principle of set theory known as the Axiom of Choice has been hailed as “probably the most interesting and, in spite of its late appearance, the most discussed axiom of mathematics, second only to Euclid's axiom of parallels which was introduced more than two thousand years ago” (Fraenkel, Bar-Hillel \& Levy 1973, §II.4).  The fulsomeness (\textit{sic}) of this description might lead those unfamiliar with the axiom to expect it to be as startling as, say, the Principle of the Constancy of the Velocity of Light or the Heisenberg Uncertainty Principle. But in fact the Axiom of Choice as it is usually stated appears humdrum, even self-evident. For it amounts to nothing more than the claim that, given any collection of mutually disjoint nonempty sets, it is possible to assemble a new set — a transversal or choice set — containing exactly one element from each member of the given collection. Nevertheless, this seemingly innocuous principle has far-reaching mathematical consequences — many indispensable, some startling — and has come to figure prominently in discussions on the foundations of mathematics. It (or its equivalents) have been employed in countless mathematical papers, and a number of monographs have been exclusively devoted to it.\cite{bell_axiom_2013}}
 
 Often stated in terms of choice functions.
 
@@ -385,7 +410,7 @@ Or relations:
 \label{ax:choice}
 For every family $\mathcal{F}$ of nonempty disjoint sets there exists
 a \textit{selector}, that is, a set $S$ that intersects every $F\in
-\mathcal{F}$ in precisely one point.\parencite{ciesielski_set_1997}
+\mathcal{F}$ in precisely one point.\cite{ciesielski_set_1997}
 \end{axiom}
 
 Transversal:  In a 1908 paper Zermelo introduced a modified form of AC. Let us call a transversal (or choice set) for a family of sets H any subset T ⊆ ∪H for which each intersection T ∩ X for X ∈ H has exactly one element.  As a very simple example, let H = {{0}, {1}, {2, 3}}. Then H has the two transversals {0, 1, 2} and {0, 1, 3}. A more substantial example is afforded by letting H be the collection of all lines in the Euclidean plane parallel to the x-axis. Then the set T of points on the y-axis is a transversal for H.
@@ -411,7 +436,7 @@ The problem:
   collection of pairs of real numbers (simply choose the smaller
   element of each pair). But it is by no means obvious how to produce
   a choice function for the collection of pairs of arbitrary sets of
-  real numbers.\parencite{bell_axiom_2013}}
+  real numbers.\cite{bell_axiom_2013}}
 
 Footnote: 
 \blockquote{The difficulty here is amusingly illustrated by an anecdote due to Bertrand Russell. A millionaire possesses an infinite number of pairs of shoes, and an infinite number of pairs of socks. One day, in a fit of eccentricity, the millionaire summons his valet and asks him to select one shoe from each pair. When the valet, accustomed to receiving precise instructions, asks for details as to how to perform the selection, the millionaire suggests that the left shoe be chosen from each pair. Next day the millionaire proposes to the valet that he select one sock from each pair. When asked as to how this operation is to be carried out, the millionaire is at a loss for a reply, since, unlike shoes, there is no intrinsic way of distinguishing one sock of a pair from the other. In other words, the selection of the socks must be truly arbitrary.}
@@ -420,9 +445,9 @@ The axiom of choice and probability (randomness) are different
 concepts.  See
 http://math.stackexchange.com/questions/29381/picking-from-an-uncountable-set-axiom-of-choice
 
-\subsection{Chance and Randomness}
+\section{Chance and Randomness}
 
-See \parencite{eagle_chance_2014}
+See \cite{eagle_chance_2014}
 
 Indeterminacy, disorder, chaos, stochastic process, etc.
 
@@ -430,13 +455,13 @@ chance of a process, randomness of its product
 
 Chance: physical; randomness: mathematical?
 
-``It is safest, therefore, to conclude that chance and randomness, while they overlap in many cases, are separate concepts.''\parencite{eagle_chance_2014}
+``It is safest, therefore, to conclude that chance and randomness, while they overlap in many cases, are separate concepts.''\cite{eagle_chance_2014}
 
 Process v. Product concepts
 
 ``Of course the terminology in common usage is somewhat slippery; it's not clear, for example, whether to count random sampling as a product notion, because of the connection with randomness, or as a process notion, because sampling is a process.''
 
-\blockquote{The upshot of this discussion is that chance is a process notion, rather than being entirely determined by features of the outcome to which the surface grammar of chance ascriptions assigns the chance. For if there can be a single-case chance of ½ for a coin to land heads on a toss even if there is only one actual toss, and it lands tails, then surely the chance cannot be fixed by properties of the outcome ‘lands heads’, as that outcome does not exist.[2] The chance must rather grounded in features of the process that can produce the outcome: the coin-tossing trial, including the mass distribution of the coin and the details of how it is tossed, in this case, plus the background conditions and laws that govern the trial. Whether or not an event happens by chance is a feature of the process that produced it, not the event itself.\parencite{eagle_chance_2014}}
+\blockquote{The upshot of this discussion is that chance is a process notion, rather than being entirely determined by features of the outcome to which the surface grammar of chance ascriptions assigns the chance. For if there can be a single-case chance of ½ for a coin to land heads on a toss even if there is only one actual toss, and it lands tails, then surely the chance cannot be fixed by properties of the outcome ‘lands heads’, as that outcome does not exist.[2] The chance must rather grounded in features of the process that can produce the outcome: the coin-tossing trial, including the mass distribution of the coin and the details of how it is tossed, in this case, plus the background conditions and laws that govern the trial. Whether or not an event happens by chance is a feature of the process that produced it, not the event itself.\cite{eagle_chance_2014}}
 
 \blockquote{a process conception of randomness makes nonsense of some obvious uses of ‘random’ to characterise an entire collection of outcomes of a given repeated process. This is the sense in which a random sample is random: it is an unbiased representation of the population from which it is drawn—and that is a property of the entire sample, not each individual member. While many random samples will be drawn using a random process, they need not be....To be sure that our sample is random, we may wish to use random numbers to decide whether to include a given individual in the sample; to that end, large tables of random digits have been produced, displaying no order or pattern (RAND Corporation 1955). This other conception of randomness, as attaching primarily to collections of outcomes, has been termed product randomness.(eagle)}
 
@@ -463,10 +488,10 @@ Intuitions about randomness:
 See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Infinity and the Limit Concept}
+\chapter{Infinity and the Limit Concept}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Measure and Integration}
+\chapter{Measure and Integration}
 
 \begin{remark}
   Why this?  Mainly just as a notational convenience.  Even if we target an
@@ -489,33 +514,712 @@ See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Measurement and Error}
+\chapter{Thinking Exponentially (and Logarithmically)}
+
+\begin{remark}
+  Task 1: convince reader that exp and log, power and root, are
+  special.  Task 2: Provide intuitive, clear, simple explanation.
+  Task three: show relation to stats thinking.
+\end{remark}
+
+Learning to think in terms of exponents and logarithms is one of the
+keys to learning to think statistically.  Fortunately it's not too
+difficult, and it happens to be fascinating.
+
+Getting from here to there.  We normally think linearly.  The number
+line is treated as additive; to get from $a$ to $b$ on the number
+line, you add the (possibly negative) difference between the two: $a +
+(a-b) = b$.
+
+Exponentiation offers a different way of thinking about the relation
+between two numbers.  Instead of viewing their difference as spatial
+distance ($a-b$), we think of it in terms of difference in growth.  So
+the difference between, say, $3$ and $9$ is not $6 (= |3-9|)$, but $2
+(= log_3\ 9)$.  Here we take $2$ as the number of (natural) growth
+cycles it takes for $3$ to turn into $9$: $3^2 = 9$.
+
+Why \textit{growth}?  Because exponentiation is self-contained, so to
+speak.  Getting from $3$ to $9$ linearly involves adding something
+external ($6$) to $3$.  But $3^2$ does not involve any external
+``factor'' in this way (other than the multiplication operation); the
+difference between $3$ and $9$ is construed in terms of $3$ alone;
+``raising $3$ to a power'' is construed as an operation involving $3$
+alone.  The task is to find how many times this something must be done
+for $3$ to ``turn into'' (rather than ``arrive at'') $9$.
+
+Traditional terminology (now archaic) captured this; as late as the
+19th century, a common term for exponentiation was ``involution'',
+meaning something like ``turning in to itself''.
+
+Note that conventional terminology, being derived from Greek geometry
+($3^2$ means ``three \textit{squared}''), is misleading.
+Exponentiation has nothing essential to do with geometry.  (And note
+that the Greeks did not have a genuine concept of exponentiation; they
+never came up with the kind of algebraic thinking involved in finding
+powers and roots.)  The Arabic-speaking mathematician who is credited
+with inventing algebra in something like the form we know it today
+(Al-Khawarizmi) did not use the term ``squared''; his (Arabic) word
+for what we call a squared quantity was \textit{m\^{a}l}, meaning
+``cattle, stock, wealth''.  Furthermore, the Arabic term for
+multiplication was also conceptually distinct from the notion of
+repeated ``folding'' (``multiply'' comes from the latin
+\textit{multiplicare}, combining \textit{multi} ``many times'' and
+\textit{plicare}, from \textit{plex} ``fold'').  The Arabic term was
+\textit{darb}, ``strike'', and to form a \textit{m\^{a}l}, one
+``strikes'' a number \textit{in itself}.  The origins of this usage
+are not known, but note that the same term is used in minting
+(``strike a coin'') and husbandry (``strike'' was used to refer to
+copulation of e.g. livestock).  So historically, exponentiation was
+did not emerge from either arithmetic nor geometry; rather, it emerged
+as a distinctive concept.
+
+But exponentiation is also conceptually distinct even (or especially)
+in modern mathematics.  A satisfactory definition of exponentiation
+requires some fairly advanced calculus; the simple concept of
+something multiplied by itself is not sufficient.
+
+It even shows up in very practical matters.  Calculation of compound
+interest turns out to be intimately related to exponentiation, for
+example.
+
+\begin{remark}
+  Story of $e$ as discovery of a mathematically satisfying account of
+  exponentiation.  Exponentiation defined in terms of logarithms,
+  rather than the other way around.
+\end{remark}
+
+The critical point of all this is that we should think of
+exponentiation as a special kind of operation, rather than as
+something derived from arithmetic (multiplication).  Fortunately this
+is not particularly difficult, but it does require a basic change in
+perspective.
+
+The payoff will come when we consider probability distributions, in
+which exponentiation plays a critical role.
+
+\begin{remark}
+  Also logarithmic scales, logit, etc.  Lots of places where logs and
+  exponents are critical.
+\end{remark}
+
+\begin{remark}
+  Exponentiation as involution.  Inflection points.  Symmetry.
+  Constructing the numbers from exponentiation ($\lim_{x \to 0}e^x =
+  0$).
+\end{remark}
+
+\begin{remark}
+  Powers and roots v. exponentiation.  Difference between ${f(x) =
+    x^a}$ (powers) and ${f(x)= a^x}$ (exponentiation).
+\end{remark}
+
+Sequences: any term of the following sequences can be used to form a
+function, e.g. $f(x) = x^2, g(x) = 2^x$.
+
+{\setstretch{1.25}
+  \begin{alignat}{2}
+    x^0, x^1, x^2,..,x^e,\ldots,x^n & \quad \textnormal{Power (geometric) sequence} \\
+    0^x, 1^x, 2^x,..,e^x,\ldots,n^x & \quad \textnormal{Exponential sequence}
+  \end{alignat}
+}
+
+\section{Powers and Roots}
+
+\begin{remark}
+  Powers and roots as ``phases'' (``poles'', polarity?) of
+  exponentiation, with $1$ as the ``inflection point''.  But we need a
+  different term, ``inflection point'' should be reserved for changes
+  in the derivative of a curve.  We want something that indicates a
+  phase shift, where powers switch to roots and vice-versa.  ``Phase''
+  by analogy to phases of matter (solid, liquid, gas), not of cycles
+  (waves).  I.e. qualitative change, not cyclic orientation.  Critical
+  point? (Freezing point, melting point, etc.)
+\end{remark}
+
+This can best be explained by example.
+
+Let's review some basic rules:
+
+{\setstretch{1.25}
+  \begin{alignat}{2}
+    a^{b} &= a\cdot a\cdots a \quad \textnormal{(b times)} \\
+    a^{-b} &= \frac{1}{b} \\
+    a^{1/b} &= \sqrt[b]{a} \\
+    a^{b/c} &= \sqrt[c]{a^b}
+  \end{alignat}
+}
+
+First powers.  Conventionally, the expression $a^b$ tells us to
+multiply $a$ by itself $b$ times (that is, $b-1$ multipication
+operations involving $b$ terms $1$).  This makes perfect sense, if $b$
+is a whole number and $b>1$.  But what about, say, $a^{1.5}$?  Or even
+worse, $a^\pi$?  As it happens, it is fairly easy (but perhaps not
+trivial) to define $a^b$ for all rational $b$ (like $1.5$), but
+defining it for irrational $b$ (like $\pi$) is another matter.
+Explaining how this is done is beyond the scope of this paper, so for
+our purposes let's just assume that $a^b$ is defined for all real $b$.
+
+So $a^{1.5}$ and $a^\pi$ are defined, but what does it mean to
+multiple $a$ by itself $1.5$ or $\pi$ times?  Not very intuitive.  One
+strike against the conventional explanation of exponentiation in terms
+of multiplication.
+
+For now, though, let's stick with the multiplication idea. The point
+here is that we can treat $a^b$ as a problem to be solved, or a task
+to be accomplished: find $c$ such that $a^b = c$.  Let's look at the
+structure of the task.  We are given two operands, $a$ and $b$, and an
+operation (exponentiation); the task is to find out where these lead
+us.  In other words, we do not know where we are going to end up, but
+we know how to get there: by raising $a$ to the $b$th power.  In
+brief, our task is to reach the destination, given the means of
+getting there.
+
+Now consider roots.  The expression $\sqrt[b]{a}$, unlike $a^b$, tells
+us where we are to end up, but does not tell us how to get there.
+``Find the $b$th power of $a$ means ``perform the exponent operation
+$b$ times on $a$; it tells us what to do; but ``find the square root
+of $a$'' does not mean ``perform the square root operation on $a$'';
+it tells us what the destination is, but not what we need to do to get
+there.  In other words, $\sqrt[b]{a}$ denotes a value related to $a$
+and $b$, not an operation that uses $a$ and $b$; in contrast, $a^b$,
+although it indirectly denotes the destination value, directly denotes
+the operation to use to get there.
+
+\begin{remark}
+  Improve this.  Both can be viewed as denoting either a value, a
+  process, a device, or all of the above.  Why not think of
+  $\sqrt[b]{a}$ as denoting an operation?  Mainly because there is no
+  such operation, or at least it isn't normally understood in that
+  way.  Clearly in contrast to $a^b$.
+\end{remark}
+
+\begin{remark}
+  Correction: $a^b$ only \textit{seems} to tell us what to do, because
+  it does so in the case of integer exponents.  But in the case of
+  real exponents, it precisely does \textit{not} tell us what to do.
+  But this is evidence of the specialness of exponentiation.  The
+  arithmetic operators do tell us what to do; that is how they are
+  defined.  But we \textit{cannot} define exp and root in this way.
+  In fact the best we can do is find a procedure for approximating the
+  value.
+
+  Alternatively: arithmetic ops defined via effective procedures.  Exp
+  ops defined in terms of meaning, not procedure.  There may be many
+  distinct procedures that can be used to solve them.
+
+  This is obvious in the case of square root.  Easy to define, but I
+  would guess even relatively well-educated people would not know how
+  to go about computing a square root by hand.  There are dozens of
+  methods for computing square roots, all of which (?) only
+  approximate the answer.
+
+  Ditto for the trig funcs.  Easy to provide a geometric definition,
+  hard to say how to compute.  Well, semi-hard, not as hard as exp and
+  log.
+
+\end{remark}
+
+
+\begin{remark}
+  Put this in a graph: Here's another symmetry: given $b>1$, as $b$
+  increases, $a^b$ decreases if $0<|a|<1$, but $a^b$ increases if
+  $|a|>1$; if $a=0$, then $a^b=0$ for all $b$, and if $a=1$, then
+  $a^b$ = 1 for all $b$.  So here $a=1$ is a critical point where
+  $a^b$ changes direction, so to speak, and $a=0$ is a critical point
+  - call it a ``constant point'' where $a^b$ is constant.
+
+\end{remark}
+
+
+
+\section{Exponentiation and Co-exponentiation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Random Variables}
+
+Random selection devices
+
+%%%%%%%%
+\chapter{Functions}
+
+%%%%%%%%
+\section{First- and Second-order Functions}
+
+\begin{remark}
+Family of functions/curves: function and meta-function.  $y=e^x$ is a
+function; $y=e^{\alpha\ x}$ is a meta-function.  Better: second-order function.
+
+Use lambda abstraction to demonstrate the difference: partial
+application of a second-order function yields a first-order function.
+
+Terminology: apply higher-order functions to \textit{parameters},
+first-order functions to \textit{arguments}.
+\end{remark}
+
+%%%%%%%%
+\section{Equations, Graphs, and Curves}
+
+\begin{remark}
+  Ideally, one would be able to instantly visualize the curve upon
+  seeing the equation.  But there are many many functions for which
+  this is not so easy.  But with a little practice it becomes
+  relatively easy to know the basic shape of a curve from a glance at
+  its equation.  So one purpose here is training in the art of seeing
+  the curve in the equation.  Example: once you understand the
+  relation between functions of $e$ and their curves, such as the
+  curves of $e^x$ and $e^{-x}$, then it becomes relatively easy to see
+  what shape the curve of the Gaussian PDF ought to have.
+
+  Functions of the form $e^n$ are particularly common, where $n$
+  itself can be any sort of expression, e.g. $e^{-(x/\lambda)^k}$
+  (Weibull pdf).
+
+  Mastering the shape of an equation really means mastering the shapes
+  of a family of equations.
+
+  We can show quite clearly what shape a family of functions has by
+  using animation to show what happens as the parameters vary.  This
+  will both expose the general shape of the (meta) function, and the
+  role of the parameters.
+\end{remark}
+
+\begin{remark}
+  A second critical point is that the parameters of a meta-function
+\end{remark}
+
+%%%%%%%%
+\subsection{Characteristics of curves}
+
+Kurtosis, skew, scedasticity - fancy Greek terms for sharpness, skew,
+and scatter.  But useful for classifying curves by shape.
+
+Thin/fat tails.
+\url{http://en.wikipedia.org/wiki/Fat-tailed_distribution}.
+E.g. Cauchy distrib,
+\href{http://en.wikipedia.org/wiki/Stable_distributions}{stable
+  distribs} (except the normal)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Philosophy}
+
+\begin{remark}
+  Relevance of philosophy to stats?  Bridge between mathematics and world.
+\end{remark}
+
+Radical empricism: data first, then theory.
+
+Rationalism: theory, then data.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Causality}
+
+\begin{remark}
+  Factor analysis - factor = causal factor
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Science}
+
+Science originally ``natural philosophy''.
+
+\begin{remark}
+  Science and scientism, pseudo-science, cargo-cult science.
+\end{remark}
+
+\begin{remark}
+  Scientific method - ties philosophy to experience.
+\end{remark}
+
+\begin{remark}
+  On the relationship between mathematics and the world.  Involving
+  fundamental philosophical ideas, also pragmatics of \textit{doing}
+  ``science''.
+
+  The fundamental issue is what sorts of claims can statistics make
+  about the world, how should we take them, etc.  The goal here is of
+  course clarity.
+
+  This is the natural place for a historical perspective, as well.
+  How did statistical practice (and theory) evolve?
+\end{remark}
+
+\begin{remark}
+  Stress: empiricism as a philosophy did not pan out - we are not mere
+  observers of given data.
+\end{remark}
+
+Paradigmatic cases?  Astronomical observations; invention/discovery of
+quantifiable temperature, psychometrics, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Measurement and Error}
 
 \begin{remark}
   The previous section discuss the mathematical concept of measure.
   This section discusses theories of empirical measure\textit{ment}.
 \end{remark}
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Log and Exp}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Probability}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Probability}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Measure Theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Measures}
+
+%%%%%%%%
+\subsection{Joint Probabilities}
+
+%%%%%%%%
+\subsection{Conditional Probabilities}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Likelihood}
+
+``In statistics, a likelihood function (often simply the likelihood)
+is a function of the parameters of a statistical model. The likelihood
+of a set of parameter values, θ, given outcomes x, is equal to the
+probability of those observed outcomes given those parameter values,
+that is $\mathcal{L}(\theta |x) = P(x | \theta)$
+(\url{http://en.wikipedia.org/wiki/Likelihood_function})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Random Variables}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discrete Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algebra of Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moments}
+
+``In probability theory and statistics, a central moment is a moment of a probability distribution of a random variable about the random variable's mean; that is, it is the expected value of a specified integer power of the deviation of the random variable from the mean. The various moments form one set of values by which the properties of a probability distribution can be usefully characterised. Central moments are used in preference to ordinary moments, computed in terms of deviations from the mean instead of from the zero, because the higher-order central moments relate only to the spread and shape of the distribution, rather than also to its location.''\url{http://en.wikipedia.org/wiki/Moment_about_the_mean}
 
 \begin{remark}
-  The purpose here is not to define log and exp per se, but to show
-  how they are graphed, so that later the graphs of probability
-  distributions like the normal curve are intelligible.
+  NB analogy between moment of a distrib (a function) and derivative
+  of a function.  Nth moment, Nth derivative, etc.
+
+  Moment: expected value of nth involution of deviation (so we could
+  generalize, so $y = log_{\bar{X}-\mu} m$ for any m, yielding $m$ as
+  the $y^{th}$ moment.
+
+  Compare finding nth derivative, or, given a function, finding the
+  nth anti-derivative (integral).
+
+  So why moments?  I suspect they're like derivatives: just as
+  derivatives tell us something about the original function, moments
+  tell us something about the original distribution (i.e. the random
+  var, which is a function).  Or so I would expect, based on nothing
+  more than a principle of symmetry.
 \end{remark}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Expected Value}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variance}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Skew}
+
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Random Variables}
+\chapter{Probability Distributions}
 
-Random selection devices
+\url{http://en.wikipedia.org/wiki/Probability_distribution}
+
+
+\begin{remark}
+  Stress: connection between concepts of random var and prob. distrib
+\end{remark}
+
+A probability distribution is just a function, or rather a family of
+functions expressed as parameterized equations.
+
+\begin{remark}
+  Family of functions is the critical idea.  Goal is to pick the best
+  family, then the best function from the family.
+\end{remark}
+
+Ways of specifying probability distributions:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Mass Function}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Density Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cumulative Distribution Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characteristic Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moment-generating Function}
+
+``In probability theory and statistics, the moment-generating function of a random variable is an alternative specification of its probability distribution. Thus, it provides the basis of an alternative route to analytical results compared with working directly with probability density functions or cumulative distribution functions. There are particularly simple results for the moment-generating functions of distributions defined by the weighted sums of random variables. Note, however, that not all random variables have moment-generating functions.''\url{http://en.wikipedia.org/wiki/Moment-generating_function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hazard Function}
+
+I.e. failure rate.
+
+``Failure rate is the frequency with which an engineered system or
+component fails, expressed, for example, in failures per hour. It is
+often denoted by the Greek letter $\lambda$ (lambda) and is important in
+reliability engineering.''
+\url{http://en.wikipedia.org/wiki/Hazard_function#hazard_function}
+
+``Calculating the failure rate for ever smaller intervals of time,
+results in the hazard function (also called hazard rate), $h(t)$. This
+becomes the instantaneous failure rate as $t$ tends
+to zero...A continuous failure rate depends on the existence of a
+failure distribution, $F(t)$, which is a cumulative
+distribution function that describes the probability of failure (at
+least) up to and including time t...''
+\url{http://en.wikipedia.org/wiki/Hazard_function#hazard_function}
+
+See \href{http://en.wikipedia.org/wiki/Bathtub_curve}{Bathtub curve}
+
+See \href{http://en.wikipedia.org/wiki/Weibull_chart}{Weibull distrib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Well-known Distributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discrete}
+
+%%%%%%%%
+\subsection{Degenerate Distrib}
+
+``The degenerate distribution at x0, where X is certain to take the
+value x0. This does not look random, but it satisfies the definition
+of random variable. This is useful because it puts deterministic
+variables and random variables in the same
+formalism.''\url{http://en.wikipedia.org/wiki/Degenerate_distribution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous}
+\subsection{Gauss}
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+
+But:
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} = \frac{1}{e^\frac{(x-\mu)^2}{2\sigma^2}} =
+  \frac{1}{\sqrt{e^{\frac{(x-\mu)^2}{\sigma^2}}}} =
+  \frac{1}{\sqrt{e^{\frac{x-\mu}{\sigma}}}}
+\end{equation}
+
+Now set $\mu=0, \sigma=1$.  Then
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}} = \frac{1}{\sqrt{2\pi}} = 0.398942
+\end{equation}
+
+and
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} =
+  e^{-\frac{x^2}{2}} =
+  \frac{1}{e^\frac{x^2}{2}}
+\end{equation}
+
+Then if x=0, we have
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} =
+  \frac{1}{e^\frac{0}{2}} =
+  \frac{1}{e^0} = \frac{1}{1} = 1
+\end{equation}
+
+so when $\mu=0, \sigma=1, x=0$,
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} = 0.398942
+\end{equation}
+
+As $x$ grows in either direction from zero, $e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ ...
+
+The turning point is set by $\sigma^2$, since that determines when
+$\frac{(x-\mu)^2}{2\sigma^2}$ pivots about $1$.  As $x$ gets larger beyond that point,
+$e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ gets smaller.
+
+Main point: $e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ never exceeds $1$,
+since the exponent is never less than zero, and $e^0=1$. Then for all
+$x>0$, $e^x$ gets bigger, so $\frac{1}{e^x}$ will always be $<1$.  So
+the product of the two factors will always be less than $0.398942...$
+The bell shape comes from the varying rate of change of
+$e^{-\frac{(x-\mu)^2}{2\sigma^2}}$, which reflects the growth curve of
+$\frac{1}{e^x}$, which declines relatively rapidly near zero, but
+flattens out as $x$ increases.
+
+The key is in the derivatives:
+
+{\setstretch{1.5}
+  \begin{alignat}{2}
+  \overline{\lambda}x.{e^{x}} &= e^{x} \\
+  \overline{\lambda}x.{e^{-x}} &= -e^{-x} \\
+  \overline{\lambda}x.x^{\sigma x} &= \sigma x^{\sigma x} \\
+  \overline{\lambda}x.x^{-\sigma x} &= -\sigma x^{-\sigma x}
+  \end{alignat}
+}
+
+So as $\sigma$ varies, so does the flattness of the curve.
+
+\begin{remark}
+  Inflection points: in addition to the max and min, we have the
+  points at which the second derivative switches from pos. to neg.  In
+  other words, the point at which the normal curve starts to flatten.
+  This happens when $x=\mu\pm\sigma$.  This makes intuitive sense
+  since it is the point at which $\dfrac{(x-\mu)^2}{2\sigma^2}$ is $1$
+  (assuming $\mu=0, \sigma=1$), which makes it the place where the
+  exponent switches from power to root.
+\end{remark}
+
+\begin{remark}
+  Plot $e^{nx}$ as $n$ varies.  As $n$ decreases, the graph becomes
+  flatter; as it increases, it begins to approximate a sharp L shape.
+  This is the effect of varying $\sigma$; as it decreases, the
+  exponent increases.  Better: plot $e^{\frac{x}{n}}$.
+\end{remark}
+
+All of which goes to show, that the normal curve is a kind of
+exponential curve, which makes it a kind of growth curve.  It
+describes the way error grows as more observations are made.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Probability Distributions}
+\chapter{Sampling}
+
+\begin{remark}
+  Distinguish between mathematical and empirical usage.  Here we talk
+  of carrier sets instead of populations, elements instead of sample
+  units, values instead of measurements, etc.
+
+  If we think of sampling clearly, in terms of sets, sequences,
+  etc. then the inferential stuff becomes intuitively clear.
+\end{remark}
+
+\section{Samples}
+
+A sample is a sequence of elements drawn from the carrier set (population).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sampling Continuous Random Vars}
+
+Discrete v. continuous sampling?  A continuous sample would have to
+select ranges rather than elements.  But often we want discrete
+sampling of a continuous var; e.g. distance from bullseye.  This would
+give us a multiset, but what would the elements and multiplicities be?
+E.g. {3[.25]} would mean three events of striking within .25 of the
+center.
+
+\section{Sampling Sequences}
+
+\begin{remark}
+  Or: sample sequences.  Sequence stuff from \ref{subs:sequences}, from the perspective of sampling.
+\end{remark}
+
+\section{The Sampling Pool}
+
+Or sample pool
+
+The sampling pool is the union of the samples in the sampling sequence.
+
+\section{Discrete}
+
+\begin{remark}
+    What we're going to want is counts of number of possible samples,
+    number of unique samples (combinations), distribution of samples
+    when the sampling sequence is long, distribution of elements in
+    the sampling pool.  Etc.
+\end{remark}
+
+\chapter{Multivariate stuff}
+
+
+\href{Exploratory multivariate analysis by example using R}{http://pi.lib.uchicago.edu/1001/cat/bib/8265780}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Statistics}
+
+\begin{remark}
+  What distinguishes stats from probability?  Probability seems to
+  have everything stats has: expected value (for mean), etc.  Even
+  statistical inference is based entirely on a result from
+  probability, the Central Limit Theorem.  So why not call it all
+  probability?
+
+Statistics measures something else
+  - location (central tendency), spread (deviations), etc.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Descriptive Statistics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Location}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spread}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Curve fitting}
+
+aka Hypothesis Testing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Association}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Inferential Statistics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{From Sample to Population}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{From Correlation and Causality}
+
+%%%%%%%%
+\subsection{From Manifest to Occult}
+
+IOW, from observable to latent variables.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sampling}
+\chapter{EDA}
 
+Exploratory Data Analysis
+
+Tukey: \url{http://pi.lib.uchicago.edu/1001/cat/bib/151262}
+
+Hartwig: \url{http://pi.lib.uchicago.edu/1001/cat/bib/9149154}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Causality}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Factor Analysis}
+
+\url{http://psycnet.apa.org.proxy.uchicago.edu/index.cfm?fa=browsePB.chapters&pbid=10694}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -527,12 +1231,18 @@ Random selection devices
 %% \end{alignat}
 
 \clearpage
+\part{Appendices}
 \appendix
 \begin{appendices}
-\section{Bibliography}
+\chapter{Bibliography}
 %% \addcontentsline{toc}{chapter}{Bibliography}
-%% \bibliographystyle{plainnat}
-\printbibliography[heading=none]
+\bibliography{logic,math,stats%
+%% ../bib/logic.bib%
+%% ,../bib/math.bib%
+%% ,../bib/stats.bib%
+}
+\bibliographystyle{plainnat}
+%% \printbibliography[heading=none]
 \end{appendices}
 
 \end{document}
