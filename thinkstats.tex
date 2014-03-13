@@ -1214,6 +1214,107 @@ Hartwig: \url{http://pi.lib.uchicago.edu/1001/cat/bib/9149154}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Data}
+
+\href{http://www.jstatsoft.org/v40/i01}{The Split-Apply-Combine Strategy for Data Analysis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{R}
+\label{sect:r}
+
+\href{http://plyr.had.co.nz/}{plyr}: ``plyr is a set of tools for a
+common set of problems: you need to split up a big data structure into
+homogeneous pieces, apply a function to each piece and then combine
+all the results back together''
+
+
+\href{http://rprogramming.net/r-data-manipulation/}{R Data Manipulation}
+\href{http://www.cookbook-r.com/Manipulating\_data/}{Manipulating Data}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subsetting Data}
+\label{sect:datasubsetting}
+
+\href{http://rprogramming.net/subset-data-in-r/}{Subset data in R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aggregation}
+\label{sect:dataaggregate}
+
+\href{http://rprogramming.net/aggregate-data-in-r-using-data-table/}{Aggregate
+  Data in R Using data.table} - here ``aggregate'' seems to be
+synonymous with ``compute statistic of''.  Misnomer; an aggregate is not a summary.
+
+%%%%%%%%
+\subsection{Recoding}
+\label{subs:recodingr}
+
+\href{http://www.uni-kiel.de/psychologie/rexrepos/posts/recode.html}{Recode variables} (examples)
+
+\href{http://www.statmethods.net/management/variables.html}{New vars, recoding vars, renaming vars}
+
+\href{http://www.cookbook-r.com/Manipulating\_data/Recoding\_data/}{Recoding vars: categorical, continuous, new}
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode data in R: replacement, recoding}
+
+\href{http://rwiki.sciviews.org/doku.php?id=tips:data-frames:recode_column}{Recode one column, output values into another column: transform(), replace()}
+
+\href{http://rprogramming.net/recode-data-in-r/}{The Recode Command From the Package Car}
+
+%%%%
+\subsection{New vars}
+\label{subsub:newvars}
+
+``copy of an existing field. Sometimes you don’t want to recode data but instead just want another column containing the same data.''
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode into A New Field Using Data From An Existing field And Criteria from Another Field}
+
+%%%%%%%%
+\subsection{Replacing data}
+\label{subs:}
+
+``replace the data in an existing field when you want to replace the data for every row (no criteria).'' \url{http://rprogramming.net/recode-data-in-r/}
+
+%%%%
+\subsection{Recoding vars}
+\label{sub:recodingvars}
+
+%%%%
+\subsection{Renaming vars}
+\label{sub:renamingvars}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Applied Statistics}
+
+How to use this stuff.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Chi Squared}
+\label{sect:chisquared}
+
+To find the expected multiplicities, form the disjoint union of the marginals.
+
+\begin{remark}
+  Not sure ``disjoint union'' is the right term.  The idea is that we
+  take the observed marginals, say A and X, and form the set of all
+  pairs (a,x) by multiplying.  Effectively this means we take all
+  observed pairs (a,\_) and (\_,x), ignore the second and first
+  members, respectively, and then ``cross'' them.  So for every (a,\_)
+  we get X copies of (a,x), one for each (\_,x).  The result has
+  multiplicity of \(A\times X\).  I think this is disjoint union but
+  I'm not sure.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Visualization
+
+\href{http://www.datavis.ca/books/vcd/}{Visualizing Categorical Data} (Friendly, M.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \part{Causality}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
