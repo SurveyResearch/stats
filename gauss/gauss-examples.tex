@@ -1,0 +1,594 @@
+%%!TEX TS-program = xelatexmk
+\documentclass{tufte-handout}
+%% % For syntax trees
+%% \usepackage{qtree}
+
+\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+
+%% \setmainfont[Mapping=tex-text]{Times New Roman}
+%% \setromanfont[Mapping=tex-text]{Times New Roman}
+%% \setsansfont[Mapping=tex-text]{Arial}
+
+\setmainfont[Mapping=tex-text]{TeX Gyre Pagella}
+%% \setromanfont[Mapping=tex-text]{TeX Gyre Pagella}
+%% \setsansfont[Mapping=tex-text]{TeX Gyre Heros}
+
+%% \setmainfont[Mapping=tex-text]{Minion Pro}
+%% \setromanfont[Mapping=tex-text]{Minion Pro}
+%% \setsansfont[Mapping=tex-text]{TeX Gyre Heros}
+
+%% \setmonofont{Courier}
+
+%% Bugfix: see https://code.google.com/p/tufte-latex/issues/detail?id=64
+% Set up the spacing using fontspec features
+\renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+\renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+
+%% \defaultfontfeatures{Mapping=tex-text}
+%% \setromanfont[Mapping=tex-text]{TeX Gyre Schola}
+%% \setsansfont[Scale=MatchLowercase,Mapping=tex-text]{TeX Gyre Heros}
+%% \setmonofont[Scale=MatchLowercase]{TeX Gyre Cursor}
+
+%% \TeXXeTstate=1
+%% \newfontfamily{\sbl}[Script=Arabic]{Scheherazade}
+
+%% \usepackage{amsmath}
+%% \usepackage{booktabs} % for tables
+%% % Style for linguistic terms
+%% \newcommand{\jgn}[1]{\textbf{\textsc{#1}}}
+%% %\newcommand{\jgn}[1]{\textsc{#1}}
+%% % Linguistic environments
+%% \usepackage{covington}
+%% % Rename “Figure” to “Tree”
+%% %% \renewcommand{\figurename}{Tree}
+%% %\renewcommand{\tablename}{Tree}
+
+\usepackage[toc,page,header]{appendix}
+\usepackage{pdfpages}
+
+\usepackage[usenames]{xcolor}
+
+\usepackage{csquotes}
+\usepackage{changepage}
+
+\usepackage{float}
+%% \floatstyle{boxed}
+%% \restylefloat{figure}
+
+
+\usepackage{graphicx}
+%% \usepackage{caption}
+%% \usepackage{subcaption}
+
+%% \usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usetikzlibrary{arrows,shapes,patterns,backgrounds,spy}
+
+
+%% %%%<
+\usepackage{verbatim}
+%% \usepackage[active,tightpage]{preview}
+%% \setlength\PreviewBorder{0pt}%
+%% %%%>
+
+
+\begin{comment}
+:Title: PGFPlots examples
+
+\end{comment}
+
+\usepackage{xifthen}
+
+%%%% macros %%%%
+
+\lhead{}
+\chead{}
+\rhead{\scshape Distributions}
+\lfoot{Stats}
+\cfoot{Probs}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+
+\renewcommand{\allcapsspacing}[1]{{\addfontfeature{LetterSpace=20.0}#1}}
+\renewcommand{\smallcapsspacing}[1]{{\addfontfeature{LetterSpace=5.0}#1}}
+\renewcommand{\textsc}[1]{\smallcapsspacing{\textsmallcaps{#1}}}
+\renewcommand{\smallcaps}[1]{\smallcapsspacing{\scshape\MakeTextLowercase{#1}}}
+
+%% \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace = 15}#1}}
+%% \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace = 8}\scshape#1}}
+
+%%%%%%%%%%%%%%%%
+\title{Probability Distributions}
+\author{G. A. Reynolds}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\nocite{*}
+
+\tableofcontents
+%% \listoffigures
+
+\section{Normal (Gaussian) Distributions}
+
+Section about the normal dist
+
+\pgfplotsset{width=10cm,compat=1.9}
+
+
+\pgfmathdeclarefunction{gausse}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+
+\begin{figure}[h!]
+\begin{tikzpicture}
+\begin{axis}[every axis plot post/.append style={
+  mark=none,domain=-2:3,samples=50,smooth}, % All plots: from -2:2, 50 samples, smooth, no marks
+  axis x line*=bottom, % no box around the plot, only x and y axis
+  axis y line*=left, % the * suppresses the arrow tips
+  height=3cm,
+  enlargelimits=upper] % extend the axes a bit to the right and top
+  \addplot {gausse(0,0.5)};
+  \addplot {gausse(1,0.75)};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\section{B}
+
+Look! another section!
+
+\begin{figure}[h!]
+
+\pgfmathdeclarefunction{kauss}{3}{%
+  \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+}
+
+\begin{tikzpicture}
+\begin{axis}[
+  no markers,
+  domain=0:6,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  axis lines*=left,
+  xlabel=$x$,
+  every axis y label/.style={at=(current axis.above origin),anchor=south},
+  every axis x label/.style={at=(current axis.right of origin),anchor=west},
+  height=5cm,
+  width=12cm,
+  xtick=\empty,
+  ytick=\empty,
+  enlargelimits=false,
+  clip=false,
+  axis on top,
+  grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 3, 1)};
+
+\pgfmathsetmacro\valueA{kauss(1,3,1)}
+\pgfmathsetmacro\valueB{kauss(2,3,1)}
+\pgfmathsetmacro\valueC{kauss(3,3,1)}
+\draw [gray] (axis cs:1,0) -- (axis cs:1,1) %\valueA)
+    (axis cs:5,0) -- (axis cs:5,1); %\valueA);
+\draw [gray] (axis cs:2,0) -- (axis cs:2,1) %\valueB)
+    (axis cs:4,0) -- (axis cs:4,1); % \valueB);
+\draw [black] (axis cs:3,0) -- (axis cs:3,1) ;
+\draw [yshift=2.6cm, latex-latex](axis cs:2, 0) -- node [fill=white] {$0.683$} (axis cs:4, 0);
+\draw [yshift=2.0cm, latex-latex](axis cs:1, 0) -- node [fill=white] {$0.954$} (axis cs:5, 0);
+
+\node[below] at (axis cs:1, 0)  {$\mu - 2\sigma$};
+\node[below] at (axis cs:2, 0)  {$\mu - \sigma$};
+\node[below] at (axis cs:3, 0)  {$\mu$};
+\end{axis}
+
+\end{tikzpicture}
+\caption{another one}
+\end{figure}
+
+\section{C}
+
+{\scshape Third time's a charm!}  Let's go.
+
+\pgfmathdeclarefunction{kauss}{3}{%
+  \pgfmathparse{1/(#3*sqrt(2*pi))*exp(-((#1-#2)^2)/(2*#3^2))}%
+}
+
+%% \pgfdeclarelayer{background layer}
+%% \pgfdeclarelayer{foreground layer}
+%% \pgfsetlayers{background layer,main,foreground layer}
+
+\begin{figure}[h!]
+\begin{tikzpicture} % [show background rectangle]
+
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+
+\begin{axis}[
+  %% legend style={
+  %%   cells={anchor=east},
+  %%   legend pos=outer north east,
+  %% },
+  %% title={$\mu=3$, $\sigma=1$}],
+  clip=false,
+  no markers,
+  domain=0:6,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  xmin=0,
+  xmax=6,
+  %% axis lines*=left,
+  %% xlabel=$x$,
+  %% every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %% every axis x label/.style={at=(current axis.below),anchor=south},
+  xlabel={$x$},
+  height=5cm,
+  width=12cm,
+  %% xtick=\empty,
+  %% ytick=\empty,
+  %% enlargelimits=false,
+  %% clip=false,
+  %% axis on top,
+  %% grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 3, 1)};
+
+%% \node (25.4,.5) {$\mu=3$} ;
+%% \node[small dot,pin=-30:{$(1,1)$}] at (axis description cs:1,1) {};
+
+\pgfmathsetmacro\valueA{kauss(1,3,1)}
+\pgfmathsetmacro\valueB{kauss(2,3,1)}
+\pgfmathsetmacro\valueC{kauss(3,3,1)}
+
+\draw [gray] (axis cs:1,0) -- (axis cs:1,1) %\valueA)
+    (axis cs:5,0) -- (axis cs:5,1); %\valueA);
+\draw [gray] (axis cs:2,0) -- (axis cs:2,1) %\valueB)
+    (axis cs:4,0) -- (axis cs:4,1); % \valueB);
+\draw [black] (axis cs:3,0) -- (axis cs:3,1) ;
+\draw [yshift=2.6cm, latex-latex](axis cs:2, 0) -- node [fill=white] {$0.683$} (axis cs:4, 0);
+\draw [yshift=2.0cm, latex-latex](axis cs:1, 0) -- node [fill=white] {$0.954$} (axis cs:5, 0);
+
+\node[above] at (axis cs:1, 1)  {$\mu - 2\sigma$};
+\node[above] at (axis cs:2, 1)  {$\mu - \sigma$};
+\node[above] at (axis cs:3, 1)  {$\mu$};
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{A Gaussian (Normal) Curve
+
+$\mu=3$
+
+$\sigma=1$}
+\end{figure}
+
+And another figure
+
+\begin{figure}[h!]
+\begin{tikzpicture} % [show background rectangle]
+
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+
+\begin{axis}[
+  %% legend style={
+  %%   cells={anchor=east},
+  %%   legend pos=outer north east,
+  %% },
+  %% title={$\mu=3$, $\sigma=1$}],
+  clip=false,
+  no markers,
+  domain=-3:3,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  xmin=-3,
+  xmax=3,
+  %% axis lines*=left,
+  %% xlabel=$x$,
+  %% every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %% every axis x label/.style={at=(current axis.below),anchor=south},
+  xlabel={$x$},
+  height=5cm,
+  width=12cm,
+  %% xtick=\empty,
+  %% ytick=\empty,
+  %% enlargelimits=false,
+  %% clip=false,
+  %% axis on top,
+  %% grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 0, 1)};
+
+%% \node (25.4,.5) {$\mu=3$} ;
+%% \node[small dot,pin=-30:{$(1,1)$}] at (axis description cs:1,1) {};
+
+\pgfmathsetmacro\valueA{kauss(1,0,1)}
+\pgfmathsetmacro\valueB{kauss(2,0,1)}
+\pgfmathsetmacro\valueC{kauss(3,0,1)}
+
+\draw [gray] (axis cs:-1,0) -- (axis cs:-1,1)
+    (axis cs:1,0) -- (axis cs:1,1);
+\draw [gray] (axis cs:-2,0) -- (axis cs:-2,1)
+    (axis cs:2,0) -- (axis cs:2,1);
+\draw [black] (axis cs:0,0) -- (axis cs:0,1) ;
+\draw [yshift=2.6cm, latex-latex](axis cs:-1, 0) -- node [fill=white] {$0.683$} (axis cs:1, 0);
+\draw [yshift=2.0cm, latex-latex](axis cs:-2, 0) -- node [fill=white] {$0.954$} (axis cs:2, 0);
+
+\node[above] at (axis cs:1, 1)  {$\mu - 2\sigma$};
+\node[above] at (axis cs:2, 1)  {$\mu - \sigma$};
+\node[above] at (axis cs:3, 1)  {$\mu$};
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{A Gaussian (Normal) Curve
+
+$\mu=0$
+
+$\sigma=1$}
+\end{figure}
+
+%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+\begin{tikzpicture} % [show background rectangle]
+
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+
+\begin{axis}[
+  %% legend style={
+  %%   cells={anchor=east},
+  %%   legend pos=outer north east,
+  %% },
+  %% title={$\mu=3$, $\sigma=1$}],
+  clip=false,
+  no markers,
+  domain=-1:1,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  xmin=-1,
+  xmax=1,
+  %% axis lines*=left,
+  %% xlabel=$x$,
+  %% every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %% every axis x label/.style={at=(current axis.below),anchor=south},
+  xlabel={$x$},
+  height=5cm,
+  width=12cm,
+  %% xtick=\empty,
+  %% ytick=\empty,
+  %% enlargelimits=false,
+  %% clip=false,
+  %% axis on top,
+  %% grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 0, .3)};
+
+%% \node (25.4,.5) {$\mu=3$} ;
+%% \node[small dot,pin=-30:{$(1,1)$}] at (axis description cs:1,1) {};
+
+\pgfmathsetmacro\valueA{kauss(1,0,.3)}
+\pgfmathsetmacro\valueB{kauss(2,0,.3)}
+\pgfmathsetmacro\valueC{kauss(3,0,.3)}
+
+\pgfmathsetmacro\onesig{.3}
+\pgfmathsetmacro\twosig{.6}
+
+\draw [gray] (axis cs:-\onesig,0) -- (axis cs:-\onesig,1)
+    (axis cs:\onesig,0) -- (axis cs:\onesig,1);
+\draw [gray] (axis cs:-\twosig,0) -- (axis cs:-\twosig,1)
+    (axis cs:\twosig,0) -- (axis cs:\twosig,1);
+\draw [black] (axis cs:0,0) -- (axis cs:0,1) ;
+
+%% \draw [yshift=2.6cm, latex-latex](axis cs:-1, 0) -- node [fill=white] {$0.683$} (axis cs:1, 0);
+%% \draw [yshift=2.0cm, latex-latex](axis cs:-2, 0) -- node [fill=white] {$0.954$} (axis cs:2, 0);
+
+%% \node[above] at (axis cs:1, 1)  {$\mu - 2\sigma$};
+%% \node[above] at (axis cs:2, 1)  {$\mu - \sigma$};
+%% \node[above] at (axis cs:3, 1)  {$\mu$};
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{A Gaussian (Normal) Curve
+
+$\mu=0$
+
+$\sigma=.3$}
+\end{figure}
+
+%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+\begin{tikzpicture} % [show background rectangle]
+\pgfmathsetmacro\onesig{.2}
+
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+
+\begin{axis}[
+  %% legend style={
+  %%   cells={anchor=east},
+  %%   legend pos=outer north east,
+  %% },
+  %% title={$\mu=3$, $\sigma=1$}],
+  clip=false,
+  no markers,
+  domain=-.6:.6,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  xmin=-.6,
+  xmax=.6,
+  %% axis lines*=left,
+  %% xlabel=$x$,
+  %% every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %% every axis x label/.style={at=(current axis.below),anchor=south},
+  %% xlabel={$x$},
+  height=3cm,
+  %% width=8cm,
+  %% xtick=\empty,
+  %% ytick=\empty,
+  %% enlargelimits=false,
+  %% clip=false,
+  %% axis on top,
+  %% grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 0, \onesig)};
+
+%% \node (25.4,.5) {$\mu=3$} ;
+%% \node[small dot,pin=-30:{$(1,1)$}] at (axis description cs:1,1) {};
+
+\pgfmathsetmacro\valueA{kauss(\onesig,0,\onesig)}
+\pgfmathsetmacro\valueB{kauss(2*\onesig,0,\onesig)}
+\pgfmathsetmacro\valueC{kauss(0,0,\onesig)}
+
+\draw [gray] (axis cs:-\onesig,0) -- (axis cs:-\onesig,\valueA)
+    (axis cs:\onesig,0) -- (axis cs:\onesig,\valueA);
+\draw [gray] (axis cs:2*-\onesig,0) -- (axis cs:2*-\onesig,\valueB)
+    (axis cs:2*\onesig,0) -- (axis cs:2*\onesig,\valueB);
+\draw [black] (axis cs:0,0) -- (axis cs:0,\valueC) ;
+
+%% \draw [black,dashed] (axis cs:-1,\valueC) node[left] {\valueC} -- (axis cs:0,\valueC);
+
+%% \draw [yshift=2.6cm, latex-latex](axis cs:-1, 0) -- node [fill=white] {$0.683$} (axis cs:1, 0);
+%% \draw [yshift=2.0cm, latex-latex](axis cs:-2, 0) -- node [fill=white] {$0.954$} (axis cs:2, 0);
+
+%% \node[above] at (axis cs:1, 1)  {$\mu - 2\sigma$};
+%% \node[above] at (axis cs:2, 1)  {$\mu - \sigma$};
+%% \node[above] at (axis cs:3, 1)  {$\mu$};
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{A Gaussian (Normal) Curve
+
+$\mu=0$
+
+$\sigma=.2$}
+\end{figure}
+
+\section{Espionage}
+
+{\scshape The SPY environment is pretty cool.}  Just watch!
+
+%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+\begin{tikzpicture} % [show background rectangle]
+ [spy using outlines={circle, magnification=3, size=1cm, connect spies}]
+\pgfmathsetmacro\onesig{.2}
+
+\tikzset{
+every pin/.style={fill=yellow!50!white,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=black,circle,scale=0.3}
+}
+
+\begin{axis}[
+  %% legend style={
+  %%   cells={anchor=east},
+  %%   legend pos=outer north east,
+  %% },
+  %% title={$\mu=3$, $\sigma=1$}],
+  clip=false,
+  no markers,
+  domain=-.6:.6,
+  samples=100,
+  ymin=0,
+  ymax=1,
+  xmin=-.6,
+  xmax=.6,
+  %% axis lines*=left,
+  %% xlabel=$x$,
+  %% every axis y label/.style={at=(current axis.above origin),anchor=south},
+  %% every axis x label/.style={at=(current axis.below),anchor=south},
+  %% xlabel={$x$},
+  height=3cm,
+  %% width=8cm,
+  %% xtick=\empty,
+  %% ytick=\empty,
+  %% enlargelimits=false,
+  %% clip=false,
+  %% axis on top,
+  %% grid = major
+  %% hide y axis
+  ]
+
+ \addplot [very thick,cyan!50!black] {kauss(x, 0, \onesig)};
+
+%% \node (25.4,.5) {$\mu=3$} ;
+%% \node[small dot,pin=-30:{$(1,1)$}] at (axis description cs:1,1) {};
+
+\pgfmathsetmacro\valueA{kauss(\onesig,0,\onesig)}
+\pgfmathsetmacro\valueB{kauss(2*\onesig,0,\onesig)}
+\pgfmathsetmacro\valueC{kauss(0,0,\onesig)}
+
+\draw [gray] (axis cs:-\onesig,0) -- (axis cs:-\onesig,\valueA)
+    (axis cs:\onesig,0) -- (axis cs:\onesig,\valueA);
+\draw [gray] (axis cs:2*-\onesig,0) -- (axis cs:2*-\onesig,\valueB)
+    (axis cs:2*\onesig,0) -- (axis cs:2*\onesig,\valueB);
+\draw [black] (axis cs:0,0) -- (axis cs:0,\valueC) ;
+
+%% \draw [black,dashed] (axis cs:-1,\valueC) node[left] {\valueC} -- (axis cs:0,\valueC);
+
+%% \draw [yshift=2.6cm, latex-latex](axis cs:-1, 0) -- node [fill=white] {$0.683$} (axis cs:1, 0);
+%% \draw [yshift=2.0cm, latex-latex](axis cs:-2, 0) -- node [fill=white] {$0.954$} (axis cs:2, 0);
+
+%% \node[above] at (axis cs:1, 1)  {$\mu - 2\sigma$};
+%% \node[above] at (axis cs:2, 1)  {$\mu - \sigma$};
+%% \node[above] at (axis cs:3, 1)  {$\mu$};
+
+%% \coordinate (spypoint) at (axis cs:2*\onesig,\valueB);
+
+%% \spy [red] on (5.5,0.1) in node at (3,1);
+
+\coordinate (spypoint) at (axis cs:0.6,0);
+\coordinate (magnifyglass) at (axis cs:0.5,2);
+
+\end{axis}
+
+\spy [blue, size=2.5cm] on (spypoint) in node[fill=blue!20] at (magnifyglass);
+
+\end{tikzpicture}
+\caption{A Gaussian (Normal) Curve
+
+$\mu=0$
+
+$\sigma=.2$}
+\end{figure}
+
+\end{document}
