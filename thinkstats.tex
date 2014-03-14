@@ -66,6 +66,30 @@
 %\theoremstyle{remark}
 \newtheorem{remark}{Remark}
 
+%%%%%%%%%%%%%%%%
+%% customizations
+
+\makeatletter
+\let\runauthor\@author
+\let\runtitle\@title
+\makeatother
+
+%% running headers
+\newcommand{\changefont}{%
+  \fontsize{7}{9.5}\selectfont
+}
+\fancypagestyle{plain}{
+  \fancyhead[LO,LE]{\leftmark }
+  \fancyhead[RO,RE]{\rightmark}
+  \fancyfoot[CO,CE]{\thepage}
+  \fancyfoot[LE]{\textsc{Think Statistics}}
+  \fancyfoot[RO]{\textsc{Think Statistics}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{plain}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
@@ -185,6 +209,8 @@ FIXME: set comprehension expression for functions:
 \begin{remark}
   Lay down the basic concepts, terminology, and notation, for later
   use in discussing sampling, etc.
+
+  cf. Series
 \end{remark}
 
 \subsection{Definition}
@@ -317,9 +343,6 @@ Multisequences are ordered, so for example
 Also:  $\langle a,b,b,c,c,c\rangle \neq [a,b,b,c,c,c]$
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Series}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Counting and Combining}
 
 \cite{berge_principles_1971}
@@ -369,19 +392,6 @@ Just as arithmetic deals with integers (with the standard operations), algebra d
   ways of doing both.  This is a restatement of a set-theoretic
   definition of addition in terms of cartesian products.
 \end{description}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Computability and Decideability}
-
-\begin{remark}
-  Why important for intro to stats?  Mainly for historical reasons;
-  both effective procedure and axiom of choice emerged at roughly the
-  same time.  Also, an understanding of effective proc sharpens
-  understanding of choice and randomness.
-\end{remark}
-
-\section{Effective Procedure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Choice and Chance}
@@ -491,7 +501,7 @@ See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
 \chapter{Infinity and the Limit Concept}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Measure and Integration}
+\chapter{Differentiation and Integration}
 
 \begin{remark}
   Why this?  Mainly just as a notational convenience.  Even if we target an
@@ -510,8 +520,103 @@ See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
 \end{remark}
 
 \begin{remark}
-  What about differentiation?
+  Furthermore there is an aesthetic component: symmetry.
+  Differentiation and integration as relations among functions;
+  comparable to the relation between a function and its inverse.
+
+  Pedagology usually presents differentiation in terms of physical
+  motion, instantaneous rate of change, etc.  Integration is presented
+  as a matter of finding area under a curve.  But neither of these
+  really capture what's at stake; this is obvious if you ask what the
+  area under a curve has to do with probability.  Physical metaphors
+  are not necessary to acquire a solid intuitions of differentiation
+  and integration.  A (perhaps) better approach is to focus on the
+  symmetrical relations involved.  Differentiation and integration as
+  higher-order functions that map other functions to their ``natural''
+  co-functions or counterparts.  So we start by just asking, e.g. what
+  is the relation between \(x^2\) and \(2x\), or \(x^3\) and \(3x^2\).
+  We can easily see a pattern involving coefficients and exponents;
+  the derivatives and integrals account for these.
+
+  Avoid ``rate of change'' talk at all costs.  Mathematics is static;
+  there is no change.  So if \(2x\) is the derivative of \(x^2\) we
+  need a way to express the intuition involved without appealing to a
+  concept of change or motion.  Just: ratio, a ratio function of fixed
+  form but different value at each x.  Not rate of change, but ratio
+  of ``sizes''.  We can change our focus of attention to different
+  values of x and y, but the functions themselves do not do this; they
+  are fixed, unmoving, rigid.  So its like looking at a building and
+  comparing its height to its width.
+
+  But let's face it: there's no way to eliminate intuitions of
+  rate-of-change.  Going from ratio of magnitudes to rate of change is
+  natural.
+
+  [An alternative perspective: (organic) growth.  A function grows;
+    its derivative says how fast it grows, and its integral says how
+    much ``mass'' it accumulates.]
+
+  [Another alternative: behavior.  Functions ``behave'' differently at
+    different places. etc.]
+
+  If \(f(x)\) tells us where we are - how far along toward the end -
+  then \(f'(x)\) tells us how fast we're moving.  Reverse perspective,
+  and if \(f(x)\) tells us where we are, then \(\int f(x)\) tells us
+  how much ground we've covered from the beginning.  The former is
+  about rate, the latter about accumulation.
+
+  The beauty of it is the symmetry.  If we have \(f\) and \(g\), where
+  \(f\) is the derivative of \(g\), then \(g\) is the integral of
+  \(f\).  By looking at \(f\) we can see how fast \(g\) is moving; by
+  looking at \(g\), we can see how much ground \(f\) has covered.  The
+  location of \(f\) describes the rate of \(g\); the location of \(g\)
+  describes the accumulation of \(f\).
+
+  If we think of \(f\) and \(g\) as two distinct moving bodies, then
+  this fundamental relation between differentiation of the one and
+  integration of the other - call it the conversion relation, by
+  analogy with inverse relation - links their rates.  They move at
+  different rates and thus cover different distances over the same
+  ``time'', but those rates and distances are related.  Position,
+  rate, and cumulative distance are the three things related by this
+  conversion relation.  Corresponding to three kinds of question:
+  where is it? how fast is it moving? and how far has it traveled?
+  The function itself answers the first question, its derivative
+  answers the second, and its integral answers the third.
+
+  Note that there are two symmetries here.  One a kind of inverse
+  relation between two functions, derivative and anti-derivative, and
+  the other a kind of transitive relation between a function, its
+  derivative and its anti-derivative.
+
+  This exposes a fundamental difference between the notion of inverse
+  function and the more special kind of inverse relation involved in
+  differentiation and integration.  The plain old inverse relation
+  only involves two functions; there is no transitive relation to some
+  third function.  In other words, the inverse relationship is
+  strictly symmetric but not transitive, and the ``conversion''
+  relation is both.  You can go up and down the ladder.  But the
+  ladder is well-founded; you can go up (integrate) indefinitely, but
+  you always hit bottom going down.  More concretely: rates of rates
+  of rates ... eventually end up at zero: no change at the nth degree
+  rate.  But accumulation of accumulation of accumulation ... just
+  keeps going.  (Since each ``rung'' in the upward ladder covers some
+  ground.)
+
+  Example: there are infinitely many ``rungs'' in the integration
+  ladder of \(f(x)=x\), but going the other way always eventually
+  bottoms out in zero.
+
+  Bottom line: fundamental theorem of calculus expresses a transitive
+  relation.
+
+  Fun, but how relevant to stats?
+
 \end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Measure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Thinking Exponentially (and Logarithmically)}
@@ -798,6 +903,51 @@ Thin/fat tails.
 E.g. Cauchy distrib,
 \href{http://en.wikipedia.org/wiki/Stable_distributions}{stable
   distribs} (except the normal)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Computation}
+
+The concept of computation that emerged in the mid-19th century and
+crystallized in the 1930s is a fundamentally new concept.  It is as
+basic as math and logic; it effectively extends the classic quadrivium
+(geometry, arithmetic, astronomy, and music.)
+
+\begin{remark}
+  Why important for intro to stats?  Mainly for historical reasons;
+  both effective procedure and axiom of choice emerged at roughly the
+  same time.  Also, an understanding of effective proc sharpens
+  understanding of choice and randomness.
+
+  Practically, the emergence of statistics in the 20th century as the
+  lingua-franca of empirical science was heavily dependent on
+  computation technologies.  For example, today Bayesian statistics is
+  all the rage; this only became possible with the advent of powerful
+  but inexpensive computing devices.  So in practice learning
+  statistics means learning computation techniques.  Or, learning to
+  think statistically requires skill in thinking computationally; in
+  practice this means learning how to use statistical software
+  packages.  Unfortunately, one can learn to use such packages without
+  understanding; in fact that is a permanent hazard of statistics
+  education.  Part of the purpose here is to integrate statistical and
+  computational thinking, so that statistical software (languages)
+  become conceptually transparent.
+
+  Example: R's idiosyncratic terminology, such as ``mode'' for
+  ``type'', ``factor'' for ``category'', etc.  Understanding
+  underlying computational concepts such as type allows one to ``see
+  through'' some of the ad-hoc idiosyncrasies of particular
+  statistical software languages to the underlying statistical
+  concepts.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Computability and Decideability}
+
+\section{Effective Procedure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1309,7 +1459,7 @@ To find the expected multiplicities, form the disjoint union of the marginals.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\part{Visualization
+\part{Visualization}
 
 \href{http://www.datavis.ca/books/vcd/}{Visualizing Categorical Data} (Friendly, M.)
 
