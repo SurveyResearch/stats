@@ -1,0 +1,532 @@
+\documentclass[reqno,12pt]{tufte-book}
+%% \documentclass[reqno,12pt]{tufte-handout}
+
+\usepackage[toc,page,header]{appendix}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{setspace}
+\numberwithin{equation}{subsection}
+\usepackage{amsfonts}
+
+%% these two go together!
+\usepackage{framed}
+\usepackage[standard,framed]{ntheorem}
+
+\usepackage{zed-csp}
+
+
+%\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{.8\textwidth}
+
+\usepackage{xfrac}
+
+%% \usepackage[
+%% bibstyle=numeric,
+%% citestyle=authoryear,
+%% hyperref,
+%% bibencoding=utf8,
+%% backref=true,
+%% backend=biber]{biblatex}
+
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Think Data},
+    pdfauthor={G. A. Reynolds},     % author
+    pdfsubject={Statistics},   % subject of the document
+    pdfcreator={G. A. Reynolds},   % creator of the document
+    pdfproducer={G. A. Reynolds}, % producer of the document
+    pdfkeywords={Statistics}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\usepackage{tikz}
+%\usetikzlibrary{trees,snakes}
+
+\title{Think Data \\
+\vspace{12pt}
+\Large A Conceptual Introduction to Big Data \\
+\vspace{12pt}
+\large for the Skeptical, the Pessimistic, and the Mildly Disturbed}
+\author{G. A. Reynolds}
+%\date{}                                           % Activate to display a given date or no date
+
+%%%%%%%%%%%%%%%%
+%% customizations
+
+\makeatletter
+\let\runauthor\@author
+\let\runtitle\@title
+\makeatother
+
+%% running headers
+\newcommand{\changefont}{%
+  \fontsize{7}{9.5}\selectfont
+}
+\fancypagestyle{plain}{
+  \fancyhead[LO,LE]{\leftmark }
+  \fancyhead[RO,RE]{\rightmark}
+  \fancyfoot[CO,CE]{\thepage}
+  \fancyfoot[LE]{\textsc{Think Data}}
+  \fancyfoot[RO]{\textsc{Think Data}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{plain}
+
+\includeonly{%
+%% mathlog
+%% ,computation
+%% ,probability
+%% ,statistics
+,r
+,python
+,ruby
+,java
+,clojure
+,scala
+,julia
+}
+
+%% macros
+%% \newtheorem{principle}{Principle}
+%% \newtheorem{axiom}{Axiom}
+%% \newtheorem{cor}{Corollary}
+%% \newtheorem{lem}{Lemma}
+
+\newframedtheorem{ednote}{Ed. note}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+%% \nocite{*}
+
+\begin{remark}
+  Two tasks: conceptual and computational.  Understand stats first,
+  then learn how to \emph{do} stats using software (statistics
+  machines).
+\end{remark}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+
+What is data?
+
+Wrong question.  The right questions are: what is the role of data?
+What functions does it serve?  How is it used?  etc.  Our practices
+involving data tell us what data ``is''; there can be no antecedently
+defined notion of data.  (I.e. in spite of the etymology, no data are
+``given''.)
+
+\epigraph{Myth of the Given}{Sellars}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Modeling}
+
+\begin{ednote}
+  Modeling the world as data; it really should be called ``world
+  modeling''.  E.g. in industry, a ``standard data model'' is a
+  standard way of representing some domain of interest, such as
+  electrical connectors or transmission lines.  TODO: clear, simple
+  examples.  Maybe \href{http://www.pods.org/4/The PODS Data
+    Model/}{Pipeline Open Data Standard} (PODS)?  ``The PODS Pipeline Data Model provides the database architecture pipeline operators use to store critical information and analysis data about their pipeline systems, and manage this data geospatially in a linear-referenced database which can then be visualized in any GIS platform.  The PODS Pipeline Data Model houses the asset information, inspection, integrity management, regulatory compliance, risk analysis, history, and operational data that pipeline companies have deemed mission-critical to the successful management of natural gas and hazardous liquids pipelines.''
+
+  TODO: how is this concept of data model related to statistical
+  notions of ``model'' and modeling?
+\end{ednote}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Description}
+
+\begin{ednote}
+  Description of data, not data as description of world - that's modeling
+\end{ednote}
+
+In principle, every datum must be associated with a complete
+description that determines both its form and its meaning.
+
+\begin{description}
+\item [Syntax]
+\item [Semantics]
+\item [Type]  Same as syntax?
+\item [Traceability] esp. given ability to rename, split, and
+  generally slice and dice, traceability is critical.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Datum: description of types and individuals}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Data: description of data collections}
+
+Descriptive statistics.  The technical statistical side of such
+description is covered in detail in the companion volume.  Here we
+cover ...?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Quality}
+
+How is data quality defined?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%  Management
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Management}
+
+\begin{ednote}
+  Here the
+  \href{http://en.wikipedia.org/wiki/Open_Archival_Information_System}{OAIS}
+  model is relevant.
+\end{ednote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Acquisition}
+
+\section{Conversion}
+\label{sect:conversion}
+
+I.e. input adapters, import, reformatting, etc.
+
+Conversion occurs at both ends, not just dissemination.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Normalization: Cleaning, Organization, Imputation, etc.}
+
+AKA data munging
+
+ref:  the \href{http://www.padsproj.org/index.html}{PADS project}
+
+\href{http://r4stats.com/examples/data-management/}{Data Management} - a comparison of the commands used for common data ``management'' (actually, munging) tasks in R, SAS, SPSS and Stata.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Misc}
+
+\begin{remark}
+  examples taken from R, so far
+\end{remark}
+
+\href{http://plyr.had.co.nz/}{plyr}: ``plyr is a set of tools for a
+common set of problems: you need to split up a big data structure into
+homogeneous pieces, apply a function to each piece and then combine
+all the results back together''
+
+
+\href{http://rprogramming.net/r-data-manipulation/}{R Data Manipulation}
+\href{http://www.cookbook-r.com/Manipulating\_data/}{Manipulating Data}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subsetting Data}
+\label{sect:datasubsetting}
+
+\href{http://rprogramming.net/subset-data-in-r/}{Subset data in R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aggregation}
+\label{sect:dataaggregate}
+
+\href{http://rprogramming.net/aggregate-data-in-r-using-data-table/}{Aggregate
+  Data in R Using data.table} - here ``aggregate'' seems to be
+synonymous with ``compute statistic of''.  Misnomer; an aggregate is not a summary.
+
+%%%%%%%%
+\section{Recoding}
+\label{sect:recodingr}
+
+\href{http://www.uni-kiel.de/psychologie/rexrepos/posts/recode.html}{Recode variables} (examples)
+
+\href{http://www.statmethods.net/management/variables.html}{New vars, recoding vars, renaming vars}
+
+\href{http://www.cookbook-r.com/Manipulating\_data/Recoding\_data/}{Recoding vars: categorical, continuous, new}
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode data in R: replacement, recoding}
+
+\href{http://rwiki.sciviews.org/doku.php?id=tips:data-frames:recode_column}{Recode one column, output values into another column: transform(), replace()}
+
+\href{http://rprogramming.net/recode-data-in-r/}{The Recode Command From the Package Car}
+
+%%%%
+\section{New vars}
+\label{sect:newvars}
+
+``copy of an existing field. Sometimes you don’t want to recode data but instead just want another column containing the same data.''
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode into A New Field Using Data From An Existing field And Criteria from Another Field}
+
+%%%%%%%%
+\section{Replacing data}
+\label{sect:datareplacement}
+
+``replace the data in an existing field when you want to replace the data for every row (no criteria).'' \url{http://rprogramming.net/recode-data-in-r/}
+
+%%%%
+\section{Renaming vars}
+\label{sect:renamingvars}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Curation}
+
+AKA Data Management.
+
+Databases, metadata, ingest/disseminate procs, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metadata}
+\label{sect:datameta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Provenance}
+\label{sect:dataprovenance}
+
+I.e. traceability
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preservation}
+\label{sect:datapreservation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discovery}
+\label{sect:discovery}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Access}
+\label{sect:access}
+
+e.g. ACLs; e.g. NORC data enclave
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Dissemination}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Packaging}
+\label{sect:datapkg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conversion}
+\label{sect:conversion}
+
+I.e. export to formats
+
+Conversion occurs at both ends, not just dissemination.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Presentation}
+\label{sect:datapresentation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Visualization}
+
+\href {http://kieranhealy.org/files/papers/data-visualization.pdf}{Data Visualization in Sociology}
+
+\href{http://www.datavis.ca/books/vcd/}{Visualizing Categorical Data} (Friendly, M.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Exploration}
+\label{part:eda}
+
+EDA as involving the combination of statistical description and visualization.
+
+\href{http://www.jstatsoft.org/v40/i01}{The Split-Apply-Combine Strategy for Data Analysis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Tools \& Techniques}
+
+\href{http://kieranhealy.org/files/misc/workflow-apps.pdf}{Choosing your workflow applications}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Standards}
+\label{sect:standards}
+
+\begin{description}
+\item [OAIS]
+\item [DDI]
+\item [SMDX]
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Editors}
+\label{sect:editors}
+
+\begin{description}
+\item [Emacs]
+\item [Vi]
+\item [Eclipse]
+\item [etc]
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Languages}
+\label{sect:langs}
+
+\begin{itemize}
+\item \href{http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6228573}{Computing Trends Lead to New Programming Languages}
+\item \href{http://cloudcomputing.sys-con.com/node/2265359}{Twelve New Programming Languages: Is Cloud Responsible?}
+\item \href{http://r4stats.com/articles/popularity/}{The Popularity of Data Analysis Software} (2014) A very detailed data-driven analysis of the relative popularity of various languages.
+\end{itemize}
+
+\begin{remark}
+  Organize by category?
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Standards}
+
+\begin{ednote}
+  TODO: standards v. data models
+\end{ednote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{OAIS}
+\label{sect:oais}
+
+\href{http://public.ccsds.org/publications/archive/650x0m2.pdf}{Reference
+  Model for an Open Archival Information System} (OAIS)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical Standards}
+\label{sect:statsstd}
+
+\begin{itemize}
+\item \href{http://unstats.un.org/unsd/iiss/List-of-Statistical-Standards.ashx}{UN
+  Global Inventory of Statistical Standards}
+
+\item \href{https://nces.ed.gov/statprog/standards.asp}{Statistical Standards Program} - National Center for Education Statistics
+
+\item \href{https://stats.oecd.org/glossary/index.htm}{OECD Glossary of Statistical Terms}
+
+\item \href{http://shop.bsigroup.com/Browse-By-Subject/Quality--Sampling/Full-list-of-statistical-standards/Statistical-interpretation-of-data/}{Standards for Statistical Interpretation of Data} (British Standards Institute)
+
+\item \href{http://www.whitehouse.gov/omb/inforeg_statpolicy}{OMB Statistical Programs and Standards}
+
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DDI}
+\label{subsect:ddi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{SDMX}
+\label{subsect:sdmx}
+
+\href{http://sdmx.org/}{SDMX} - Statistical Data and Metadata eXchange
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{r}
+
+\include{python}
+
+\include{ruby}
+
+\include{java}
+
+\include{clojure}
+
+\include{scala}
+
+\include{julia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Other}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{OCaml}
+\label{sect:ocaml}
+
+\href{http://www.ffconsultancy.com/products/ocaml_for_scientists/chapter1.html}{Objective Caml for Scientists}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{F\#}
+\label{sect:fsharp}
+
+\href{http://fsharp.org/data-science/}{Using F\# for Data Science}
+
+%%%%%%%%
+\subsection{Experimental/Research}
+\label{subs:expersch}
+
+\begin{itemize}
+\item \href{http://chapel.cray.com/overview.html}{Chapel}
+\item \href{http://x10-lang.org/}{X10} IBM Research; ``Both its modern, type-safe sequential core and simple programming model for concurrency and distribution contribute to making X10 a high-productivity language in the HPC and Big Data spaces.''
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{J}
+
+J is a hideous language.  But ``J is particularly strong in the
+mathematical, statistical, and logical analysis of
+data.''(\url{http://www.jsoftware.com/}) If you can stomach the
+syntax, not to mention the metalanguage (an ``adverb'' is unary op? a
+``monad'' is a unary function? really?), not to mention the mental
+model, you may find it useful.
+
+In J, all data is an array.  etc.
+
+Here's an example.  The following produces all the factorizations of a
+number:
+
+\begin{verbatim}
+ext=: [: ~. ,&.> , ;@:(tu&.>)
+tu =: ] <@:(/:~)@:*"1 [ ^ </\"1@=@]
+af =: ext/ @ q:
+\end{verbatim}
+
+Holy \href{http://www.muppetlabs.com/~breadbox/bf/}{Brainfuck}!!!  For comparison, here is Hello World
+written in that infamous language:
+
+\begin{verbatim}
+  ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
+\end{verbatim}
+
+The obvious question: is the benefit of becoming fluent in such a
+syntax worth the cost?  More to the point: does it really provide
+anything that you cannot find in some other less alienating language?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Commercial}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% {\setstretch{2.25}
+%% \begin{alignat}{1}
+%%   \overset{+}{\lambda}x &= \dfrac{x^2}{2} + C \\
+%%   \overset{+}{\lambda}cx &= c\dfrac{x^2}{2} + C \\
+%%   \overset{+}{\lambda}x^n &= \dfrac{x^{n}}{n} + C
+%% \end{alignat}
+
+\clearpage
+\part{Appendices}
+\appendix
+\begin{appendices}
+\chapter{Bibliography}
+%% \addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{logic,math,stats%
+%% ../bib/logic.bib%
+%% ,../bib/math.bib%
+%% ,../bib/stats.bib%
+}
+\bibliographystyle{plainnat}
+%% \printbibliography[heading=none]
+\end{appendices}
+
+\end{document}

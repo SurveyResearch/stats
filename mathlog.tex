@@ -1,0 +1,834 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Mathematics \& Logic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Sets `n Stuff}
+
+We use the Z Specification notation \cite{z-iso-13568}.
+
+\begin{description}
+\item [Sets] Membership, subset; family of sets
+\item [Relations]
+\item [Functions]
+\item [Sequences]
+\item [Multisets]
+\end{description}
+
+%%%%
+\section{Sets}
+
+Notation: extension v. comprehension
+
+
+%%%%
+\section{Relations}
+
+%%%%
+\section{Functions}
+
+
+\subsection{Definition}
+
+\begin{description}
+\item [Function] Informally, a function is a set of ordered pairs.
+  The Z specification says ``A function is a particular form of
+  relation, where each domain element has only one corresponding range
+  element.''\cite{z-iso-13568}%p [9]
+\item [Function Extension] Since a function is a kind of set, it can
+  be defined by explicitly listing its extension--all of its elements.
+  For example, the function $f$ that maps each integer between $1$ and
+  $3$ to itself can be expressed by writing out the complete list of
+  its elements: ${f=\{(1,1),(2,2),(3,3)\}}$.
+\item [Function Comprehension] A second way of defining a function is
+  to express the ``rule'' that determines the elements it contains,
+  without listing them explicitly.  For example ``the function that
+  maps every number to itself'' defines the identity function.  Z provides
+  two ways of doing this, one using standard set comprehension
+  notation, the other using ``function construction'' notation.  See
+  below.
+\end{description}
+
+\subsection{Notation}
+
+The Z notation supports several ways of representing a function.  A
+function extension expression may use ordered pair notation or maplet
+notation.  The following example illustrates two ways to define the
+function that maps each integer between $1$ and $3$, inclusive, to its
+double.
+
+\begin{alignat}{2}
+  f &= \{(1,2),(2,4),(3,6)\} \\
+  &= \{1\mapsto 2, 2\mapsto 4, 3\mapsto 6\}
+\end{alignat}
+
+\noindent More generally:
+
+\begin{alignat}{2}
+  \langle e_1,\ldots e_n\rangle &= \{(1,e_1),\ldots (3,e_n)\} \\
+  &= \{1\mapsto e_1,\ldots 3\mapsto e_n\}
+\end{alignat}
+
+Z also supports two ways to define a function intensionally -- in
+terms of a property rather than an explicit list of elements.
+
+\begin{remark}
+FIXME: set comprehension expression for functions:
+\begin{alignat}{2}
+  f &= \{x,y | y=2x @ (x,y)\} \\
+  &= \{x,y | y=2x @ x\mapsto y\}
+\end{alignat}
+\end{remark}
+
+\textit{Function construction} notation...
+\begin{alignat}{2}
+  f &= \{\lambda
+\end{alignat}
+
+
+%%%%
+\section{Sequences}
+\label{subs:sequences}
+
+\begin{remark}
+  Lay down the basic concepts, terminology, and notation, for later
+  use in discussing sampling, etc.
+
+  cf. Series
+\end{remark}
+
+\subsection{Definition}
+
+\begin{description}
+\item [Sequence] Informally, a sequence is an ordered set.  The Z
+  specification says ``A sequence is a particular form of function,
+  where the domain elements are all the natural numbers from 1 to the
+  length of the sequence.''
+\end{description}
+
+\subsection{Notation}
+
+The Z notation uses angle brackets to form a sequence expression:
+
+\begin{alignat}{2}
+  \langle e_1,\ldots e_n\rangle &= \{(1,e_1),\ldots (3,e_n)\} \\
+  &= \{1\mapsto e_1,\ldots 3\mapsto e_n\}
+\end{alignat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multisets}
+
+We follow \citet{singh_overview_2007}, with some modifications.
+
+\subsection{Definitions}
+
+\begin{description}
+\item [Multiset]
+\item [Element]
+\item [Carrier]  The carrier of an mset is the set from which its elements is drawn.
+\item [Generator]  The generators of an mset are the elements of its carrier set.
+\item [Multiplcity]  The multiplicity of an element of an mset is the number of times it ``occurs'' (``appears'', etc.).
+\item [Cardinality] The cardinality (size) of an mset is the sum of
+  the multiplicities of its elements.  The cardinality of the carrier of an mset is the number of elements it contains.
+\end{description}
+
+\subsection{Notation}
+
+The mset containing one $a$, two $b$, and three $c$
+
+\begin{equation}
+  M = \{(a,1), (b,2), (c, 3)\}
+\end{equation}
+
+\noindent can be written as follows:
+
+\begin{description}
+\item [Multiplicative notation]  The following are equivalent:
+
+\begin{itemize}
+\item $[[a,b,b,c,c,c]]$
+\item $[a,b,b,c,c,c]$
+\item $[a,b,c]_{1,2,3}$
+\item $[a^1,b^2,c^3]$
+\item $[a1,b2,c3]$
+\end{itemize}
+
+Note order is irrelevant.
+
+\item [Linear notation]  The following are equivalent:
+
+\begin{itemize}
+\item $[a]+2[b]+3[c]$
+\item $\{[a],2[b],3[c]\}$ Note that this style combines multiplicative
+  notation for mset elements with standard set notation ($\{\ldots\}$)
+  for the mset itself.
+\end{itemize}
+\end{description}
+
+One advantage of the linear notation is that it allows us to have
+non-integral and non-positive multiplicities; for example, in
+$\{[a],-0.5[b],\pi[c]\}$ element $a$ occurs once, $b$ occurs $-0.5$
+times, and $c$ occurs $\pi$ times.
+
+In addition, linear notation allows a concise variant somewhat like a
+stem-and-leaf display:
+
+$$\{[a],2[b],2[c],3[d]\} = \{1[a], 2[b,c], 3[c]\}$$
+
+%%%%%%%%
+\subsection{Stem and Leaf}
+
+Multisets can be represented using stem-and-leaf tables:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multisequences}
+
+A multiset is a set of ordered pairs, and is therefore unordered.
+Just as we can extend the concept of set to form a sequence, we can
+extend the notion of multiset to form a multisequence.
+
+\begin{description}
+\item [Multisequence]  A multisequence is a sequence of multiset elements.
+\end{description}
+
+We use the same angle bracket notation we use for set sequences:
+
+\begin{alignat}{2}
+  \langle [a],2[b],3[c]\rangle &= \{(1, (a,1)), (2,(b,2)), (3,(3,c))\} \\
+  &= \{1\mapsto (a,1), 2\mapsto (b,2), 3\mapsto (3,c)\} \\
+  &= \langle a,b,b,c,c,c\rangle
+\end{alignat}
+
+Since multisets are unordered, we have
+
+\begin{equation}
+  \{[a],2[b],3[c]\} = \{2[b],[a],3[c]\} = \{3[c],2[b],[a]\} = \ldots
+\end{equation}
+
+Multisequences are ordered, so for example
+
+\begin{equation}
+  \langle [a],2[b],3[c]\rangle \neq \langle2[b],[a],3[c]\rangle
+\end{equation}
+
+\noindent since
+
+\begin{equation}
+  \{(1,(a,2), (2,(b,2), (3,(c,3)\}\neq \{(1,(b,2)), (2,(a,2)), (3,(c,3))\}
+\end{equation}
+
+\noindent alternatively
+
+\begin{equation}
+  \{(1\mapsto (a,2), 2\mapsto (b,2), 3\mapsto (c,3)\} 
+  \neq \{(1\mapsto (b,2)), 2\mapsto (a,2)), 3\mapsto (c,3))\}
+\end{equation}
+
+Also:  $\langle a,b,b,c,c,c\rangle \neq [a,b,b,c,c,c]$
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Counting and Combining}
+
+\cite{berge_principles_1971}
+
+What is combinatorics?
+
+\blockquote{Combinatorics can rightly be called the mathematics of counting. More speciﬁcally, it
+is the mathematics of the enumeration, existence, construction, and optimization questions
+concerning ﬁnite sets. (Mazur, guided tour)}
+
+\blockquote{The concept of configuration can be made mathematically precise by defining it as a mapping of a set of objects into a finite abstract set with a given structure; for example, a permutation of n objects is a “bijection of the set of n objects into the ordered set 1, 2, ..., n.” Nevertheless, one is only interested in mappings satisfying certain constraints.
+
+Just as arithmetic deals with integers (with the standard operations), algebra deals with operations in general, analysis deals with functions, geometry deals with rigid shapes, and topology deals with continuity, so does combinatorics deal with configurations. Combinatorics counts, enu- merates,* examines, and investigates the existence of configurations with certain specified properties.
+}
+
+\section{Counting Principles}
+
+\begin{remark}
+  Most of these are just restatements of basic arithmetic, expressed
+  in terms of doing things.  Why bother?  I suspect that thinking in
+  terms of sequences of actions makes it easier to do combinatorics.
+  Also, these ideas only seem to be articulated as principles in
+  elementary texts for e.g. high school algebra.
+\end{remark}
+
+\begin{remark}
+  But isn't combinatorics just the science of counting?
+\end{remark}
+
+
+\begin{description}
+\item [Fundamental Principle of Counting]
+
+\item [Principle of addition]: if there are $a$ ways of doing one thing
+  and $b$ ways of doing another, and we cannot do both, then there are
+  $a+b$ ways to choose one thing to do.  This is just a restatement of
+  a set-theoretic definition of addition in terms of union of sets.
+
+  In combinatoric texts something like this is more typical:
+
+  \textit{Addition Rule}. If $A$ and $B$ are finite, disjoint sets,
+  then $A \cup B$ is finite and $|A \cup B| = |A| + |B|$.
+
+\item [Principle of multiplication]: if there are $a$ ways of doing
+  one thing and $b$ ways of doing another, then there are $a\cdot b$
+  ways of doing both.  This is a restatement of a set-theoretic
+  definition of addition in terms of cartesian products.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Progressions and Means}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Arithmetic}
+\label{sect:meanarith}
+
+\begin{definition}[Arithmetic Progression]
+  
+\end{definition}
+
+\begin{definition}[Arithmetic Mean]
+  \[\dfrac{x_1+\cdots x_n}{n} = \dfrac{\sum_1^n x_n}{n} = \dfrac{\displaystyle\sum x}{n}\]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geometric}
+\label{sect:meangeom}
+
+\begin{definition}[Geometric Progression]
+  
+\end{definition}
+
+\begin{definition}[Geometric Mean]
+  \[\sqrt[n]{x_1\times\cdots\times x_n} = \sqrt[n]{\displaystyle\Pi_1^n x} = \sqrt[n]{\displaystyle\Pi x}\]
+\end{definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Harmonic}
+\label{sect:meanharmonic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Choice and Chance}
+
+\section{The Axiom of Choice}
+
+The Axiom of Choice is of enormous important in mathematics generally.
+Statistics is no exception; the significance of the axiom will become
+especially apparent when we discuss the concept of random sample.
+
+\blockquote{The principle of set theory known as the Axiom of Choice has been hailed as “probably the most interesting and, in spite of its late appearance, the most discussed axiom of mathematics, second only to Euclid's axiom of parallels which was introduced more than two thousand years ago” (Fraenkel, Bar-Hillel \& Levy 1973, §II.4).  The fulsomeness (\textit{sic}) of this description might lead those unfamiliar with the axiom to expect it to be as startling as, say, the Principle of the Constancy of the Velocity of Light or the Heisenberg Uncertainty Principle. But in fact the Axiom of Choice as it is usually stated appears humdrum, even self-evident. For it amounts to nothing more than the claim that, given any collection of mutually disjoint nonempty sets, it is possible to assemble a new set — a transversal or choice set — containing exactly one element from each member of the given collection. Nevertheless, this seemingly innocuous principle has far-reaching mathematical consequences — many indispensable, some startling — and has come to figure prominently in discussions on the foundations of mathematics. It (or its equivalents) have been employed in countless mathematical papers, and a number of monographs have been exclusively devoted to it.\cite{bell_axiom_2013}}
+
+Often stated in terms of choice functions.
+
+Variants:
+
+AC1: 
+Any collection of nonempty sets has a choice function.''
+
+AC2: 
+Any indexed collection of sets has a choice function.
+
+Or relations:
+
+\begin{axiom}[Axiom of Choice]
+\label{ax:choice}
+For every family $\mathcal{F}$ of nonempty disjoint sets there exists
+a \textit{selector}, that is, a set $S$ that intersects every $F\in
+\mathcal{F}$ in precisely one point.\cite{ciesielski_set_1997}
+\end{axiom}
+
+Transversal:  In a 1908 paper Zermelo introduced a modified form of AC. Let us call a transversal (or choice set) for a family of sets H any subset T ⊆ ∪H for which each intersection T ∩ X for X ∈ H has exactly one element.  As a very simple example, let H = {{0}, {1}, {2, 3}}. Then H has the two transversals {0, 1, 2} and {0, 1, 3}. A more substantial example is afforded by letting H be the collection of all lines in the Euclidean plane parallel to the x-axis. Then the set T of points on the y-axis is a transversal for H.
+
+So we have choice functions and choice sets.
+
+
+``Let us call Zermelo's 1908 formulation the combinatorial axiom of choice:
+
+CAC: 
+Any collection of mutually disjoint nonempty sets has a transversal.'' (bell)
+
+
+The problem:
+
+
+\blockquote{It is to be noted that AC1 and CAC for finite collections
+  of sets are both provable (by induction) in the usual set
+  theories. But in the case of an infinite collection, even when each
+  of its members is finite, the question of the existence of a choice
+  function or a transversal is problematic[4]. For example, as already
+  mentioned, it is easy to come up with a choice function for the
+  collection of pairs of real numbers (simply choose the smaller
+  element of each pair). But it is by no means obvious how to produce
+  a choice function for the collection of pairs of arbitrary sets of
+  real numbers.\cite{bell_axiom_2013}}
+
+Footnote: 
+\blockquote{The difficulty here is amusingly illustrated by an anecdote due to Bertrand Russell. A millionaire possesses an infinite number of pairs of shoes, and an infinite number of pairs of socks. One day, in a fit of eccentricity, the millionaire summons his valet and asks him to select one shoe from each pair. When the valet, accustomed to receiving precise instructions, asks for details as to how to perform the selection, the millionaire suggests that the left shoe be chosen from each pair. Next day the millionaire proposes to the valet that he select one sock from each pair. When asked as to how this operation is to be carried out, the millionaire is at a loss for a reply, since, unlike shoes, there is no intrinsic way of distinguishing one sock of a pair from the other. In other words, the selection of the socks must be truly arbitrary.}
+
+The axiom of choice and probability (randomness) are different
+concepts.  See
+http://math.stackexchange.com/questions/29381/picking-from-an-uncountable-set-axiom-of-choice
+
+\section{Chance and Randomness}
+
+See \cite{eagle_chance_2014}
+
+Indeterminacy, disorder, chaos, stochastic process, etc.
+
+chance of a process, randomness of its product
+
+Chance: physical; randomness: mathematical?
+
+``It is safest, therefore, to conclude that chance and randomness, while they overlap in many cases, are separate concepts.''\cite{eagle_chance_2014}
+
+Process v. Product concepts
+
+``Of course the terminology in common usage is somewhat slippery; it's not clear, for example, whether to count random sampling as a product notion, because of the connection with randomness, or as a process notion, because sampling is a process.''
+
+\blockquote{The upshot of this discussion is that chance is a process notion, rather than being entirely determined by features of the outcome to which the surface grammar of chance ascriptions assigns the chance. For if there can be a single-case chance of ½ for a coin to land heads on a toss even if there is only one actual toss, and it lands tails, then surely the chance cannot be fixed by properties of the outcome ‘lands heads’, as that outcome does not exist.[2] The chance must rather grounded in features of the process that can produce the outcome: the coin-tossing trial, including the mass distribution of the coin and the details of how it is tossed, in this case, plus the background conditions and laws that govern the trial. Whether or not an event happens by chance is a feature of the process that produced it, not the event itself.\cite{eagle_chance_2014}}
+
+\blockquote{a process conception of randomness makes nonsense of some obvious uses of ‘random’ to characterise an entire collection of outcomes of a given repeated process. This is the sense in which a random sample is random: it is an unbiased representation of the population from which it is drawn—and that is a property of the entire sample, not each individual member. While many random samples will be drawn using a random process, they need not be....To be sure that our sample is random, we may wish to use random numbers to decide whether to include a given individual in the sample; to that end, large tables of random digits have been produced, displaying no order or pattern (RAND Corporation 1955). This other conception of randomness, as attaching primarily to collections of outcomes, has been termed product randomness.(eagle)}
+
+\blockquote{If the actual process that generate the sequences are perfectly deterministic, it may be that a typical product of that process is not random. But we are rather concerned to characterise which of all the possible sequences produced by any process whatsoever are random, and it seems clear that most of the ways an infinite sequence might be produced, and hence most of the sequences so produced, will be random.(eagle)}
+
+...concentrate on the sequence of outcomes as independently given mathematical entities, rather than as the products of a large number of independent Bernoulli trials...
+
+
+Goal: devise mathematics to ``capture the intuitive notion of randomness.''
+
+Compare logicians' attempts to capture the intuitive notion of logical consequence.
+
+ Howson and Urbach (1993: 324) that ‘it seems highly doubtful that there is anything like a unique notion of randomness there to be explicated’.
+
+Intuitions about randomness:
+
+\begin{itemize}
+\item a property of a sequence
+\item indeterminism
+\item epistemic randomness
+\end{itemize}
+
+
+See also https://www.cs.auckland.ac.nz/~chaitin/sciamer.html
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Infinity and the Limit Concept}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{The Function Ladder: Differentiation and Integration}
+
+\begin{remark}
+  Why this?  Mainly just as a notational convenience.  Even if we target an
+  audience with minimal math, it is useful to have $\int$ (or
+  $\overset{+}{\lambda}$) to indicate the area under a curve.  And
+  that is critical to the concept of probability of a continuous
+  random variable, which is one of the main concepts we want to get
+  across.
+
+  Furthermore the basic concepts are not that difficult:
+  differentiation as the limit of a ratio of differences, integration
+  is the limit of a sum of products.  The details of how one might
+  actually do this may be daunting for many readers, but the basic
+  concepts are quite simple and intuitive.  Especially with lambda
+  notation.
+\end{remark}
+
+\begin{remark}
+  Furthermore there is an aesthetic component: symmetry.
+  Differentiation and integration as relations among functions;
+  comparable to the relation between a function and its inverse.
+
+  Pedagology usually presents differentiation in terms of physical
+  motion, instantaneous rate of change, etc.  Integration is presented
+  as a matter of finding area under a curve.  But neither of these
+  really capture what's at stake; this is obvious if you ask what the
+  area under a curve has to do with probability.  Physical metaphors
+  are not necessary to acquire a solid intuitions of differentiation
+  and integration.  A (perhaps) better approach is to focus on the
+  symmetrical relations involved.  Differentiation and integration as
+  higher-order functions that map other functions to their ``natural''
+  co-functions or counterparts.  So we start by just asking, e.g. what
+  is the relation between \(x^2\) and \(2x\), or \(x^3\) and \(3x^2\).
+  We can easily see a pattern involving coefficients and exponents;
+  the derivatives and integrals account for these.
+
+  Avoid ``rate of change'' talk at all costs.  Mathematics is static;
+  there is no change.  So if \(2x\) is the derivative of \(x^2\) we
+  need a way to express the intuition involved without appealing to a
+  concept of change or motion.  Just: ratio, a ratio function of fixed
+  form but different value at each x.  Not rate of change, but ratio
+  of ``sizes''.  We can change our focus of attention to different
+  values of x and y, but the functions themselves do not do this; they
+  are fixed, unmoving, rigid.  So its like looking at a building and
+  comparing its height to its width.
+
+  But let's face it: there's no way to eliminate intuitions of
+  rate-of-change.  Going from ratio of magnitudes to rate of change is
+  natural.
+
+  [An alternative perspective: (organic) growth.  A function grows;
+    its derivative says how fast it grows, and its integral says how
+    much ``mass'' it accumulates.]
+
+  [Another alternative: behavior.  Functions ``behave'' differently at
+    different places. etc.]
+
+  If \(f(x)\) tells us where we are - how far along toward the end -
+  then \(f'(x)\) tells us how fast we're moving.  Reverse perspective,
+  and if \(f(x)\) tells us where we are, then \(\int f(x)\) tells us
+  how much ground we've covered from the beginning.  The former is
+  about rate, the latter about accumulation.
+
+  The beauty of it is the symmetry.  If we have \(f\) and \(g\), where
+  \(f\) is the derivative of \(g\), then \(g\) is the integral of
+  \(f\).  By looking at \(f\) we can see how fast \(g\) is moving; by
+  looking at \(g\), we can see how much ground \(f\) has covered.  The
+  location of \(f\) describes the rate of \(g\); the location of \(g\)
+  describes the accumulation of \(f\).
+
+  If we think of \(f\) and \(g\) as two distinct moving bodies, then
+  this fundamental relation between differentiation of the one and
+  integration of the other - call it the conversion relation, by
+  analogy with inverse relation - links their rates.  They move at
+  different rates and thus cover different distances over the same
+  ``time'', but those rates and distances are related.  Position,
+  rate, and cumulative distance are the three things related by this
+  conversion relation.  Corresponding to three kinds of question:
+  where is it? how fast is it moving? and how far has it traveled?
+  The function itself answers the first question, its derivative
+  answers the second, and its integral answers the third.
+
+  Note that there are two symmetries here.  One a kind of inverse
+  relation between two functions, derivative and anti-derivative, and
+  the other a kind of transitive relation between a function, its
+  derivative and its anti-derivative.
+
+  This exposes a fundamental difference between the notion of inverse
+  function and the more special kind of inverse relation involved in
+  differentiation and integration.  The plain old inverse relation
+  only involves two functions; there is no transitive relation to some
+  third function.  In other words, the inverse relationship is
+  strictly symmetric but not transitive, and the ``conversion''
+  relation is both.  You can go up and down the ladder.  But the
+  ladder is well-founded; you can go up (integrate) indefinitely, but
+  you always hit bottom going down.  More concretely: rates of rates
+  of rates ... eventually end up at zero: no change at the nth degree
+  rate.  But accumulation of accumulation of accumulation ... just
+  keeps going.  (Since each ``rung'' in the upward ladder covers some
+  ground.)
+
+  Example: there are infinitely many ``rungs'' in the integration
+  ladder of \(f(x)=x\), but going the other way always eventually
+  bottoms out in zero.
+
+  Bottom line: fundamental theorem of calculus expresses a transitive
+  relation.
+
+  But this means that each (well-behaved) function is actually, and
+  essentially, part of a chain of functions.  The relation between a
+  function, its derivative, and its integral is intrinsic.  So we
+  cannot treat such functions as isolated individuals; rather they are
+  akin to points on a continuum.
+
+  Compare this to the exponential ladder.  Taking the nth derivative
+  (integral) akin to taking the nth power (root).  Compare moments
+  about the mean.
+
+  Recursion?
+
+  Fun, but how relevant to stats?  Maybe it will give us intuitions
+  about distribs, etc.  Derivatives tell us something about their
+  original functions, etc.  Moments about the mean tell us something
+  about the original population. etc.  Mathematical techniques of
+  using derived things to reveal information about basic things.
+
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Measure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Thinking Exponentially (and Logarithmically)}
+
+\begin{remark}
+  Task 1: convince reader that exp and log, power and root, are
+  special.  Task 2: Provide intuitive, clear, simple explanation.
+  Task three: show relation to stats thinking.
+\end{remark}
+
+Learning to think in terms of exponents and logarithms is one of the
+keys to learning to think statistically.  Fortunately it's not too
+difficult, and it happens to be fascinating.
+
+Getting from here to there.  We normally think linearly.  The number
+line is treated as additive; to get from $a$ to $b$ on the number
+line, you add the (possibly negative) difference between the two: $a +
+(a-b) = b$.
+
+Exponentiation offers a different way of thinking about the relation
+between two numbers.  Instead of viewing their difference as spatial
+distance ($a-b$), we think of it in terms of difference in growth.  So
+the difference between, say, $3$ and $9$ is not $6 (= |3-9|)$, but $2
+(= log_3\ 9)$.  Here we take $2$ as the number of (natural) growth
+cycles it takes for $3$ to turn into $9$: $3^2 = 9$.
+
+Why \textit{growth}?  Because exponentiation is self-contained, so to
+speak.  Getting from $3$ to $9$ linearly involves adding something
+external ($6$) to $3$.  But $3^2$ does not involve any external
+``factor'' in this way (other than the multiplication operation); the
+difference between $3$ and $9$ is construed in terms of $3$ alone;
+``raising $3$ to a power'' is construed as an operation involving $3$
+alone.  The task is to find how many times this something must be done
+for $3$ to ``turn into'' (rather than ``arrive at'') $9$.
+
+Traditional terminology (now archaic) captured this; as late as the
+19th century, a common term for exponentiation was ``involution'',
+meaning something like ``turning in to itself''.
+
+Note that conventional terminology, being derived from Greek geometry
+($3^2$ means ``three \textit{squared}''), is misleading.
+Exponentiation has nothing essential to do with geometry.  (And note
+that the Greeks did not have a genuine concept of exponentiation; they
+never came up with the kind of algebraic thinking involved in finding
+powers and roots.)  The Arabic-speaking mathematician who is credited
+with inventing algebra in something like the form we know it today
+(Al-Khawarizmi) did not use the term ``squared''; his (Arabic) word
+for what we call a squared quantity was \textit{m\^{a}l}, meaning
+``cattle, stock, wealth''.  Furthermore, the Arabic term for
+multiplication was also conceptually distinct from the notion of
+repeated ``folding'' (``multiply'' comes from the latin
+\textit{multiplicare}, combining \textit{multi} ``many times'' and
+\textit{plicare}, from \textit{plex} ``fold'').  The Arabic term was
+\textit{darb}, ``strike'', and to form a \textit{m\^{a}l}, one
+``strikes'' a number \textit{in itself}.  The origins of this usage
+are not known, but note that the same term is used in minting
+(``strike a coin'') and husbandry (``strike'' was used to refer to
+copulation of e.g. livestock).  So historically, exponentiation was
+did not emerge from either arithmetic nor geometry; rather, it emerged
+as a distinctive concept.
+
+But exponentiation is also conceptually distinct even (or especially)
+in modern mathematics.  A satisfactory definition of exponentiation
+requires some fairly advanced calculus; the simple concept of
+something multiplied by itself is not sufficient.
+
+It even shows up in very practical matters.  Calculation of compound
+interest turns out to be intimately related to exponentiation, for
+example.
+
+\begin{remark}
+  Story of $e$ as discovery of a mathematically satisfying account of
+  exponentiation.  Exponentiation defined in terms of logarithms,
+  rather than the other way around.
+\end{remark}
+
+The critical point of all this is that we should think of
+exponentiation as a special kind of operation, rather than as
+something derived from arithmetic (multiplication).  Fortunately this
+is not particularly difficult, but it does require a basic change in
+perspective.
+
+The payoff will come when we consider probability distributions, in
+which exponentiation plays a critical role.
+
+\begin{remark}
+  Also logarithmic scales, logit, etc.  Lots of places where logs and
+  exponents are critical.
+\end{remark}
+
+\begin{remark}
+  Exponentiation as involution.  Inflection points.  Symmetry.
+  Constructing the numbers from exponentiation ($\lim_{x \to 0}e^x =
+  0$).
+\end{remark}
+
+\begin{remark}
+  Powers and roots v. exponentiation.  Difference between ${f(x) =
+    x^a}$ (powers) and ${f(x)= a^x}$ (exponentiation).
+\end{remark}
+
+Sequences: any term of the following sequences can be used to form a
+function, e.g. $f(x) = x^2, g(x) = 2^x$.
+
+{\setstretch{1.25}
+  \begin{alignat}{2}
+    0^x, 1^x, 2^x,..,e^x,\ldots,n^x & \quad \textnormal{Power sequence?}
+    x^0, x^1, x^2,..,x^e,\ldots,x^n & \quad \textnormal{Exponential (geometric) sequence} \\
+  \end{alignat}
+}
+
+\section{Powers and Roots}
+
+\begin{remark}
+  Powers and roots as ``phases'' (``poles'', polarity?) of
+  exponentiation, with $1$ as the ``inflection point''.  But we need a
+  different term, ``inflection point'' should be reserved for changes
+  in the derivative of a curve.  We want something that indicates a
+  phase shift, where powers switch to roots and vice-versa.  ``Phase''
+  by analogy to phases of matter (solid, liquid, gas), not of cycles
+  (waves).  I.e. qualitative change, not cyclic orientation.  Critical
+  point? (Freezing point, melting point, etc.)
+\end{remark}
+
+This can best be explained by example.
+
+Let's review some basic rules:
+
+{\setstretch{1.25}
+  \begin{alignat}{2}
+    a^{b} &= a\cdot a\cdots a \quad \textnormal{(b times)} \\
+    a^{-b} &= \frac{1}{b} \\
+    a^{1/b} &= \sqrt[b]{a} \\
+    a^{b/c} &= \sqrt[c]{a^b}
+  \end{alignat}
+}
+
+First powers.  Conventionally, the expression $a^b$ tells us to
+multiply $a$ by itself $b$ times (that is, $b-1$ multipication
+operations involving $b$ terms $1$).  This makes perfect sense, if $b$
+is a whole number and $b>1$.  But what about, say, $a^{1.5}$?  Or even
+worse, $a^\pi$?  As it happens, it is fairly easy (but perhaps not
+trivial) to define $a^b$ for all rational $b$ (like $1.5$), but
+defining it for irrational $b$ (like $\pi$) is another matter.
+Explaining how this is done is beyond the scope of this paper, so for
+our purposes let's just assume that $a^b$ is defined for all real $b$.
+
+So $a^{1.5}$ and $a^\pi$ are defined, but what does it mean to
+multiple $a$ by itself $1.5$ or $\pi$ times?  Not very intuitive.  One
+strike against the conventional explanation of exponentiation in terms
+of multiplication.
+
+For now, though, let's stick with the multiplication idea. The point
+here is that we can treat $a^b$ as a problem to be solved, or a task
+to be accomplished: find $c$ such that $a^b = c$.  Let's look at the
+structure of the task.  We are given two operands, $a$ and $b$, and an
+operation (exponentiation); the task is to find out where these lead
+us.  In other words, we do not know where we are going to end up, but
+we know how to get there: by raising $a$ to the $b$th power.  In
+brief, our task is to reach the destination, given the means of
+getting there.
+
+Now consider roots.  The expression $\sqrt[b]{a}$, unlike $a^b$, tells
+us where we are to end up, but does not tell us how to get there.
+``Find the $b$th power of $a$ means ``perform the exponent operation
+$b$ times on $a$; it tells us what to do; but ``find the square root
+of $a$'' does not mean ``perform the square root operation on $a$'';
+it tells us what the destination is, but not what we need to do to get
+there.  In other words, $\sqrt[b]{a}$ denotes a value related to $a$
+and $b$, not an operation that uses $a$ and $b$; in contrast, $a^b$,
+although it indirectly denotes the destination value, directly denotes
+the operation to use to get there.
+
+\begin{remark}
+  Improve this.  Both can be viewed as denoting either a value, a
+  process, a device, or all of the above.  Why not think of
+  $\sqrt[b]{a}$ as denoting an operation?  Mainly because there is no
+  such operation, or at least it isn't normally understood in that
+  way.  Clearly in contrast to $a^b$.
+\end{remark}
+
+\begin{remark}
+  Correction: $a^b$ only \textit{seems} to tell us what to do, because
+  it does so in the case of integer exponents.  But in the case of
+  real exponents, it precisely does \textit{not} tell us what to do.
+  But this is evidence of the specialness of exponentiation.  The
+  arithmetic operators do tell us what to do; that is how they are
+  defined.  But we \textit{cannot} define exp and root in this way.
+  In fact the best we can do is find a procedure for approximating the
+  value.
+
+  Alternatively: arithmetic ops defined via effective procedures.  Exp
+  ops defined in terms of meaning, not procedure.  There may be many
+  distinct procedures that can be used to solve them.
+
+  This is obvious in the case of square root.  Easy to define, but I
+  would guess even relatively well-educated people would not know how
+  to go about computing a square root by hand.  There are dozens of
+  methods for computing square roots, all of which (?) only
+  approximate the answer.
+
+  Ditto for the trig funcs.  Easy to provide a geometric definition,
+  hard to say how to compute.  Well, semi-hard, not as hard as exp and
+  log.
+
+\end{remark}
+
+
+\begin{remark}
+  Put this in a graph: Here's another symmetry: given $b>1$, as $b$
+  increases, $a^b$ decreases if $0<|a|<1$, but $a^b$ increases if
+  $|a|>1$; if $a=0$, then $a^b=0$ for all $b$, and if $a=1$, then
+  $a^b$ = 1 for all $b$.  So here $a=1$ is a critical point where
+  $a^b$ changes direction, so to speak, and $a=0$ is a critical point
+  - call it a ``constant point'' where $a^b$ is constant.
+
+\end{remark}
+
+
+
+\section{Exponentiation and Co-exponentiation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Random Variables}
+
+Random selection devices
+
+%%%%%%%%
+\chapter{Functions}
+
+%%%%%%%%
+\section{First- and Second-order Functions}
+
+\begin{remark}
+Family of functions/curves: function and meta-function.  $y=e^x$ is a
+function; $y=e^{\alpha\ x}$ is a meta-function.  Better: second-order function.
+
+Use lambda abstraction to demonstrate the difference: partial
+application of a second-order function yields a first-order function.
+
+Terminology: apply higher-order functions to \textit{parameters},
+first-order functions to \textit{arguments}.
+\end{remark}
+
+%%%%%%%%
+\section{Equations, Graphs, and Curves}
+
+\begin{remark}
+  Ideally, one would be able to instantly visualize the curve upon
+  seeing the equation.  But there are many many functions for which
+  this is not so easy.  But with a little practice it becomes
+  relatively easy to know the basic shape of a curve from a glance at
+  its equation.  So one purpose here is training in the art of seeing
+  the curve in the equation.  Example: once you understand the
+  relation between functions of $e$ and their curves, such as the
+  curves of $e^x$ and $e^{-x}$, then it becomes relatively easy to see
+  what shape the curve of the Gaussian PDF ought to have.
+
+  Functions of the form $e^n$ are particularly common, where $n$
+  itself can be any sort of expression, e.g. $e^{-(x/\lambda)^k}$
+  (Weibull pdf).
+
+  Mastering the shape of an equation really means mastering the shapes
+  of a family of equations.
+
+  We can show quite clearly what shape a family of functions has by
+  using animation to show what happens as the parameters vary.  This
+  will both expose the general shape of the (meta) function, and the
+  role of the parameters.
+\end{remark}
+
+\begin{remark}
+  A second critical point is that the parameters of a meta-function
+\end{remark}
+
+%%%%%%%%
+\subsection{Characteristics of curves}
+
+Kurtosis, skew, scedasticity - fancy Greek terms for sharpness, skew,
+and scatter.  But useful for classifying curves by shape.
+
+Thin/fat tails.
+\url{http://en.wikipedia.org/wiki/Fat-tailed_distribution}.
+E.g. Cauchy distrib,
+\href{http://en.wikipedia.org/wiki/Stable_distributions}{stable
+  distribs} (except the normal)
+

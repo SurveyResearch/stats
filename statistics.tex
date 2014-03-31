@@ -1,0 +1,448 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Statistics}
+
+\begin{remark}
+  What distinguishes stats from probability?  Probability seems to
+  have everything stats has: expected value (for mean), etc.  Even
+  statistical inference is based entirely on a result from
+  probability, the Central Limit Theorem.  So why not call it all
+  probability?
+
+Statistics measures something else
+  - location (central tendency), spread (deviations), etc.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Descriptive Statistics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Location}
+
+%%%%%%%%
+\subsection{Mean}
+\label{subs:mean}
+
+\begin{ednote}
+  key terms: uniform distrib; equity; equitable distrib; allocation;
+  parameterization of r.v.; nth degreee
+  equation/function/mean/deviation; moments as \(n^{th}\)
+  mean/deviation.
+\end{ednote}
+
+\newthought{Interpretation of the Arithmetic Mean}
+
+\begin{ednote}
+  \(\dfrac{\sum x}{n-1}\) is not the arithmetic mean; but it is a
+  \emph{kind} of mean.  We could call it ``mean of randomization'',
+  ``free mean'', or the like.
+
+  We can treat the arithmetic mean as a description of a single
+  particular distribution (set).  It can be interpreted in multiple
+  ways, one per polynomial degree.  At degree zero, it is the value of
+  the constant function; at degree 1, the midpoint of both the domain
+  and range of a linear function; etc.
+
+  By contrast, we think of the ``free mean'' not as a determinate
+  description, but as a kind of generalized representation of a
+  \emph{family} of samples (sets), all of which are ``equivalent up
+  to'' cardinality and and sum.  ``Equivalent up to cardinality and
+  sum'' is a fancy way of saying that each sample in the family has
+  the same number of elements, which sum to the same total.  It
+  follows that each sample has the same mean.  We could say
+  ``equivalent up to mean'', except same mean does not imply same
+  cardinality.
+
+  In other words, given a specific sample set, there is an infinite
+  number of different sample sets that ``look the same'' as the
+  original set in that they have the same cardinality and the same sum
+  (and thus the same mean).  The ``free mean'' describes that set; we
+  can use it, so to speak, to generate specific samples, by random
+  selection parameterized by the free mean.
+
+  Another constraint: not only do we want our \(n-1\) choices to be
+  random; we also want them to have the ``same amount'' of randomness.
+  In other words, we want our randomization devices to be identical
+  (cf. i.i.d.).  This maximizes total randomness.  Note that we could
+  ``bias'' the randomness by giving each device a different range.
+
+  There is a basic tradeoff here.  In order to maximize total
+  randomness across \(n-1\) devices, we are forced to restrict the
+  possible variance.  This means restricting the range allocated to
+  each device.  If we were to allocate more than the free mean amount
+  to the devices, then the possibility arises that the total could be
+  ``used up'' before we get through all \(n-1\) devices.  In that case
+  we would not have \(n-1\) free (random) choices.  So we compromise,
+  by arranging things such that even if every choice selects the
+  maximum possible value, there will always be ``enough'' choice left
+  for the remaining devices, up to \(n-1\).  In this extreme scenario,
+  the first \(n-1\) choices exhaust the entire total available,
+  leaving zero for the final (\(n^{th}\)) element.  But that's ok,
+  because that element is deterministic in every case; it is never
+  freely chosen.
+
+  So our compromise means that no value of our sample will exceed
+  \(\dfrac{\sum x}{n-1}\).  This effectively means we limit the
+  possible variance in our sample in order to guarantee maximal
+  total randomness.
+
+  Note that the family (=set) of samples determined by the free mean
+  is not exhaustive; there is yet another infinity of equivalent
+  samples that are not ``explainable'' by the free mean.  For example,
+  consider the sample whose first element consumes the entire total,
+  so that all remaining points get zero.  This counts as equivalent up
+  to cardinality and sum, but it has only one degree of freedom.
+  Once the first element exhausts the available quantity, the
+  remaining points are completely determined: they get zero, and no
+  random choice is involved.
+
+  This suggests we should add something like ``degree of randomness''
+  to our notion of ``equivalent up to''.  Samples determined by the
+  free mean are equivalent to the original sample up to cardinality,
+  sum, and (degree of) randomness.  But this doesn't quite work,
+  since randomness is not a property of specific samples, but of the
+  selection process.  And besides, it's not quite true that they are
+  equivalent in this manner; all \(n\) points of the original were
+  randomly selected, but only \(n-1\) points in the equivalent sample
+  were.
+
+  So perhaps a better terminology is: the ``free mean'' determines an
+  infinite set of samples that are equivalent to the original ``up to
+  cardinality and sum'', and maximizes total randomness.
+
+  Critical point: the notion that the free mean determines samples is
+  based on interpreting it as a parameter setting the range of random
+  variables.  So the analogy is to a machine consisting of an array or
+  chain of randomization devices whose output range is determined by a
+  parameter setting, and the free mean serves as that parameter.
+  ``Running'' the machine yields a maximally random sample equivalent
+  up to the cardinality and sum to the original sample.
+\end{ednote}
+
+\begin{ednote}
+  Begin with distinction between determinate and indeterminate values
+  (function as deterministic ``process'' v. random process).  In our
+  original set of values, each value construed as randomly generated.
+  That's the critical difference between the statistical
+  interpretation of arithmetic mean and its ordinary mathematical
+  definition.
+\end{ednote}
+
+\begin{ednote}
+  Something about concept (and history) of ``normal distribution of
+  error'' and how it relates to concept of r.v.  Isn't it the
+  motivation for the various interpretations of mean and variation
+  described below?  We want to know which probability distrib provides
+  the best ``model'' (= ``explanation''?) of the data.  NB:
+  prob. dist. is a function, serves as deterministic mathematical
+  model of randomness?
+\end{ednote}
+
+\begin{ednote}
+  We start by ``selecting'' \(n\) random numbers; once they are
+  selected, we find their sum \(\tau\).  The goal is to ``mimic'' the
+  original selection - make the same number of selections that sum to
+  the same total.  This would give us two distinct distributions with
+  the same mean---two sets that are equivalent ``up to the mean''.
+  Ideally every number in the second set would be selected at random,
+  just as was the case in the first set.  But there is no way to
+  guarantee that \(n\) numbers selected at random will sum to a
+  particular number.  So we know from the beginning that at least one
+  of our selections must not be random.  Specifically, the last
+  selection is determined by the sum of the preceding selections.
+  This follows from the equation \(x_1 +\cdots +x_n = \tau \Rightarrow
+  x_n = \tau - x_1 +\cdots x_{n-1}\).  In other words, \(x_n\)
+  represents the quantity remaining to be allocated after the first
+  \(n-1\) numbers have been selected randomly, and it is completed
+  determined: it is just the difference between \(\tau\) and the sum \(x_1 +\cdots x_{n-1}\).
+
+  And so forth.  The key point is that the goal of ``mimicking'' the
+  original distribution [sidenote{``Mimickery'' may not be the right
+      metaphor.  What we're trying to do is find members of the
+      equivalence class determined by the mean \(\mu\); that is,
+      distributions whose mean is just \(\mu\).}] involves two
+  sub-goals that are in tension: maximizing randomness, and summing to
+  the predetermined total.  The task is to find the optimal
+  combination of random and determinate values.  That solution is in
+  terms of ``degrees of freedom'', which is the designated terminology
+  for ``number of random choices involved''.  For a set of \(n\)
+  values summing to \(\tau\), only \(n-1\) degrees of freedom are
+  available, meaning that we can make a random selection only \(n-1\)
+  times---the last number to be selected in order to make the sum
+  total to \(\tau\) is completely determined by the preceding \(n-1\)
+  random numbers.
+
+  But then: why \(n-1\)?  Why not \(n-2\), or some other number?
+
+  And also: how can we make sure that all \(n-1\) selections are
+  indeed random?  One way in which this constraint could be violated
+  is if the sum were to total \(\tau\) before we get to \(n-1\); say, on
+  the \(n-2\) selection.  In that case, we would have not one but two
+  values determined by preceding selections, at points \(n-1\) and
+  \(n\).  So in such a case we would \emph{in fact} have fewer than
+  \(n-1\) random numbers.  But the goal is to ensure that we have
+  maximum randomness, or alternatively, that we have minimal
+  determinateness, which means we are required to ensure that all
+  \(n-1\) selections are random in fact.  Only the last (\(n\))
+  selection is allowed to be determined by prior selections.
+\end{ednote}
+
+\begin{ednote}
+    Why maximize randomness?  I think this is the link to the concept of
+  ``normal distribution of error''.
+\end{ednote}
+
+The arithmetic mean of a set of \(n\) numbers can be thought of in
+terms of redistribution of total across \(n\) ``sample points''.  The
+most obvious way to think of this, as suggested by the formulaic
+definition of the mean, is in terms of a constant function that
+assigns an equal portion of the total to each sample point.
+
+This means we think of the mean in terms of a \emph{counter-factual}
+situation.  We interpret the original distribution across the sample
+points as a \emph{fact}; it's what the world (i.e. the set) looks like
+when the total is distributed according to some (unknown) rule.  Then
+we can ask what the world would look like if the total were
+distributed according to some other rule.  The arithmetic mean tells
+us what things \emph{would} look like \emph{if} the total were
+distributed according to a rule that assigns the same amount to each
+sample point; in other words, if the rule of assignment were a
+constant function.
+
+There are two constraints on the redistribution.  One is the obvious
+requirement that the sum total after redistribution must equal the sum
+total before redistribution.  That is the point after all; we want to
+know just how things would look if the \emph{same} total quantity were
+differently distributed.
+
+The other constraint is less obvious: it requires that the
+redistribution be according to a \emph{simple} rule.  The ``rule''
+must of course be a function; but that is not enough: the function
+must be expressible by a single equation.  This rules out step
+functions, which must be expressed by two or more equations.
+
+The motivation for the second constraint is best illustrated by
+example.  If all we want is redistribution according to rule, then we
+can define any number of rules that assign a fixed quantity to each
+sample point.  This \emph{seems} to be what we're doing with the
+arithmetic mean (my reasons for saying ``seems'' will become obvious
+in a moment).  On this view, each sample point gets exactly \(\mu\)
+units.\sidenote{We will always use \(\mu\) to denote the mean; where
+  necessary for disambiguation we'll add a subscript, e.g. \(\mu_k\).}
+In mathematical terms, this means we are using the constant function
+\(f(x) = \mu\) as our distribution rule.  Under this kind of rule, the
+quantity assigned does not depend on the sample point; they all get
+the same allotment.
+
+But there are many other possibilities.  Indeed, we can effect a fixed
+redistibution of this sort by using functions---that is, polynomical
+equations---of any degree.  Recall that the degree of a polynomial in
+\(x\) is defined as the largest exponent of \(x\) that appears in the
+defining equation.  So the constant function \(f(x) = a\) has degree
+\(0\); it can be interpreted as \(f(x) = ax^0 + 0 = 1\cdot a = a\).  A
+function of degree \(1\) has the form of \(f(x) = ax^1 + b = ax + b\)
+--- an ordinary linear equation, where the independent variable (in
+this case, \(x\)) has an exponent of \(1\).\sidenote{Remember that the
+  domain of our functions is the ordered set of integers \([1\upto
+    n]\).  So the allotment assigned to any sample point would depend
+  just on where it is in that ordered set.}  A function of degree
+\(2\) has the form \(f(x) = ax^2 + bx + c\), and so forth.  The
+symbols \(a, b, c,\ldots\) in such equations are called
+\emph{parameters}; the idea is that such equations are
+\emph{schematic} forms that \ determine a \emph{family} of equations
+(functions), one for each assignment of fixed values to the
+parameters.  In other words, \(f(x)=ax+b\) does \emph{not} define
+a specific function; rather it expresses a general pattern or
+abstraction to which an infinite number of specific functions conform.
+Taking \(f(x)=ax+b\) as an example, by fixing \(a=3, b=7\) we
+obtain (by substitution) the concrete equation \(f(x)=3x+7\);
+fixing \(a=1, b=0\) we obtain the identity function \(f(x)=x\).  And
+so forth.
+
+Now back to our specific question: what would our set look like
+\emph{if} we were to use a first degree distribution function based on
+the arithmetic mean?  We are given the general form \(f(x)=ax+b\); the
+task is to find values for the parameters \(a\) and \(b\) such that
+the resulting concrete equation defines a suitable redistribution
+function.\sidenote{Note that an implicit requirement is that \(a\neq
+  0\), since \(f(x) = 0x + b = b\) defines a constant function.  (Or
+  more accuratly, it defines the form of a family of such functions.)}
+
+In this case, each sample point would be allocated a different
+quantity, since the value of \(f(x)=ax+b\) depends on the value of
+\(x\).  The graph of an equation of this form is a line.  More
+specifically, it is a line whose slope is non-zero; this is another
+way of saying it is not a horizontal line---a horizontal line is the
+graph of a constant function.\sidenote{It also cannot be a vertical
+  line, since the graph of a genuine function cannot be a vertical
+  line.  Another way of looking at it is to observe that the infinite
+  family of equations (functions) described by \(f(x)=ax+b\)
+  corresponds to the infinite number of lines in the plane
+  \emph{except} the (equally infinite) set of horizontal and vertical
+  lines.}
+
+Now there are an infinite number of first degree equations we could
+use to redistribute our total.  Which one or ones do we want, and why?
+Here we have two constraints.  One is that the total after
+redistribution must equal the total before redistribution.  The other
+is that the redistribution must range over the same number of sample
+points as in the original set.  Technically this means we are placing
+a constraint on the \emph{domain} of our function.  Normally, function
+definitions of the form \(f(x)=ax+b\) assume implicitly that the
+independent variable \(x\) ranges over the real numbers \R.  Since we
+are interested in a discrete set of sample points\marginnote{TODO:
+  address discrete v. continous at beginning}, this means we need to
+place a \emph{domain restriction} on our function.  Symbolically we
+can express this using the domain restriction operator\sidenote{This
+  symbol is defined by the Z notation.}  \(\dres\) as follows: \(S_n
+\dres f(x)=ax+b\), where \(S_n\) denotes a ``selection function'' that
+selects \(n\) points from the domain of \(f\).  The whole equation
+means, informally, ``the function whose domain is determined by
+\(S_n\) and whose range is determined by \(f\)'', or alternatively
+``the function defined by \(f(x)=ax+b\), with \(x\) constrained to
+range over the set determined by \(S_n\)''.
+
+Now the key question becomes: what is the definition of \(S_n\)?  And
+more to the point, what motivates it?
+
+\begin{ednote}
+  NB: we could also use various functions for \(S_n\).  Why is a
+  uniform linear distrib best?
+
+  TODO: plot some examples.  Use \(n\) points from the unit interval
+  with \(\mu=.5\).  Animate the interpretation of \(\mu\) as we move
+  from \(f^0\) to \(f^3\).
+\end{ednote}
+
+
+\begin{ednote}
+  This is domain restriction by rule.  So we actually have two rules.
+  The domain restriction rule selects (that is, distributes) points
+  from the domain, which determines the points for which we will
+  compute values; and the ``redistribution rule'' is the function that
+  assigns values to the selected points.
+
+  We can express this conveniently by naming these two rules the
+  ``selection function'' and the ``redistribution function''.  Both
+  are deterministic; the former fixes the domain of the latter; the
+  latter fixes the values assigned to the selected points.
+
+  Explain the difference between a function and its values, and random
+  variable ``observations''.  When we use counterfactual functions to
+  interpret the arithmetic mean, we're moving from random variables to
+  determinate functions.  But this means changing our domain as well;
+  we replace ``taking'' \(n\) samples with evaluating functions over
+  infinite domains, which obviously include more than \(n\) points.
+  The mean comes out as characterizing the function is some critical
+  way---as the value of a constant function, the midpoint of a linear
+  function, and so forth.  In other words, such counterfactual
+  thinking allows us to \emph{treat} random data \emph{as if} it were
+  ``produced'' by a function.  Then our original taking of samples,
+  which was ``observing'' the \emph{value} of a random variable \(n\)
+  times, corresponds to sampling the domain of a function.  And to
+  make this work, we move from \(n\) random samples to \(n\) points in
+  the function domain distributed linearly.  I.e. we select \(n\)
+  points from the domain such that the distance between any two
+  adjacent points is the same.
+
+\end{ednote}
+
+ Intuitively, we are interested in the line that runs from
+the minimum value of the original set to its maximum value.  By the
+definition of the arithmetic mean, this interval from minimum to
+maximum is guaranteed to contain the mean.  In fact, the arithmetic
+mean of the original set will correspond exactly to the midpoint of
+this line.
+
+
+
+\newthought{But this is statistics}; we are not so interested in fixed
+values.  We want to know not only how things look under a different
+distribution rule; we also want to know how things might look under
+distributions rules that have a \emph{random} component.
+
+\begin{ednote}
+  Having moved from the original (possibly) random distribution to
+  counterfactual deterministic redistributions, we restore randomness
+  by another reinterpretation.  Instead of thinking of our
+  redistribution function as fixing values for domain points, we treat
+  it as fixing the parameterization of random variables---as setting
+  ``knobs'' on randomization devices.  Each point is construed as a
+  randomization device.
+
+  But this means we have moved back away from the function concept.
+  We no longer compute the value of the redistribution function for
+  each point in the restricted domain.  Instead we construct \(n\)
+  randomization devices as parameterized random variables, where
+  ``parameterization'' sets the range over which the r.v.s may vary.
+  Then we ``observe'' each r.v. and sum the results.
+
+  An obvious problem: how can we guarantee that our results will sum
+  to the required total?  This is where degrees of freedom and the
+  concept of bias enter the picture.  Degress of freedom always leave
+  some points whose allocation is determined by the preceding
+  allocations.  This means that once the randomizers have generated
+  their values, we can compute how much ``stuff'' remains to be
+  distributed and assign that determinately to the remaining points.
+  So this mix of ``free'' and ``fixed'' points amounts to the optimal
+  solution to the task of maximizing randomness while ensuring that
+  the overall constraints are satisfied.
+
+  A simple question: why bother with all this?  Why do we want to
+  allocate a total across some set of randomization devices?  Possible
+  answer: because this represents fitting the observed values to a
+  probability distrib.  The real question for which we want an answer
+  is: how would things look if we were to use the distribution
+  functions defined by probability theory as our redistribution
+  function?  And which of those distribution functions yield the
+  ``best'' redistribution---the one that comes closest to matching the
+  original data?
+\end{ednote}
+
+
+\begin{ednote}
+  Order of exposition/illustration: start by making the entire total
+  avaliable to each device.  Problem is that first point can use up
+  the entire total; then all the remaining allocations are
+  deteministically fixed.  One possible remedy: add clauses to the
+  redistrib rule to the effect that allocation to point \(n\) depends
+  on previous allocations; this is disallowed (why?).  Next try:
+  allocate according to simple functions of degree n, as above.
+  Difference is allocation as parameterization rather than fixing of
+  values.  First try: linear alloc evenly distributed across all
+  points.  This induces bias (why/how?).  Solution: degrees of
+  freedom.  Distribute across \(n -\) degrees of freedom.  This makes
+  those points random, and the remaining deterministic.  This is the
+  optimal (only?) redistrib method that satisfies the basic
+  requirements and maximizes randomization.
+\end{ednote}
+
+\begin{ednote}
+  Need a good, simple, intuitive account of the technical concept of
+  bias.
+\end{ednote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spread}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Curve fitting}
+
+aka Hypothesis Testing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Association}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Inferential Statistics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{From Sample to Population}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{From Correlation and Causality}
+
+%%%%%%%%
+\subsection{From Manifest to Occult}
+
+IOW, from observable to latent variables.
+

@@ -1,0 +1,295 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Probability}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Probability}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Measure Theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Measures}
+
+%%%%%%%%
+\subsection{Joint Probabilities}
+
+%%%%%%%%
+\subsection{Conditional Probabilities}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Likelihood}
+
+``In statistics, a likelihood function (often simply the likelihood)
+is a function of the parameters of a statistical model. The likelihood
+of a set of parameter values, θ, given outcomes x, is equal to the
+probability of those observed outcomes given those parameter values,
+that is $\mathcal{L}(\theta |x) = P(x | \theta)$
+(\url{http://en.wikipedia.org/wiki/Likelihood_function})
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Random Variables}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discrete Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algebra of Rvs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moments}
+
+``In probability theory and statistics, a central moment is a moment of a probability distribution of a random variable about the random variable's mean; that is, it is the expected value of a specified integer power of the deviation of the random variable from the mean. The various moments form one set of values by which the properties of a probability distribution can be usefully characterised. Central moments are used in preference to ordinary moments, computed in terms of deviations from the mean instead of from the zero, because the higher-order central moments relate only to the spread and shape of the distribution, rather than also to its location.''\url{http://en.wikipedia.org/wiki/Moment_about_the_mean}
+
+\begin{remark}
+  NB analogy between moment of a distrib (a function) and derivative
+  of a function.  Nth moment, Nth derivative, etc.
+
+  Moment: expected value of nth involution of deviation (so we could
+  generalize, so $y = log_{\bar{X}-\mu} m$ for any m, yielding $m$ as
+  the $y^{th}$ moment.
+
+  Compare finding nth derivative, or, given a function, finding the
+  nth anti-derivative (integral).
+
+  So why moments?  I suspect they're like derivatives: just as
+  derivatives tell us something about the original function, moments
+  tell us something about the original distribution (i.e. the random
+  var, which is a function).  Or so I would expect, based on nothing
+  more than a principle of symmetry.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Expected Value}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variance}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Skew}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Probability Distributions}
+
+\url{http://en.wikipedia.org/wiki/Probability_distribution}
+
+
+\begin{remark}
+  Stress: connection between concepts of random var and prob. distrib
+\end{remark}
+
+A probability distribution is just a function, or rather a family of
+functions expressed as parameterized equations.
+
+\begin{remark}
+  Family of functions is the critical idea.  Goal is to pick the best
+  family, then the best function from the family.
+\end{remark}
+
+Ways of specifying probability distributions:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Mass Function}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Probability Density Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cumulative Distribution Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characteristic Function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Moment-generating Function}
+
+``In probability theory and statistics, the moment-generating function of a random variable is an alternative specification of its probability distribution. Thus, it provides the basis of an alternative route to analytical results compared with working directly with probability density functions or cumulative distribution functions. There are particularly simple results for the moment-generating functions of distributions defined by the weighted sums of random variables. Note, however, that not all random variables have moment-generating functions.''\url{http://en.wikipedia.org/wiki/Moment-generating_function}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hazard Function}
+
+I.e. failure rate.
+
+``Failure rate is the frequency with which an engineered system or
+component fails, expressed, for example, in failures per hour. It is
+often denoted by the Greek letter $\lambda$ (lambda) and is important in
+reliability engineering.''
+\url{http://en.wikipedia.org/wiki/Hazard_function#hazard_function}
+
+``Calculating the failure rate for ever smaller intervals of time,
+results in the hazard function (also called hazard rate), $h(t)$. This
+becomes the instantaneous failure rate as $t$ tends
+to zero...A continuous failure rate depends on the existence of a
+failure distribution, $F(t)$, which is a cumulative
+distribution function that describes the probability of failure (at
+least) up to and including time t...''
+\url{http://en.wikipedia.org/wiki/Hazard_function#hazard_function}
+
+See \href{http://en.wikipedia.org/wiki/Bathtub_curve}{Bathtub curve}
+
+See \href{http://en.wikipedia.org/wiki/Weibull_chart}{Weibull distrib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Well-known Distributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discrete}
+
+%%%%%%%%
+\subsection{Degenerate Distrib}
+
+``The degenerate distribution at x0, where X is certain to take the
+value x0. This does not look random, but it satisfies the definition
+of random variable. This is useful because it puts deterministic
+variables and random variables in the same
+formalism.''\url{http://en.wikipedia.org/wiki/Degenerate_distribution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous}
+\subsection{Gauss}
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+
+But:
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} = \frac{1}{e^\frac{(x-\mu)^2}{2\sigma^2}} =
+  \frac{1}{\sqrt{e^{\frac{(x-\mu)^2}{\sigma^2}}}} =
+  \frac{1}{\sqrt{e^{\frac{x-\mu}{\sigma}}}}
+\end{equation}
+
+Now set $\mu=0, \sigma=1$.  Then
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}} = \frac{1}{\sqrt{2\pi}} = 0.398942
+\end{equation}
+
+and
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} =
+  e^{-\frac{x^2}{2}} =
+  \frac{1}{e^\frac{x^2}{2}}
+\end{equation}
+
+Then if x=0, we have
+
+\begin{equation}
+  e^{-\frac{(x-\mu)^2}{2\sigma^2}} =
+  \frac{1}{e^\frac{0}{2}} =
+  \frac{1}{e^0} = \frac{1}{1} = 1
+\end{equation}
+
+so when $\mu=0, \sigma=1, x=0$,
+
+\begin{equation}
+  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} = 0.398942
+\end{equation}
+
+As $x$ grows in either direction from zero, $e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ ...
+
+The turning point is set by $\sigma^2$, since that determines when
+$\frac{(x-\mu)^2}{2\sigma^2}$ pivots about $1$.  As $x$ gets larger beyond that point,
+$e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ gets smaller.
+
+Main point: $e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ never exceeds $1$,
+since the exponent is never less than zero, and $e^0=1$. Then for all
+$x>0$, $e^x$ gets bigger, so $\frac{1}{e^x}$ will always be $<1$.  So
+the product of the two factors will always be less than $0.398942...$
+The bell shape comes from the varying rate of change of
+$e^{-\frac{(x-\mu)^2}{2\sigma^2}}$, which reflects the growth curve of
+$\frac{1}{e^x}$, which declines relatively rapidly near zero, but
+flattens out as $x$ increases.
+
+The key is in the derivatives:
+
+{\setstretch{1.5}
+  \begin{alignat}{2}
+  \overline{\lambda}x.{e^{x}} &= e^{x} \\
+  \overline{\lambda}x.{e^{-x}} &= -e^{-x} \\
+  \overline{\lambda}x.x^{\sigma x} &= \sigma x^{\sigma x} \\
+  \overline{\lambda}x.x^{-\sigma x} &= -\sigma x^{-\sigma x}
+  \end{alignat}
+}
+
+So as $\sigma$ varies, so does the flattness of the curve.
+
+\begin{remark}
+  Inflection points: in addition to the max and min, we have the
+  points at which the second derivative switches from pos. to neg.  In
+  other words, the point at which the normal curve starts to flatten.
+  This happens when $x=\mu\pm\sigma$.  This makes intuitive sense
+  since it is the point at which $\dfrac{(x-\mu)^2}{2\sigma^2}$ is $1$
+  (assuming $\mu=0, \sigma=1$), which makes it the place where the
+  exponent switches from power to root.
+\end{remark}
+
+\begin{remark}
+  Plot $e^{nx}$ as $n$ varies.  As $n$ decreases, the graph becomes
+  flatter; as it increases, it begins to approximate a sharp L shape.
+  This is the effect of varying $\sigma$; as it decreases, the
+  exponent increases.  Better: plot $e^{\frac{x}{n}}$.
+\end{remark}
+
+All of which goes to show, that the normal curve is a kind of
+exponential curve, which makes it a kind of growth curve.  It
+describes the way error grows as more observations are made.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Sampling}
+
+\begin{remark}
+  Distinguish between mathematical and empirical usage.  Here we talk
+  of carrier sets instead of populations, elements instead of sample
+  units, values instead of measurements, etc.
+
+  If we think of sampling clearly, in terms of sets, sequences,
+  etc. then the inferential stuff becomes intuitively clear.
+\end{remark}
+
+\section{Samples}
+
+A sample is a sequence of elements drawn from the carrier set (population).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sampling Continuous Random Vars}
+
+Discrete v. continuous sampling?  A continuous sample would have to
+select ranges rather than elements.  But often we want discrete
+sampling of a continuous var; e.g. distance from bullseye.  This would
+give us a multiset, but what would the elements and multiplicities be?
+E.g. {3[.25]} would mean three events of striking within .25 of the
+center.
+
+\section{Sampling Sequences}
+
+\begin{remark}
+  Or: sample sequences.  Sequence stuff from \ref{subs:sequences}, from the perspective of sampling.
+\end{remark}
+
+\section{The Sampling Pool}
+
+Or sample pool
+
+The sampling pool is the union of the samples in the sampling sequence.
+
+\section{Discrete}
+
+\begin{remark}
+    What we're going to want is counts of number of possible samples,
+    number of unique samples (combinations), distribution of samples
+    when the sampling sequence is long, distribution of elements in
+    the sampling pool.  Etc.
+\end{remark}
+
+\chapter{Multivariate stuff}
+
+
+\href{Exploratory multivariate analysis by example using R}{http://pi.lib.uchicago.edu/1001/cat/bib/8265780}
+
