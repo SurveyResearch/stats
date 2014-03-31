@@ -1,0 +1,142 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{R}
+
+R is a very popular and hideous language.
+
+Resources:
+
+\begin{itemize}
+\item \href{http://manuals.bioinformatics.ucr.edu/home/programming-in-r}{Programming in R}
+\item \href{http://en.wikibooks.org/wiki/R_Programming}{R Programming Wiki}
+\item \href{http://r4stats.com/2012/06/13/why-r-is-hard-to-learn/}{Why R is hard to learn}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lispiness}
+\label{sect:rlispiness}
+
+R is lispy, just like javascript is lispy.
+
+``R presents a friendlier interface to programming than Lisp does, at least to someone used to mathematical formulas and C-like control structures, but the engine is really very Lisp-like. R allows direct access to parsed expressions and functions and allows you to alter and subsequently execute them, or create entirely new functions from scratch.''\url{http://cran.r-project.org/doc/manuals/R-lang.html#Computing-on-the-language}
+
+``There are three kinds of language objects that are available for modification, calls, expressions, and functions.''
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Meta-types}
+\label{sect:rmetatypes}
+
+\begin{ednote}
+  Note the weird language.  The ``language objects'' seem to
+  meta-types used in the parse tree, or something like that.
+  Syntactic, meta-objects, not objects ``in'' the language.
+\end{ednote}
+
+From \url{http://cran.r-project.org/doc/manuals/R-lang.html#Objects}
+
+``There are three types of objects that constitute the R
+language.\sidenote{Why call them objects?  Why not ``types of
+  expression in the language''?} They are calls, expressions, and
+names...These objects have modes "call", "expression", and "name",
+respectively.  They can be created directly from expressions using the
+quote mechanism and converted to and from lists by the as.list and
+as.call functions. Components of the parse tree can be extracted using
+the standard indexing operations.''
+
+That can't be quite right; at any rate, calls, expressions, and names
+are not defined in the section on basic types.  Apparently these are
+``language objects'', or meta-objects rather than objects in the language.
+
+``Parsed expressions are stored in an R object containing the parse
+tree. A fuller description of such objects can be found in Language
+objects and Expression
+objects.''\url{http://cran.r-project.org/doc/manuals/R-lang.html#Parser}
+
+
+\medskip
+\noindent Language ``objects'':
+
+\begin{description}
+\item [Call] `` The most direct method of obtaining a call object is to use quote with an expression argument, e.g.,
+
+\begin{verbatim}
+> e1 <- quote(2 + 2)
+> e2 <- quote(plot(x, y))
+\end{verbatim}
+
+Then both e1 and e1 have ``mode'' of ``call''; so apparently ``call
+object'' is r-speak for ``function application expression''.
+
+\item [Name]  ``The components of a call object are accessed using a list-like syntax, and may in fact be converted to and from lists using as.list and as.call''
+
+``All the components of the call object have mode "name" in the preceding examples. This is true for identifiers in calls, but the components of a call can also be constants—which can be of any type, although the first component had better be a function if the call is to be evaluated successfully—or other call objects, corresponding to subexpressions. Objects of mode name can be constructed from character strings using as.name, so one might modify the e2 object as follows''
+
+\item [Expression]  ``An expression contains one or more statements. A statement is a syntactically correct collection of tokens. Expression objects are special language objects which contain parsed but unevaluated R statements. The main difference is that an expression object can contain several such expressions. Another more subtle difference is that objects of type "expression" are only evaluated when explicitly passed to eval, whereas other language objects may get evaluated in some unexpected cases.''\url{http://cran.r-project.org/doc/manuals/R-lang.html#Expression-objects}
+
+Expression objects ``are very similar to lists of call objects.''
+
+\end{description}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metaprogramming}
+\label{sect:rmetapgm}
+
+
+``It is possible for a function to find out how it has been called by looking at the result of sys.call...However, this is not really useful except for debugging ...More often one requires the call with all actual arguments bound to the corresponding formals. To this end, the function match.call is used...The primary use of this technique is to call another function with the same arguments, possibly deleting some and adding others.''
+
+``The call can be treated as a list object where the first element is the name of the function and the remaining elements are the actual argument expressions, with the corresponding formal argument names as tags.''
+
+``Two further functions exist for the construction of function calls, namely call and do.call.''
+
+``It is often useful to be able to manipulate the components of a function or closure. R provides a set of interface functions for this purpose.''
+
+\begin{description}
+\item [body]
+Returns the expression that is the body of the function.
+\item [formals]
+Returns a list of the formal arguments to the function. This is a pairlist.
+\item [environment]
+Returns the environment associated with the function.
+\item [body<-]
+This sets the body of the function to the supplied expression.
+\item [formals<-]
+Sets the formal arguments of the function to the supplied list.
+\item [environment<-]
+Sets the environment of the function to the specified environment.
+\end{description}
+
+``It is also possible to alter the bindings of different variables in the environment of the function, using code along the lines of evalq(x <- 5, environment(f)).
+It is also possible to convert a function to a list using as.list. The result is the concatenation of the list of formal arguments with the function body. Conversely such a list can be converted to a function using as.function. This functionality is mainly included for S compatibility. Notice that environment information is lost when as.list is used, whereas as.function has an argument that allows the environment to be set.''
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Evaluation}
+\label{sect:eval}
+
+
+
+%%%%%%%%
+\subsection{Lazy Eval}
+\label{subs:rlazy}
+
+``Promise objects are part of R’s lazy evaluation mechanism. They contain three slots: a value, an expression, and an environment. When a function is called the arguments are matched and then each of the formal arguments is bound to a promise. The expression that was given for that formal argument and a pointer to the environment the function was called from are stored in the promise.
+Until that argument is accessed there is no value associated with the promise. When the argument is accessed, the stored expression is evaluated in the stored environment, and the result is returned. The result is also saved by the promise. The substitute function will extract the content of the expression slot. This allows the programmer to access either the value or the expression associated with the promise.
+Within the R language, promise objects are almost only seen implicitly: actual function arguments are of this type. There is also a delayedAssign function that will make a promise out of an expression. There is generally no way in R code to check whether an object is a promise or not, nor is there a way to use R code to determine the environment of a promise.''\url{http://cran.r-project.org/doc/manuals/R-lang.html#Promise-objects}
+
+``A formal argument is really a promise, an object with three slots, one for the expression that defines it, one for the environment in which to evaluate that expression, and one for the value of that expression once evaluated.''
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Types}
+\label{sect:}
+
+
+``Symbols refer to R objects. The name of any R object is usually a symbol. Symbols can be created through the functions as.name and quote.
+Symbols have mode "name", storage mode "symbol", and type "symbol". They can be coerced to and from character strings using as.character and as.name. They naturally appear as atoms of parsed expressions, try e.g. as.list(quote(x + y)).''
+
+``In R one can have objects of type "expression". An expression contains one or more statements. A statement is a syntactically correct collection of tokens. Expression objects are special language objects which contain parsed but unevaluated R statements. The main difference is that an expression object can contain several such expressions. Another more subtle difference is that objects of type "expression" are only evaluated when explicitly passed to eval, whereas other language objects may get evaluated in some unexpected cases.
+An expression object behaves much like a list and its components should be accessed in the same way as the components of a list.''
+
+ ``In R functions are objects and can be manipulated in much the same way as any other object. Functions (or more precisely, function closures) have three basic components: a formal argument list, a body and an environment...A function’s environment is the environment that was active at the time that the function was created. Any symbols bound in that environment are captured and available to the function. This combination of the code of the function and the bindings in its environment is called a ‘function closure’, a term from functional programming theory. In this document we generally use the term ‘function’, but use ‘closure’ to emphasize the importance of the attached environment.  When a function is called, a new environment (called the evaluation environment) is created, whose enclosure (see Environment objects) is the environment from the function closure. This new environment is initially populated with the unevaluated arguments to the function; as evaluation proceeds, local variables are created within it.''
+
+
+
