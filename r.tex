@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{R}
 
-R is a very popular and hideous language.
+R is a very popular hideous language.
 
 Resources:
 
@@ -12,7 +12,8 @@ Resources:
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lispiness}
+\section{Overview}
+\subsection{Lispiness}
 \label{sect:rlispiness}
 
 R is lispy, just like javascript is lispy.
@@ -22,7 +23,7 @@ R is lispy, just like javascript is lispy.
 ``There are three kinds of language objects that are available for modification, calls, expressions, and functions.''
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Meta-types}
+\subsection{Meta-types}
 \label{sect:rmetatypes}
 
 \begin{ednote}
@@ -78,7 +79,7 @@ Expression objects ``are very similar to lists of call objects.''
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Metaprogramming}
+\subsection{Metaprogramming}
 \label{sect:rmetapgm}
 
 
@@ -110,14 +111,14 @@ It is also possible to convert a function to a list using as.list. The result is
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Evaluation}
+\subsection{Evaluation}
 \label{sect:eval}
 
 
 
 %%%%%%%%
-\subsection{Lazy Eval}
-\label{subs:rlazy}
+\newthought{Lazy Eval}
+\label{subsub:rlazy}
 
 ``Promise objects are part of R’s lazy evaluation mechanism. They contain three slots: a value, an expression, and an environment. When a function is called the arguments are matched and then each of the formal arguments is bound to a promise. The expression that was given for that formal argument and a pointer to the environment the function was called from are stored in the promise.
 Until that argument is accessed there is no value associated with the promise. When the argument is accessed, the stored expression is evaluated in the stored environment, and the result is returned. The result is also saved by the promise. The substitute function will extract the content of the expression slot. This allows the programmer to access either the value or the expression associated with the promise.
@@ -126,7 +127,7 @@ Within the R language, promise objects are almost only seen implicitly: actual f
 ``A formal argument is really a promise, an object with three slots, one for the expression that defines it, one for the environment in which to evaluate that expression, and one for the value of that expression once evaluated.''
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Types}
+\subsection{Types}
 \label{sect:}
 
 
@@ -138,5 +139,127 @@ An expression object behaves much like a list and its components should be acces
 
  ``In R functions are objects and can be manipulated in much the same way as any other object. Functions (or more precisely, function closures) have three basic components: a formal argument list, a body and an environment...A function’s environment is the environment that was active at the time that the function was created. Any symbols bound in that environment are captured and available to the function. This combination of the code of the function and the bindings in its environment is called a ‘function closure’, a term from functional programming theory. In this document we generally use the term ‘function’, but use ‘closure’ to emphasize the importance of the attached environment.  When a function is called, a new environment (called the evaluation environment) is created, whose enclosure (see Environment objects) is the environment from the function closure. This new environment is initially populated with the unevaluated arguments to the function; as evaluation proceeds, local variables are created within it.''
 
+%%%%%%%%%%%%%%%%
+\section{Data Acquisition}
+
+a/k/a inputting and importing data.\marginnote{See \href{http://cran.r-project.org/doc/manuals/R-data.html}{R Data Import/Export} (CRAN)}
+
+The ``read'' family (package:utils):
+
+\begin{description}
+  \item [read.table]
+  \item [read.csv]
+  \item [read.csv2]
+  \item [read.delim]
+  \item [read.delim2]
+\end{description}
+
+Troubleshooting:
+\begin{itemize}
+\item Error: more colums than column names.  Try using read.csv instead of read.table.
+\end{itemize}
+
+\subsection{Table data}
+\subsection{CSV data}
+\subsection{Spreadsheet data}
+\subsection{SQL data}
+\subsection{Imports}
+
+\begin{description}
+  \item [SPSS files]
+  \item [SAS files]
+  \item [Stata files] ?
+  \item [Minitab files]
+  \item [Other]
+\end{description}
+
+%%%%%%%%%%%%%%%%
+\section{Data Exploration}
+
+Use View(mytbl) to get a spreadsheet view.
+
+print
+
+head/tail
+
+ncol, nrow
+
+colnames (= names)
+
+row.names (for dataframes)
+rownames (for arrays)
+
+dim
+
+summary() - for numerics:
+\begin{verbatim}
+       Q3                                
+ Min.   :18.00                           
+ 1st Qu.:32.75                           
+ Median :40.50                           
+ Mean   :40.83                           
+ 3rd Qu.:52.25                           
+ Max.   :60.00  
+\end{verbatim}
+
+for factors:
+\begin{verbatim}
+                              Q15    
+   Barber shop                  : 2  
+   Beauty salon                 : 2  
+   Retail store                 : 2              
+   Barber                       : 1              
+   car body shop x painting cars: 1              
+   Clothes factory              : 1              
+   (Other)                      :31              
+\end{verbatim}
+
+
+str(): brief description of data, e.g.
+str(b652)
+
+\begin{verbatim}
+'data.frame':	40 obs. of  41 variables:
+ $ DataEntry: Factor w/ 1 level "GAR": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Serial   : Factor w/ 40 levels "0301A","0325A",..: 1 33 40 39 37 35 38 34 26 36 ...
+ $ Rev      : Factor w/ 1 level "6.5.2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ Q0       : int  1 1 2 2 2 1 2 2 2 2 ...
+ $ Q1       : int  1 1 1 1 1 1 1 1 1 1 ...
+ ... etc. ...
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%
+\section{Categorical Data}
+
+``factor'' - I don't know the origin of this terminology, but it looks
+like a portmanteau word combining f-something with ``vector''.  In any
+case, ``free vector'' is a pretty good description of what a factor
+is: a vector whose values are free to vary (unlike, say, an integer
+vector).
+
+To get a col vector from dataframe foo we have several options:
+
+\noindent By colname:
+
+\begin{itemize}
+\item foo$bar
+\item foo[["bar"]]
+\item foo[,"bar"]
+\end{itemize}
+
+\noindent By numeric index:
+
+\begin{itemize}
+\item foo[[n]]
+\item foo[,n]
+\end{itemize}
+
+Examples:
+
+	factor(foo[x])  => error
+	factor(foo[,x])  => ok
+
+	levels(foo[x])  => error
+	levels(foo[,x])  => ok
 
 
