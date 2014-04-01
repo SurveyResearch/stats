@@ -126,10 +126,32 @@ Within the R language, promise objects are almost only seen implicitly: actual f
 
 ``A formal argument is really a promise, an object with three slots, one for the expression that defines it, one for the environment in which to evaluate that expression, and one for the value of that expression once evaluated.''
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Control}
+\label{sect:rcontrol}
+
+Mapping/iteration: the *apply family:
+
+
+Do loops?
+
+Recursion?
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Types}
 \label{sect:}
 
+\begin{ednote}
+  Note the difference between class() and mode().  E.g.:
+
+> class(baseball[,3:5])
+[1] "data.frame"
+> mode(baseball[,3:5])
+[1] "list"
+> 
+\end{ednote}
 
 ``Symbols refer to R objects. The name of any R object is usually a symbol. Symbols can be created through the functions as.name and quote.
 Symbols have mode "name", storage mode "symbol", and type "symbol". They can be coerced to and from character strings using as.character and as.name. They naturally appear as atoms of parsed expressions, try e.g. as.list(quote(x + y)).''
@@ -193,27 +215,26 @@ dim
 
 summary() - for numerics:
 \begin{verbatim}
-       Q3                                
- Min.   :18.00                           
- 1st Qu.:32.75                           
- Median :40.50                           
- Mean   :40.83                           
- 3rd Qu.:52.25                           
- Max.   :60.00  
+            Q3                                
+            Min.   :18.00                           
+            1st Qu.:32.75                           
+            Median :40.50                           
+            Mean   :40.83                           
+            3rd Qu.:52.25                           
+            Max.   :60.00  
 \end{verbatim}
 
 for factors:
 \begin{verbatim}
-                              Q15    
-   Barber shop                  : 2  
-   Beauty salon                 : 2  
-   Retail store                 : 2              
-   Barber                       : 1              
-   car body shop x painting cars: 1              
-   Clothes factory              : 1              
-   (Other)                      :31              
+            Q15    
+            Barber shop                  : 2  
+            Beauty salon                 : 2  
+            Retail store                 : 2              
+            Barber                       : 1              
+            car body shop x painting cars: 1              
+            Clothes factory              : 1              
+            (Other)                      :31              
 \end{verbatim}
-
 
 str(): brief description of data, e.g.
 str(b652)
@@ -229,6 +250,30 @@ str(b652)
 \end{verbatim}
 
 %%%%%%%%%%%%%%%%
+\section{Data Munging}
+
+\subsection{Recoding}
+%% http://faculty.gvsu.edu/kilburnw/PLS300_files/Recoding%20Variables%20Handout%20and%20Worksheet%20V2.pdf
+
+\href{http://www.cookbook-r.com/Manipulating\_data/Recoding\_data/}{Cookbook for R: Recoding data}
+
+lots of examples at \href{http://rprogramming.net/recode-data-in-r/}{Recode Data in R}
+
+Package:  Car
+  recode
+
+
+Package:  plyr}
+
+rename
+revalue
+
+mapvalues
+
+
+
+
+%%%%%%%%%%%%%%%%
 \section{Categorical Data}
 
 ``factor'' - I don't know the origin of this terminology, but it looks
@@ -242,8 +287,8 @@ To get a col vector from dataframe foo we have several options:
 \noindent By colname:
 
 \begin{itemize}
-\item foo$bar
-\item foo[["bar"]]
+%% \item foo\$bar
+%% \item foo[ ["bar"] ]
 \item foo[,"bar"]
 \end{itemize}
 
@@ -261,5 +306,4 @@ Examples:
 
 	levels(foo[x])  => error
 	levels(foo[,x])  => ok
-
 
