@@ -1,0 +1,195 @@
+\part{Transformation}
+
+\begin{ednote}
+  Why separate Data Transformation from Data Management?  Because you
+  might need ad-hoc transformations.  You might need to clean data
+  before archiving it, but such data munging is conceptually distinct
+  from data management.
+\end{ednote}
+
+\href{http://www.unece.org/stats/editing.html}{UNECE Statistical Data Editing}
+
+\href{http://www.unece.org/fileadmin/DAM/stats/publications/editingglossary.pdf}{UNECE GLOSSARY OF TERMS ON STATISTICAL DATA EDITING}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Cleaning}
+
+Cleaning: making sure all the data is correctly typed, violates no semantic constraints, etc.
+
+A critical part of data cleaning is what to do with bad data.  There
+are basically two options: ignore/discard, or impute.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Normalization}
+
+Normalization: transforming ``clean'' data into some desired form.
+This includes things like renaming columns, converting NA codes into
+the language-specific data (e.g. in R, converting 99 to NA), as well
+as more statistickish things like mapping ranges of metric variables
+to categories (e.g. ages 18-40 to ``Young'', 41 to 64 as
+``Middle-aged'', and 65 and over to ``Old'').
+
+NB: ``normalization'' is a bit of a misnomer here; it comes from
+formal logic where it refers to the notion that there is a single
+``normal'' form for each kind of data (e.g. '5' is the normal form of
+'2+3', '1+4', etc.)  Here we use it to refer to some desired form, so
+that to normalize data means to make sure it all has the desired form.
+There is no implication that any one form can be privileged as the
+normal form.  For example, so-called nominal data can be ``renamed''
+at will, and no naming scheme is inherently better than any other -
+'A, B, C' is neither better nor worse than 'Foo, Bar, Baz' or '1, 2,
+3'.
+
+\begin{ednote}
+The discussion here uses a generic vocab, to be explained in the
+intro.  For example, instead of ``factors'' and ``levels'' (R), we use
+a more mathematical idiom and talk of enumerations and elements.  Etc.
+(TODO: think about using type-theoretic language, so instead of
+enumerations, ``product types'', etc.)
+\end{ednote}
+
+\section{Typical Patterns}
+
+\begin{itemize}
+\item rename a column
+\item rename the elements of an enumeration
+\item etc.
+\end{itemize}
+
+%%%%
+\section{Alpha-conversion (aka Renaming)}
+\label{sect:datarenaming}
+
+%%%%%%%%
+\subsection{Vars}
+\label{sect:datavarrrenaming}
+
+That is, renaming a variable rather than its values.  The latter is called recoding.
+
+%%%%%%%%
+\section{Recoding}
+\label{sect:recodingr}
+
+``Recoding'' means (here at least) replacing data values.
+Technically, renaming is a form of recoding, but recoding can also
+involve replacing data with different values.  (Which makes imputation
+a form of recoding.)  E.g. we might want to increment the values in a
+column by 1.
+
+Technically, recoding essentially involves mapping over the col or row.
+
+\href{http://www.uni-kiel.de/psychologie/rexrepos/posts/recode.html}{Recode variables} (examples)
+
+\href{http://www.statmethods.net/management/variables.html}{New vars, recoding vars, renaming vars}
+
+\href{http://www.cookbook-r.com/Manipulating\_data/Recoding\_data/}{Recoding vars: categorical, continuous, new}
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode data in R: replacement, recoding}
+
+\href{http://rwiki.sciviews.org/doku.php?id=tips:data-frames:recode_column}{Recode one column, output values into another column: transform(), replace()}
+
+\href{http://rprogramming.net/recode-data-in-r/}{The Recode Command From the Package Car}
+
+%%%%
+\section{Data Derivation}
+\label{sect:newvars}
+
+Sometimes it is useful to derive new data from old; for example, if we
+have a firstname and a lastname column, we might want to derive a
+fullname column.
+
+``copy of an existing field. Sometimes you don’t want to recode data but instead just want another column containing the same data.''
+
+\href{http://rprogramming.net/recode-data-in-r/}{Recode into A New Field Using Data From An Existing field And Criteria from Another Field}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Imputation}
+
+\begin{ednote}
+Technically we might categorize imputation as a species of either
+cleaning or normalization; but on the other hand it has its own
+techniques, some of which are quite sophisticated, so we grant it the
+dignity of a separate chapter.
+\end{ednote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Anonymization}
+
+A major issue for Social Science data.
+
+\href{http://ico.org.uk/for\_organisations/data\_protection/topic\_guides/anonymisation}{Anonymisation:
+  managing data protection risk code of practice} (UK ICO)
+
+\href{http://www.unece.org/stats/confidentiality.html}{UNECE Statistical confidentiality and disclosure protection}
+
+\section{Disclosure Risk Analysis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Filter, Map, Reduce}
+\label{filtermapreduce}
+
+%%%%
+\section{Data Filtering}
+\label{sect:datafiltering}
+
+E.g. removing columns, rows, cells.
+
+%%%%
+\section{Data Mapping}
+\label{sect:datamapping}
+
+%%%%
+\section{Data Reduction}
+\label{sect:datareduction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{General Munging}
+
+ref:  the \href{http://www.padsproj.org/index.html}{PADS project}
+
+\href{http://r4stats.com/examples/data-management/}{Data Management} - a comparison of the commands used for common data ``management'' (actually, munging) tasks in R, SAS, SPSS and Stata.
+
+See also \href{http://openrefine.org/}{OpenRefine} ``a powerful tool for working with messy data, cleaning it, transforming it from one format into another, extending it with web services, and linking it to databases''
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Misc}
+
+\begin{remark}
+  examples taken from R, so far
+\end{remark}
+
+\href{http://plyr.had.co.nz/}{plyr}: ``plyr is a set of tools for a
+common set of problems: you need to split up a big data structure into
+homogeneous pieces, apply a function to each piece and then combine
+all the results back together''
+
+
+\href{http://rprogramming.net/r-data-manipulation/}{R Data Manipulation}
+\href{http://www.cookbook-r.com/Manipulating\_data/}{Manipulating Data}
+
+
+%%%%%%%%
+\section{Replacing data}
+\label{sect:datareplacement}
+
+``replace the data in an existing field when you want to replace the data for every row (no criteria).'' \url{http://rprogramming.net/recode-data-in-r/}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subsetting Data}
+\label{sect:datasubsetting}
+
+\href{http://rprogramming.net/subset-data-in-r/}{Subset data in R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Weights}
+\label{sect:dataweighting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aggregation}
+\label{sect:dataaggregate}
+
+\href{http://rprogramming.net/aggregate-data-in-r-using-data-table/}{Aggregate
+  Data in R Using data.table} - here ``aggregate'' seems to be
+synonymous with ``compute statistic of''.  Misnomer; an aggregate is not a summary.
+

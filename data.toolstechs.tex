@@ -1,0 +1,147 @@
+\part{Tools \& Techniques}
+
+\href{http://kieranhealy.org/files/misc/workflow-apps.pdf}{Choosing your workflow applications}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Standards}
+\label{sect:standards}
+
+\begin{description}
+\item [OAIS]
+\item [DDI]
+\item [SMDX]
+\end{description}
+
+\href{http://www.ihsn.org/HOME/node/135}{IHSN Metadata Standards and Models}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Editors}
+\label{sect:editors}
+
+\begin{description}
+\item [Emacs]
+\item [Vi]
+\item [Eclipse]
+\item [etc]
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Languages}
+\label{sect:langs}
+
+\begin{itemize}
+\item \href{http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6228573}{Computing Trends Lead to New Programming Languages}
+\item \href{http://cloudcomputing.sys-con.com/node/2265359}{Twelve New Programming Languages: Is Cloud Responsible?}
+\item \href{http://r4stats.com/articles/popularity/}{The Popularity of Data Analysis Software} (2014) A very detailed data-driven analysis of the relative popularity of various languages.
+\end{itemize}
+
+\begin{remark}
+  Organize by category?
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Standards}
+
+\begin{ednote}
+  TODO: standards v. data models
+\end{ednote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{OAIS}
+\label{sect:oais}
+
+\href{http://public.ccsds.org/publications/archive/650x0m2.pdf}{Reference
+  Model for an Open Archival Information System} (OAIS)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical Standards}
+\label{sect:statsstd}
+
+\begin{itemize}
+\item \href{http://unstats.un.org/unsd/iiss/List-of-Statistical-Standards.ashx}{UN
+  Global Inventory of Statistical Standards}
+
+\item \href{https://nces.ed.gov/statprog/standards.asp}{Statistical Standards Program} - National Center for Education Statistics
+
+\item \href{https://stats.oecd.org/glossary/index.htm}{OECD Glossary of Statistical Terms}
+
+\item \href{http://shop.bsigroup.com/Browse-By-Subject/Quality--Sampling/Full-list-of-statistical-standards/Statistical-interpretation-of-data/}{Standards for Statistical Interpretation of Data} (British Standards Institute)
+
+\item \href{http://www.whitehouse.gov/omb/inforeg_statpolicy}{OMB Statistical Programs and Standards}
+
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{DDI}
+\label{subsect:ddi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{SDMX}
+\label{subsect:sdmx}
+
+\href{http://sdmx.org/}{SDMX} - Statistical Data and Metadata eXchange
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Other}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{OCaml}
+\label{sect:ocaml}
+
+\href{http://www.ffconsultancy.com/products/ocaml_for_scientists/chapter1.html}{Objective Caml for Scientists}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{F\#}
+\label{sect:fsharp}
+
+\href{http://fsharp.org/data-science/}{Using F\# for Data Science}
+
+%%%%%%%%
+\subsection{Experimental/Research}
+\label{subs:expersch}
+
+\begin{itemize}
+\item \href{http://chapel.cray.com/overview.html}{Chapel}
+\item \href{http://x10-lang.org/}{X10} IBM Research; ``Both its modern, type-safe sequential core and simple programming model for concurrency and distribution contribute to making X10 a high-productivity language in the HPC and Big Data spaces.''
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{J}
+
+J is a hideous language.  But ``J is particularly strong in the
+mathematical, statistical, and logical analysis of
+data.''(\url{http://www.jsoftware.com/}) If you can stomach the
+syntax, not to mention the metalanguage (an ``adverb'' is unary op? a
+``monad'' is a unary function? really?), not to mention the mental
+model, you may find it useful.
+
+In J, all data is an array.  etc.
+
+Here's an example.  The following produces all the factorizations of a
+number:
+
+\begin{verbatim}
+ext=: [: ~. ,&.> , ;@:(tu&.>)
+tu =: ] <@:(/:~)@:*"1 [ ^ </\"1@=@]
+af =: ext/ @ q:
+\end{verbatim}
+
+Holy \href{http://www.muppetlabs.com/~breadbox/bf/}{Brainfuck}!!!  For comparison, here is Hello World
+written in that infamous language:
+
+\begin{verbatim}
+  ++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.
+\end{verbatim}
+
+The obvious question: is the benefit of becoming fluent in such a
+syntax worth the cost?  More to the point: does it really provide
+anything that you cannot find in some other less alienating language?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Commercial}
+
